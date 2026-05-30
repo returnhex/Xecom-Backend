@@ -115,7 +115,7 @@ export class CategoryController {
         if (uploaded?.secure_url) {
           createCategoryDto.imageUrl = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('File upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,
@@ -193,7 +193,7 @@ export class CategoryController {
         if (uploaded?.secure_url) {
           updateCategoryDto.imageUrl = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('File upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,

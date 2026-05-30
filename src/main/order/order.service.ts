@@ -18,7 +18,6 @@ export class OrderService {
       street,
       postalCode,
       thanaId,
-      addressType,
       saveAddress,
       notes,
       couponCode,
@@ -54,7 +53,6 @@ export class OrderService {
         street,
         postalCode,
         thanaId,
-        addressType,
         userId: saveAddress ? userId : null, // Link to user if saveAddress is true
       });
       finalAddressId = newAddress.id;
@@ -122,7 +120,7 @@ export class OrderService {
       );
 
       return order;
-    } catch (error) {
+    } catch (error: any) {
       throw new HttpException(
         error.message || 'Failed to place order',
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -332,7 +330,7 @@ export class OrderService {
       const cancelledOrder =
         await this.orderRepository.cancelOrderWithStockAdjustment(orderId);
       return cancelledOrder;
-    } catch (error) {
+    } catch (error: any) {
       throw new HttpException(
         error.message || 'Failed to cancel order',
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -380,7 +378,7 @@ export class OrderService {
       }
 
       return cancelledOrder;
-    } catch (error) {
+    } catch (error: any) {
       throw new HttpException(
         error.message || 'Failed to cancel order',
         HttpStatus.INTERNAL_SERVER_ERROR,

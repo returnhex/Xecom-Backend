@@ -1,5 +1,5 @@
 import { IsString, IsUUID, IsOptional, IsEnum, IsNumber, Min, IsBoolean } from 'class-validator';
-import { OrderStatus, AddressType } from 'src/generated/prisma';
+import { OrderStatus } from 'src/generated/prisma';
 
 export class PlaceOrderDto {
     // Option 1: Use existing address
@@ -18,10 +18,6 @@ export class PlaceOrderDto {
     @IsOptional()
     @IsUUID()
     thanaId?: string;
-
-    @IsOptional()
-    @IsEnum(AddressType)
-    addressType?: AddressType;
 
     @IsOptional()
     @IsBoolean()

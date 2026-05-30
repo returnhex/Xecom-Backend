@@ -70,7 +70,7 @@ model Address {
   thanaId     String
   street      String
   postalCode  Int?
-  addressType AddressType? // ----------------- NEW -----------------
+  isDefault   Boolean?
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 

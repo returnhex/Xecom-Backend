@@ -113,7 +113,7 @@ export class BrandController {
         if (uploaded?.secure_url) {
           createBrandDto.logoUrl = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('File upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,
@@ -191,7 +191,7 @@ export class BrandController {
         if (uploaded?.secure_url) {
           updateBrandDto.logoUrl = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('File upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,

@@ -9,10 +9,23 @@ import {
   UserStatus,
 } from 'src/generated/prisma';
 import calculatePagination from 'src/utils/calculatePagination';
+import { CreateOrUpdateUserAddressDto, UpdateMeDto } from './user.dto';
 
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) { }
+
+  private mapAddressToResponse(address: any) {
+    return {
+      street: address.street,
+      postalCode: address.postalCode,
+      isDefault: address.isDefault,
+      thanaId: address.thanaId,
+      districtId: address.thana.districtId,
+      divisionId: address.thana.district.divisionId,
+      countryId: address.thana.district.division.countryId,
+    };
+  }
 
   // ------------------------------- Get Me -------------------------------
   public async getMe(user: TUser) {
@@ -113,6 +126,60 @@ export class UserService {
       totalInactiveUsers,
       totalVerifiedAccounts,
     };
+  }
+
+  // ------------------------------- Update Me -------------------------------
+  public async updateMe(requester: TUser, payload: UpdateMeDto) {
+    const existingUser = await this.userRepository.findById(requester.id);
+    if (!existingUser) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    const updated = await this.userRepository.updateMe(requester.id, {
+      name: payload.name,
+      phoneNumber: payload.phoneNumber,
+      profilePicture: payload.profilePicture,
+    });
+
+    return updated;
+  }
+
+  // ------------------------------- Address -------------------------------
+  public async createOrUpdateUserAddress(
+    requester: TUser,
+    payload: CreateOrUpdateUserAddressDto,
+  ) {
+    const existingUser = await this.userRepository.findById(requester.id);
+    if (!existingUser) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    const existingThana = await this.userRepository.findThanaById(payload.thanaId);
+    if (!existingThana) {
+      throw new HttpException('Thana not found', HttpStatus.NOT_FOUND);
+    }
+
+    const createdOrUpdated =
+      await this.userRepository.createOrUpdateAddressByUserAndThana({
+        userId: requester.id,
+        thanaId: payload.thanaId,
+        postalCode: payload.postalCode,
+        street: payload.street,
+        isDefault: payload.isDefault,
+      });
+
+    return this.mapAddressToResponse(createdOrUpdated);
+  }
+
+  public async getUserAddresses(requester: TUser) {
+
+    const existingUser = await this.userRepository.findById(requester.id);
+    if (!existingUser) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    const addresses = await this.userRepository.findAddressesByUserId(requester.id);
+    return addresses.map((a) => this.mapAddressToResponse(a));
   }
 
   /*

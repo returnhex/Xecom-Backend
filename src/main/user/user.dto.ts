@@ -5,6 +5,7 @@ import {
   IsOptional,
   IsInt,
   IsEnum,
+  IsBoolean,
 } from 'class-validator';
 import { Gender, UserStatus } from 'src/generated/prisma';
 
@@ -73,4 +74,35 @@ export class UpdateUserDto {
 export class ChangeUserStatusDto {
   @IsEnum(UserStatus)
   status!: UserStatus;
+}
+
+export class CreateOrUpdateUserAddressDto {
+  @IsString()
+  thanaId!: string;
+
+  @IsInt()
+  postalCode!: number;
+
+  @IsOptional()
+  @IsString()
+  street?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isDefault?: boolean;
+}
+
+export class UpdateMeDto {
+  @IsOptional()
+  @IsString()
+  @Length(2, 50)
+  name?: string;
+
+  @IsOptional()
+  @IsString()
+  phoneNumber?: string;
+
+  @IsOptional()
+  @IsString()
+  profilePicture?: string;
 }

@@ -64,7 +64,7 @@ export class AdminController {
         if (uploaded?.secure_url) {
           createAdminDto.profilePicture = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('File upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,

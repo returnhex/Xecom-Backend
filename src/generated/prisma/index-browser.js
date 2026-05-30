@@ -172,7 +172,7 @@ exports.Prisma.AddressScalarFieldEnum = {
   thanaId: 'thanaId',
   street: 'street',
   postalCode: 'postalCode',
-  addressType: 'addressType',
+  isDefault: 'isDefault',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -660,12 +660,6 @@ exports.InventoryReason = exports.$Enums.InventoryReason = {
   ADJUSTMENT: 'ADJUSTMENT',
   DAMAGE: 'DAMAGE',
   EXPIRED: 'EXPIRED'
-};
-
-exports.AddressType = exports.$Enums.AddressType = {
-  HOME: 'HOME',
-  OFFICE: 'OFFICE',
-  OTHER: 'OTHER'
 };
 
 exports.CouponType = exports.$Enums.CouponType = {

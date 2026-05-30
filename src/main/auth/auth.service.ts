@@ -101,7 +101,7 @@ export class AuthService {
       decoded = this.jwtService.verify(token, {
         secret: this.configService.getOrThrow('REFRESH_SECRET'),
       });
-    } catch (error) {
+    } catch (error: any) {
       throw new HttpException('Invalid refresh token', HttpStatus.UNAUTHORIZED);
     }
 

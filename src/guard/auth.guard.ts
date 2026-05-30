@@ -43,7 +43,7 @@ export class AuthGuard implements CanActivate {
       //   throw new HttpException('Unverified User!', 403);
       // }
       request['user'] = decoded;
-    } catch (error) {
+    } catch (error: any) {
       throw new HttpException('Could not Verify Token!', 401);
     }
 

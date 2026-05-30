@@ -59,12 +59,6 @@ enum CustomerType {
   WHOLESALE
 }
 
-enum AddressType {
-  HOME
-  OFFICE
-  OTHER
-}
-
 // Product Enums
 enum ProductStatus {
   ACTIVE

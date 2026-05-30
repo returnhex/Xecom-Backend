@@ -539,7 +539,6 @@ export class OrderRepository {
     street: string;
     postalCode?: number;
     thanaId: string;
-    addressType?: any;
     userId: string | null;
   }) {
     return this.prisma.address.create({
@@ -547,7 +546,6 @@ export class OrderRepository {
         street: data.street,
         postalCode: data.postalCode,
         thanaId: data.thanaId,
-        addressType: data.addressType,
         userId: data.userId,
       },
     });

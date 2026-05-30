@@ -6,6 +6,24 @@ import { Prisma, UserStatus, UserRole, Gender } from 'src/generated/prisma';
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) { }
 
+  private addressIncludeForLocationChain = {
+    thana: {
+      select: {
+        districtId: true,
+        district: {
+          select: {
+            divisionId: true,
+            division: {
+              select: {
+                countryId: true,
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
   async findAll(
     skip: number,
     take: number,
@@ -120,6 +138,24 @@ export class UserRepository {
     });
   }
 
+  async updateMe(
+    userId: string,
+    data: { name?: string; phoneNumber?: string; profilePicture?: string },
+  ) {
+    return this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        ...(data.name !== undefined ? { name: data.name } : {}),
+        ...(data.phoneNumber !== undefined
+          ? { phoneNumber: data.phoneNumber }
+          : {}),
+        ...(data.profilePicture !== undefined
+          ? { profilePicture: data.profilePicture }
+          : {}),
+      },
+    });
+  }
+
   async updateStatus(id: string, status: UserStatus) {
     return this.prisma.user.update({
       where: { id },
@@ -175,6 +211,109 @@ export class UserRepository {
       include: {
         user: true,
       },
+    });
+  }
+
+  // ------------------------------- Address operations -------------------------------
+  async findThanaById(thanaId: string) {
+    return this.prisma.thana.findUnique({
+      where: { id: thanaId },
+    });
+  }
+
+  async createAddress(data: {
+    userId: string;
+    thanaId: string;
+    postalCode: number;
+    street: string;
+    isDefault?: boolean;
+  }) {
+    return this.prisma.address.create({
+      data: {
+        userId: data.userId,
+        thanaId: data.thanaId,
+        postalCode: data.postalCode,
+        street: data.street,
+        isDefault: data.isDefault ?? false,
+      },
+      include: this.addressIncludeForLocationChain,
+    });
+  }
+
+  async findLatestAddressByUserAndThana(userId: string, thanaId: string) {
+    return this.prisma.address.findFirst({
+      where: { userId, thanaId },
+      orderBy: { createdAt: 'desc' },
+      include: this.addressIncludeForLocationChain,
+    });
+  }
+
+  async updateAddressById(
+    id: string,
+    data: { street?: string; postalCode?: number; isDefault?: boolean },
+  ) {
+    return this.prisma.address.update({
+      where: { id },
+      data: {
+        ...(data.street !== undefined ? { street: data.street } : {}),
+        ...(data.postalCode !== undefined ? { postalCode: data.postalCode } : {}),
+        ...(data.isDefault !== undefined ? { isDefault: data.isDefault } : {}),
+      },
+      include: this.addressIncludeForLocationChain,
+    });
+  }
+
+  async createOrUpdateAddressByUserAndThana(data: {
+    userId: string;
+    thanaId: string;
+    postalCode: number;
+    street?: string;
+    isDefault?: boolean;
+  }) {
+    return this.prisma.$transaction(async (tx) => {
+      if (data.isDefault === true) {
+        await tx.address.updateMany({
+          where: { userId: data.userId, isDefault: true },
+          data: { isDefault: false },
+        });
+      }
+
+      const existing = await tx.address.findFirst({
+        where: { userId: data.userId, thanaId: data.thanaId },
+        orderBy: { createdAt: 'desc' },
+        select: { id: true },
+      });
+
+      if (existing) {
+        return tx.address.update({
+          where: { id: existing.id },
+          data: {
+            ...(data.street !== undefined ? { street: data.street } : {}),
+            postalCode: data.postalCode,
+            ...(data.isDefault !== undefined ? { isDefault: data.isDefault } : {}),
+          },
+          include: this.addressIncludeForLocationChain,
+        });
+      }
+
+      return tx.address.create({
+        data: {
+          userId: data.userId,
+          thanaId: data.thanaId,
+          postalCode: data.postalCode,
+          street: data.street ?? '',
+          isDefault: data.isDefault ?? false,
+        },
+        include: this.addressIncludeForLocationChain,
+      });
+    });
+  }
+
+  async findAddressesByUserId(userId: string) {
+    return this.prisma.address.findMany({
+      where: { userId },
+      orderBy: [{ isDefault: 'desc' }, { createdAt: 'desc' }],
+      include: this.addressIncludeForLocationChain,
     });
   }
 }

@@ -167,7 +167,7 @@ export class ProductController {
               isFeatured: i === 0, // First image is featured
             });
           }
-        } catch (error) {
+        } catch (error: any) {
           console.error('Image upload failed:', error);
           return res.status(HttpStatus.REQUEST_TIMEOUT).json({
             success: false,
@@ -199,7 +199,7 @@ export class ProductController {
         if (uploaded?.secure_url) {
           createProductDto.videoUrl = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Video upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,
@@ -221,7 +221,7 @@ export class ProductController {
         if (uploaded?.secure_url) {
           createProductDto.manualUrl = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Manual upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,
@@ -323,7 +323,7 @@ export class ProductController {
               imageUrl: uploaded.secure_url,
             });
           }
-        } catch (error) {
+        } catch (error: any) {
           console.error('Image upload failed:', error);
           return res.status(HttpStatus.REQUEST_TIMEOUT).json({
             success: false,
@@ -355,7 +355,7 @@ export class ProductController {
         if (uploaded?.secure_url) {
           updateProductDto.videoUrl = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Video upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,
@@ -377,7 +377,7 @@ export class ProductController {
         if (uploaded?.secure_url) {
           updateProductDto.manualUrl = uploaded.secure_url;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Manual upload failed:', error);
         return res.status(HttpStatus.REQUEST_TIMEOUT).json({
           success: false,

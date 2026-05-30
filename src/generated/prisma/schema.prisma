@@ -59,12 +59,6 @@ enum CustomerType {
   WHOLESALE
 }
 
-enum AddressType {
-  HOME
-  OFFICE
-  OTHER
-}
-
 // Product Enums
 enum ProductStatus {
   ACTIVE
@@ -303,14 +297,14 @@ model Thana {
 }
 
 model Address {
-  id          String       @id @default(uuid())
-  userId      String?
-  thanaId     String
-  street      String
-  postalCode  Int?
-  addressType AddressType? // ----------------- NEW -----------------
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id         String   @id @default(uuid())
+  userId     String?
+  thanaId    String
+  street     String
+  postalCode Int?
+  isDefault  Boolean?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   // Relationships
   thana  Thana   @relation(fields: [thanaId], references: [id])
@@ -848,28 +842,23 @@ model Subscription {
 // ========================================
 
 model User {
-  id             String  @id @default(uuid())
+  id             String        @id @default(uuid())
   tenantId       String? // Multi-tenant support
   name           String
-  email          String  @unique
+  email          String        @unique
   password       String?
-  phoneNumber    String?
+  phoneNumber    String?       @unique
   profilePicture String?
   gender         Gender?
-
-  //
-  provider AuthProvider? @default(EMAIL_PASSWORD)
-
-  //
-
-  role          UserRole   @default(CUSTOMER)
-  status        UserStatus @default(ACTIVE)
-  emailVerified Boolean    @default(false)
-  lastLoginAt   DateTime?
-  preferences   Json       @default("{}")
-  metadata      Json       @default("{}")
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  provider       AuthProvider? @default(EMAIL_PASSWORD)
+  role           UserRole      @default(CUSTOMER)
+  status         UserStatus    @default(ACTIVE)
+  emailVerified  Boolean       @default(false)
+  lastLoginAt    DateTime?
+  preferences    Json          @default("{}")
+  metadata       Json          @default("{}")
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
   // Relationships (Common)
   tenant        Tenant?        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
