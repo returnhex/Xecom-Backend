@@ -54,6 +54,11 @@ export type Coupon = $Result.DefaultSelection<Prisma.$CouponPayload>
  */
 export type Order = $Result.DefaultSelection<Prisma.$OrderPayload>
 /**
+ * Model ShippingMethod
+ * 
+ */
+export type ShippingMethod = $Result.DefaultSelection<Prisma.$ShippingMethodPayload>
+/**
  * Model OrderItem
  * 
  */
@@ -784,6 +789,16 @@ export class PrismaClient<
     * ```
     */
   get order(): Prisma.OrderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.shippingMethod`: Exposes CRUD operations for the **ShippingMethod** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ShippingMethods
+    * const shippingMethods = await prisma.shippingMethod.findMany()
+    * ```
+    */
+  get shippingMethod(): Prisma.ShippingMethodDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.orderItem`: Exposes CRUD operations for the **OrderItem** model.
@@ -1526,6 +1541,7 @@ export namespace Prisma {
     Address: 'Address',
     Coupon: 'Coupon',
     Order: 'Order',
+    ShippingMethod: 'ShippingMethod',
     OrderItem: 'OrderItem',
     Payment: 'Payment',
     Shipment: 'Shipment',
@@ -1571,7 +1587,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "inventoryLog" | "country" | "division" | "district" | "thana" | "address" | "coupon" | "order" | "orderItem" | "payment" | "shipment" | "orderReturn" | "returnItem" | "cart" | "cartItem" | "category" | "brand" | "product" | "bundleItem" | "productRelation" | "attribute" | "attributeValue" | "productVariantAttribute" | "productVariant" | "productImage" | "productDimension" | "productFaq" | "review" | "wishlist" | "notification" | "auditLog" | "setting" | "tenant" | "subscription" | "user" | "admin" | "staff" | "customer"
+      modelProps: "inventoryLog" | "country" | "division" | "district" | "thana" | "address" | "coupon" | "order" | "shippingMethod" | "orderItem" | "payment" | "shipment" | "orderReturn" | "returnItem" | "cart" | "cartItem" | "category" | "brand" | "product" | "bundleItem" | "productRelation" | "attribute" | "attributeValue" | "productVariantAttribute" | "productVariant" | "productImage" | "productDimension" | "productFaq" | "review" | "wishlist" | "notification" | "auditLog" | "setting" | "tenant" | "subscription" | "user" | "admin" | "staff" | "customer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2164,6 +2180,80 @@ export namespace Prisma {
           count: {
             args: Prisma.OrderCountArgs<ExtArgs>
             result: $Utils.Optional<OrderCountAggregateOutputType> | number
+          }
+        }
+      }
+      ShippingMethod: {
+        payload: Prisma.$ShippingMethodPayload<ExtArgs>
+        fields: Prisma.ShippingMethodFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ShippingMethodFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ShippingMethodFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>
+          }
+          findFirst: {
+            args: Prisma.ShippingMethodFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ShippingMethodFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>
+          }
+          findMany: {
+            args: Prisma.ShippingMethodFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>[]
+          }
+          create: {
+            args: Prisma.ShippingMethodCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>
+          }
+          createMany: {
+            args: Prisma.ShippingMethodCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ShippingMethodCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>[]
+          }
+          delete: {
+            args: Prisma.ShippingMethodDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>
+          }
+          update: {
+            args: Prisma.ShippingMethodUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>
+          }
+          deleteMany: {
+            args: Prisma.ShippingMethodDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ShippingMethodUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ShippingMethodUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>[]
+          }
+          upsert: {
+            args: Prisma.ShippingMethodUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShippingMethodPayload>
+          }
+          aggregate: {
+            args: Prisma.ShippingMethodAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateShippingMethod>
+          }
+          groupBy: {
+            args: Prisma.ShippingMethodGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ShippingMethodGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ShippingMethodCountArgs<ExtArgs>
+            result: $Utils.Optional<ShippingMethodCountAggregateOutputType> | number
           }
         }
       }
@@ -4503,6 +4593,7 @@ export namespace Prisma {
     address?: AddressOmit
     coupon?: CouponOmit
     order?: OrderOmit
+    shippingMethod?: ShippingMethodOmit
     orderItem?: OrderItemOmit
     payment?: PaymentOmit
     shipment?: ShipmentOmit
@@ -4818,6 +4909,37 @@ export namespace Prisma {
    */
   export type OrderCountOutputTypeCountReturnsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrderReturnWhereInput
+  }
+
+
+  /**
+   * Count Type ShippingMethodCountOutputType
+   */
+
+  export type ShippingMethodCountOutputType = {
+    orders: number
+  }
+
+  export type ShippingMethodCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orders?: boolean | ShippingMethodCountOutputTypeCountOrdersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ShippingMethodCountOutputType without action
+   */
+  export type ShippingMethodCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethodCountOutputType
+     */
+    select?: ShippingMethodCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ShippingMethodCountOutputType without action
+   */
+  export type ShippingMethodCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderWhereInput
   }
 
 
@@ -5187,6 +5309,7 @@ export namespace Prisma {
     categories: number
     brands: number
     orders: number
+    shippingMethods: number
     coupons: number
     subscriptions: number
     settings: number
@@ -5198,6 +5321,7 @@ export namespace Prisma {
     categories?: boolean | TenantCountOutputTypeCountCategoriesArgs
     brands?: boolean | TenantCountOutputTypeCountBrandsArgs
     orders?: boolean | TenantCountOutputTypeCountOrdersArgs
+    shippingMethods?: boolean | TenantCountOutputTypeCountShippingMethodsArgs
     coupons?: boolean | TenantCountOutputTypeCountCouponsArgs
     subscriptions?: boolean | TenantCountOutputTypeCountSubscriptionsArgs
     settings?: boolean | TenantCountOutputTypeCountSettingsArgs
@@ -5247,6 +5371,13 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrderWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountShippingMethodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShippingMethodWhereInput
   }
 
   /**
@@ -12201,7 +12332,6 @@ export namespace Prisma {
     startsAt: number
     expiresAt: number
     applicableProductIds: number
-    applicableCategoryIds: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -12283,7 +12413,6 @@ export namespace Prisma {
     startsAt?: true
     expiresAt?: true
     applicableProductIds?: true
-    applicableCategoryIds?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -12392,7 +12521,6 @@ export namespace Prisma {
     startsAt: Date | null
     expiresAt: Date | null
     applicableProductIds: string[]
-    applicableCategoryIds: string[]
     createdAt: Date
     updatedAt: Date
     _count: CouponCountAggregateOutputType | null
@@ -12433,7 +12561,6 @@ export namespace Prisma {
     startsAt?: boolean
     expiresAt?: boolean
     applicableProductIds?: boolean
-    applicableCategoryIds?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     tenant?: boolean | Coupon$tenantArgs<ExtArgs>
@@ -12456,7 +12583,6 @@ export namespace Prisma {
     startsAt?: boolean
     expiresAt?: boolean
     applicableProductIds?: boolean
-    applicableCategoryIds?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     tenant?: boolean | Coupon$tenantArgs<ExtArgs>
@@ -12479,7 +12605,6 @@ export namespace Prisma {
     startsAt?: boolean
     expiresAt?: boolean
     applicableProductIds?: boolean
-    applicableCategoryIds?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     tenant?: boolean | Coupon$tenantArgs<ExtArgs>
@@ -12502,12 +12627,11 @@ export namespace Prisma {
     startsAt?: boolean
     expiresAt?: boolean
     applicableProductIds?: boolean
-    applicableCategoryIds?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "code" | "name" | "description" | "type" | "value" | "minOrderAmount" | "maxDiscountAmount" | "usageLimit" | "usageCount" | "userUsageLimit" | "isActive" | "startsAt" | "expiresAt" | "applicableProductIds" | "applicableCategoryIds" | "createdAt" | "updatedAt", ExtArgs["result"]["coupon"]>
+  export type CouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "code" | "name" | "description" | "type" | "value" | "minOrderAmount" | "maxDiscountAmount" | "usageLimit" | "usageCount" | "userUsageLimit" | "isActive" | "startsAt" | "expiresAt" | "applicableProductIds" | "createdAt" | "updatedAt", ExtArgs["result"]["coupon"]>
   export type CouponInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | Coupon$tenantArgs<ExtArgs>
   }
@@ -12540,7 +12664,6 @@ export namespace Prisma {
       startsAt: Date | null
       expiresAt: Date | null
       applicableProductIds: string[]
-      applicableCategoryIds: string[]
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["coupon"]>
@@ -12983,7 +13106,6 @@ export namespace Prisma {
     readonly startsAt: FieldRef<"Coupon", 'DateTime'>
     readonly expiresAt: FieldRef<"Coupon", 'DateTime'>
     readonly applicableProductIds: FieldRef<"Coupon", 'String[]'>
-    readonly applicableCategoryIds: FieldRef<"Coupon", 'String[]'>
     readonly createdAt: FieldRef<"Coupon", 'DateTime'>
     readonly updatedAt: FieldRef<"Coupon", 'DateTime'>
   }
@@ -13465,7 +13587,7 @@ export namespace Prisma {
     notes: string | null
     internalNotes: string | null
     couponCode: string | null
-    shippingMethod: string | null
+    shippingMethodId: string | null
     trackingNumber: string | null
     estimatedDelivery: Date | null
     deliveredAt: Date | null
@@ -13491,7 +13613,7 @@ export namespace Prisma {
     notes: string | null
     internalNotes: string | null
     couponCode: string | null
-    shippingMethod: string | null
+    shippingMethodId: string | null
     trackingNumber: string | null
     estimatedDelivery: Date | null
     deliveredAt: Date | null
@@ -13517,7 +13639,7 @@ export namespace Prisma {
     notes: number
     internalNotes: number
     couponCode: number
-    shippingMethod: number
+    shippingMethodId: number
     trackingNumber: number
     estimatedDelivery: number
     deliveredAt: number
@@ -13561,7 +13683,7 @@ export namespace Prisma {
     notes?: true
     internalNotes?: true
     couponCode?: true
-    shippingMethod?: true
+    shippingMethodId?: true
     trackingNumber?: true
     estimatedDelivery?: true
     deliveredAt?: true
@@ -13587,7 +13709,7 @@ export namespace Prisma {
     notes?: true
     internalNotes?: true
     couponCode?: true
-    shippingMethod?: true
+    shippingMethodId?: true
     trackingNumber?: true
     estimatedDelivery?: true
     deliveredAt?: true
@@ -13613,7 +13735,7 @@ export namespace Prisma {
     notes?: true
     internalNotes?: true
     couponCode?: true
-    shippingMethod?: true
+    shippingMethodId?: true
     trackingNumber?: true
     estimatedDelivery?: true
     deliveredAt?: true
@@ -13726,7 +13848,7 @@ export namespace Prisma {
     notes: string | null
     internalNotes: string | null
     couponCode: string | null
-    shippingMethod: string | null
+    shippingMethodId: string | null
     trackingNumber: string | null
     estimatedDelivery: Date | null
     deliveredAt: Date | null
@@ -13771,7 +13893,7 @@ export namespace Prisma {
     notes?: boolean
     internalNotes?: boolean
     couponCode?: boolean
-    shippingMethod?: boolean
+    shippingMethodId?: boolean
     trackingNumber?: boolean
     estimatedDelivery?: boolean
     deliveredAt?: boolean
@@ -13780,6 +13902,7 @@ export namespace Prisma {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
     orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
     payments?: boolean | Order$paymentsArgs<ExtArgs>
     shipments?: boolean | Order$shipmentsArgs<ExtArgs>
@@ -13805,7 +13928,7 @@ export namespace Prisma {
     notes?: boolean
     internalNotes?: boolean
     couponCode?: boolean
-    shippingMethod?: boolean
+    shippingMethodId?: boolean
     trackingNumber?: boolean
     estimatedDelivery?: boolean
     deliveredAt?: boolean
@@ -13814,6 +13937,7 @@ export namespace Prisma {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13834,7 +13958,7 @@ export namespace Prisma {
     notes?: boolean
     internalNotes?: boolean
     couponCode?: boolean
-    shippingMethod?: boolean
+    shippingMethodId?: boolean
     trackingNumber?: boolean
     estimatedDelivery?: boolean
     deliveredAt?: boolean
@@ -13843,6 +13967,7 @@ export namespace Prisma {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectScalar = {
@@ -13863,7 +13988,7 @@ export namespace Prisma {
     notes?: boolean
     internalNotes?: boolean
     couponCode?: boolean
-    shippingMethod?: boolean
+    shippingMethodId?: boolean
     trackingNumber?: boolean
     estimatedDelivery?: boolean
     deliveredAt?: boolean
@@ -13871,11 +13996,12 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "customerId" | "addressId" | "orderNumber" | "status" | "paymentStatus" | "paymentMethod" | "subtotal" | "taxAmount" | "shippingCost" | "discount" | "total" | "currency" | "notes" | "internalNotes" | "couponCode" | "shippingMethod" | "trackingNumber" | "estimatedDelivery" | "deliveredAt" | "placedAt" | "updatedAt", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "customerId" | "addressId" | "orderNumber" | "status" | "paymentStatus" | "paymentMethod" | "subtotal" | "taxAmount" | "shippingCost" | "discount" | "total" | "currency" | "notes" | "internalNotes" | "couponCode" | "shippingMethodId" | "trackingNumber" | "estimatedDelivery" | "deliveredAt" | "placedAt" | "updatedAt", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
     orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
     payments?: boolean | Order$paymentsArgs<ExtArgs>
     shipments?: boolean | Order$shipmentsArgs<ExtArgs>
@@ -13886,11 +14012,13 @@ export namespace Prisma {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
   }
   export type OrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
   }
 
   export type $OrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13899,6 +14027,7 @@ export namespace Prisma {
       tenant: Prisma.$TenantPayload<ExtArgs> | null
       customer: Prisma.$CustomerPayload<ExtArgs>
       address: Prisma.$AddressPayload<ExtArgs>
+      shippingMethod: Prisma.$ShippingMethodPayload<ExtArgs> | null
       orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
       shipments: Prisma.$ShipmentPayload<ExtArgs>[]
@@ -13922,7 +14051,7 @@ export namespace Prisma {
       notes: string | null
       internalNotes: string | null
       couponCode: string | null
-      shippingMethod: string | null
+      shippingMethodId: string | null
       trackingNumber: string | null
       estimatedDelivery: Date | null
       deliveredAt: Date | null
@@ -14325,6 +14454,7 @@ export namespace Prisma {
     tenant<T extends Order$tenantArgs<ExtArgs> = {}>(args?: Subset<T, Order$tenantArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     address<T extends AddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddressDefaultArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    shippingMethod<T extends Order$shippingMethodArgs<ExtArgs> = {}>(args?: Subset<T, Order$shippingMethodArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     orderItems<T extends Order$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, Order$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends Order$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Order$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     shipments<T extends Order$shipmentsArgs<ExtArgs> = {}>(args?: Subset<T, Order$shipmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -14375,7 +14505,7 @@ export namespace Prisma {
     readonly notes: FieldRef<"Order", 'String'>
     readonly internalNotes: FieldRef<"Order", 'String'>
     readonly couponCode: FieldRef<"Order", 'String'>
-    readonly shippingMethod: FieldRef<"Order", 'String'>
+    readonly shippingMethodId: FieldRef<"Order", 'String'>
     readonly trackingNumber: FieldRef<"Order", 'String'>
     readonly estimatedDelivery: FieldRef<"Order", 'DateTime'>
     readonly deliveredAt: FieldRef<"Order", 'DateTime'>
@@ -14796,6 +14926,25 @@ export namespace Prisma {
   }
 
   /**
+   * Order.shippingMethod
+   */
+  export type Order$shippingMethodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    where?: ShippingMethodWhereInput
+  }
+
+  /**
    * Order.orderItems
    */
   export type Order$orderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14907,6 +15056,1212 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: OrderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ShippingMethod
+   */
+
+  export type AggregateShippingMethod = {
+    _count: ShippingMethodCountAggregateOutputType | null
+    _avg: ShippingMethodAvgAggregateOutputType | null
+    _sum: ShippingMethodSumAggregateOutputType | null
+    _min: ShippingMethodMinAggregateOutputType | null
+    _max: ShippingMethodMaxAggregateOutputType | null
+  }
+
+  export type ShippingMethodAvgAggregateOutputType = {
+    cost: Decimal | null
+  }
+
+  export type ShippingMethodSumAggregateOutputType = {
+    cost: Decimal | null
+  }
+
+  export type ShippingMethodMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    code: string | null
+    name: string | null
+    description: string | null
+    cost: Decimal | null
+    estimatedDays: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ShippingMethodMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    code: string | null
+    name: string | null
+    description: string | null
+    cost: Decimal | null
+    estimatedDays: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ShippingMethodCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    code: number
+    name: number
+    description: number
+    cost: number
+    estimatedDays: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ShippingMethodAvgAggregateInputType = {
+    cost?: true
+  }
+
+  export type ShippingMethodSumAggregateInputType = {
+    cost?: true
+  }
+
+  export type ShippingMethodMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    code?: true
+    name?: true
+    description?: true
+    cost?: true
+    estimatedDays?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ShippingMethodMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    code?: true
+    name?: true
+    description?: true
+    cost?: true
+    estimatedDays?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ShippingMethodCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    code?: true
+    name?: true
+    description?: true
+    cost?: true
+    estimatedDays?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ShippingMethodAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ShippingMethod to aggregate.
+     */
+    where?: ShippingMethodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShippingMethods to fetch.
+     */
+    orderBy?: ShippingMethodOrderByWithRelationInput | ShippingMethodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ShippingMethodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShippingMethods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShippingMethods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ShippingMethods
+    **/
+    _count?: true | ShippingMethodCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ShippingMethodAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ShippingMethodSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ShippingMethodMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ShippingMethodMaxAggregateInputType
+  }
+
+  export type GetShippingMethodAggregateType<T extends ShippingMethodAggregateArgs> = {
+        [P in keyof T & keyof AggregateShippingMethod]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateShippingMethod[P]>
+      : GetScalarType<T[P], AggregateShippingMethod[P]>
+  }
+
+
+
+
+  export type ShippingMethodGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShippingMethodWhereInput
+    orderBy?: ShippingMethodOrderByWithAggregationInput | ShippingMethodOrderByWithAggregationInput[]
+    by: ShippingMethodScalarFieldEnum[] | ShippingMethodScalarFieldEnum
+    having?: ShippingMethodScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ShippingMethodCountAggregateInputType | true
+    _avg?: ShippingMethodAvgAggregateInputType
+    _sum?: ShippingMethodSumAggregateInputType
+    _min?: ShippingMethodMinAggregateInputType
+    _max?: ShippingMethodMaxAggregateInputType
+  }
+
+  export type ShippingMethodGroupByOutputType = {
+    id: string
+    tenantId: string | null
+    code: string
+    name: string
+    description: string | null
+    cost: Decimal | null
+    estimatedDays: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ShippingMethodCountAggregateOutputType | null
+    _avg: ShippingMethodAvgAggregateOutputType | null
+    _sum: ShippingMethodSumAggregateOutputType | null
+    _min: ShippingMethodMinAggregateOutputType | null
+    _max: ShippingMethodMaxAggregateOutputType | null
+  }
+
+  type GetShippingMethodGroupByPayload<T extends ShippingMethodGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ShippingMethodGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ShippingMethodGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ShippingMethodGroupByOutputType[P]>
+            : GetScalarType<T[P], ShippingMethodGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ShippingMethodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    code?: boolean
+    name?: boolean
+    description?: boolean
+    cost?: boolean
+    estimatedDays?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | ShippingMethod$tenantArgs<ExtArgs>
+    orders?: boolean | ShippingMethod$ordersArgs<ExtArgs>
+    _count?: boolean | ShippingMethodCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["shippingMethod"]>
+
+  export type ShippingMethodSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    code?: boolean
+    name?: boolean
+    description?: boolean
+    cost?: boolean
+    estimatedDays?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | ShippingMethod$tenantArgs<ExtArgs>
+  }, ExtArgs["result"]["shippingMethod"]>
+
+  export type ShippingMethodSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    code?: boolean
+    name?: boolean
+    description?: boolean
+    cost?: boolean
+    estimatedDays?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | ShippingMethod$tenantArgs<ExtArgs>
+  }, ExtArgs["result"]["shippingMethod"]>
+
+  export type ShippingMethodSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    code?: boolean
+    name?: boolean
+    description?: boolean
+    cost?: boolean
+    estimatedDays?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ShippingMethodOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "code" | "name" | "description" | "cost" | "estimatedDays" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["shippingMethod"]>
+  export type ShippingMethodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | ShippingMethod$tenantArgs<ExtArgs>
+    orders?: boolean | ShippingMethod$ordersArgs<ExtArgs>
+    _count?: boolean | ShippingMethodCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ShippingMethodIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | ShippingMethod$tenantArgs<ExtArgs>
+  }
+  export type ShippingMethodIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | ShippingMethod$tenantArgs<ExtArgs>
+  }
+
+  export type $ShippingMethodPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ShippingMethod"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs> | null
+      orders: Prisma.$OrderPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string | null
+      code: string
+      name: string
+      description: string | null
+      cost: Prisma.Decimal | null
+      estimatedDays: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["shippingMethod"]>
+    composites: {}
+  }
+
+  type ShippingMethodGetPayload<S extends boolean | null | undefined | ShippingMethodDefaultArgs> = $Result.GetResult<Prisma.$ShippingMethodPayload, S>
+
+  type ShippingMethodCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ShippingMethodFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ShippingMethodCountAggregateInputType | true
+    }
+
+  export interface ShippingMethodDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ShippingMethod'], meta: { name: 'ShippingMethod' } }
+    /**
+     * Find zero or one ShippingMethod that matches the filter.
+     * @param {ShippingMethodFindUniqueArgs} args - Arguments to find a ShippingMethod
+     * @example
+     * // Get one ShippingMethod
+     * const shippingMethod = await prisma.shippingMethod.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ShippingMethodFindUniqueArgs>(args: SelectSubset<T, ShippingMethodFindUniqueArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ShippingMethod that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ShippingMethodFindUniqueOrThrowArgs} args - Arguments to find a ShippingMethod
+     * @example
+     * // Get one ShippingMethod
+     * const shippingMethod = await prisma.shippingMethod.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ShippingMethodFindUniqueOrThrowArgs>(args: SelectSubset<T, ShippingMethodFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ShippingMethod that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingMethodFindFirstArgs} args - Arguments to find a ShippingMethod
+     * @example
+     * // Get one ShippingMethod
+     * const shippingMethod = await prisma.shippingMethod.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ShippingMethodFindFirstArgs>(args?: SelectSubset<T, ShippingMethodFindFirstArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ShippingMethod that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingMethodFindFirstOrThrowArgs} args - Arguments to find a ShippingMethod
+     * @example
+     * // Get one ShippingMethod
+     * const shippingMethod = await prisma.shippingMethod.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ShippingMethodFindFirstOrThrowArgs>(args?: SelectSubset<T, ShippingMethodFindFirstOrThrowArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ShippingMethods that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingMethodFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ShippingMethods
+     * const shippingMethods = await prisma.shippingMethod.findMany()
+     * 
+     * // Get first 10 ShippingMethods
+     * const shippingMethods = await prisma.shippingMethod.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const shippingMethodWithIdOnly = await prisma.shippingMethod.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ShippingMethodFindManyArgs>(args?: SelectSubset<T, ShippingMethodFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ShippingMethod.
+     * @param {ShippingMethodCreateArgs} args - Arguments to create a ShippingMethod.
+     * @example
+     * // Create one ShippingMethod
+     * const ShippingMethod = await prisma.shippingMethod.create({
+     *   data: {
+     *     // ... data to create a ShippingMethod
+     *   }
+     * })
+     * 
+     */
+    create<T extends ShippingMethodCreateArgs>(args: SelectSubset<T, ShippingMethodCreateArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ShippingMethods.
+     * @param {ShippingMethodCreateManyArgs} args - Arguments to create many ShippingMethods.
+     * @example
+     * // Create many ShippingMethods
+     * const shippingMethod = await prisma.shippingMethod.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ShippingMethodCreateManyArgs>(args?: SelectSubset<T, ShippingMethodCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ShippingMethods and returns the data saved in the database.
+     * @param {ShippingMethodCreateManyAndReturnArgs} args - Arguments to create many ShippingMethods.
+     * @example
+     * // Create many ShippingMethods
+     * const shippingMethod = await prisma.shippingMethod.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ShippingMethods and only return the `id`
+     * const shippingMethodWithIdOnly = await prisma.shippingMethod.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ShippingMethodCreateManyAndReturnArgs>(args?: SelectSubset<T, ShippingMethodCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ShippingMethod.
+     * @param {ShippingMethodDeleteArgs} args - Arguments to delete one ShippingMethod.
+     * @example
+     * // Delete one ShippingMethod
+     * const ShippingMethod = await prisma.shippingMethod.delete({
+     *   where: {
+     *     // ... filter to delete one ShippingMethod
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ShippingMethodDeleteArgs>(args: SelectSubset<T, ShippingMethodDeleteArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ShippingMethod.
+     * @param {ShippingMethodUpdateArgs} args - Arguments to update one ShippingMethod.
+     * @example
+     * // Update one ShippingMethod
+     * const shippingMethod = await prisma.shippingMethod.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ShippingMethodUpdateArgs>(args: SelectSubset<T, ShippingMethodUpdateArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ShippingMethods.
+     * @param {ShippingMethodDeleteManyArgs} args - Arguments to filter ShippingMethods to delete.
+     * @example
+     * // Delete a few ShippingMethods
+     * const { count } = await prisma.shippingMethod.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ShippingMethodDeleteManyArgs>(args?: SelectSubset<T, ShippingMethodDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ShippingMethods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingMethodUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ShippingMethods
+     * const shippingMethod = await prisma.shippingMethod.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ShippingMethodUpdateManyArgs>(args: SelectSubset<T, ShippingMethodUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ShippingMethods and returns the data updated in the database.
+     * @param {ShippingMethodUpdateManyAndReturnArgs} args - Arguments to update many ShippingMethods.
+     * @example
+     * // Update many ShippingMethods
+     * const shippingMethod = await prisma.shippingMethod.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ShippingMethods and only return the `id`
+     * const shippingMethodWithIdOnly = await prisma.shippingMethod.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ShippingMethodUpdateManyAndReturnArgs>(args: SelectSubset<T, ShippingMethodUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ShippingMethod.
+     * @param {ShippingMethodUpsertArgs} args - Arguments to update or create a ShippingMethod.
+     * @example
+     * // Update or create a ShippingMethod
+     * const shippingMethod = await prisma.shippingMethod.upsert({
+     *   create: {
+     *     // ... data to create a ShippingMethod
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ShippingMethod we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ShippingMethodUpsertArgs>(args: SelectSubset<T, ShippingMethodUpsertArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ShippingMethods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingMethodCountArgs} args - Arguments to filter ShippingMethods to count.
+     * @example
+     * // Count the number of ShippingMethods
+     * const count = await prisma.shippingMethod.count({
+     *   where: {
+     *     // ... the filter for the ShippingMethods we want to count
+     *   }
+     * })
+    **/
+    count<T extends ShippingMethodCountArgs>(
+      args?: Subset<T, ShippingMethodCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ShippingMethodCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ShippingMethod.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingMethodAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ShippingMethodAggregateArgs>(args: Subset<T, ShippingMethodAggregateArgs>): Prisma.PrismaPromise<GetShippingMethodAggregateType<T>>
+
+    /**
+     * Group by ShippingMethod.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingMethodGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ShippingMethodGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ShippingMethodGroupByArgs['orderBy'] }
+        : { orderBy?: ShippingMethodGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ShippingMethodGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetShippingMethodGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ShippingMethod model
+   */
+  readonly fields: ShippingMethodFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ShippingMethod.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ShippingMethodClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends ShippingMethod$tenantArgs<ExtArgs> = {}>(args?: Subset<T, ShippingMethod$tenantArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    orders<T extends ShippingMethod$ordersArgs<ExtArgs> = {}>(args?: Subset<T, ShippingMethod$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ShippingMethod model
+   */
+  interface ShippingMethodFieldRefs {
+    readonly id: FieldRef<"ShippingMethod", 'String'>
+    readonly tenantId: FieldRef<"ShippingMethod", 'String'>
+    readonly code: FieldRef<"ShippingMethod", 'String'>
+    readonly name: FieldRef<"ShippingMethod", 'String'>
+    readonly description: FieldRef<"ShippingMethod", 'String'>
+    readonly cost: FieldRef<"ShippingMethod", 'Decimal'>
+    readonly estimatedDays: FieldRef<"ShippingMethod", 'String'>
+    readonly isActive: FieldRef<"ShippingMethod", 'Boolean'>
+    readonly createdAt: FieldRef<"ShippingMethod", 'DateTime'>
+    readonly updatedAt: FieldRef<"ShippingMethod", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ShippingMethod findUnique
+   */
+  export type ShippingMethodFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingMethod to fetch.
+     */
+    where: ShippingMethodWhereUniqueInput
+  }
+
+  /**
+   * ShippingMethod findUniqueOrThrow
+   */
+  export type ShippingMethodFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingMethod to fetch.
+     */
+    where: ShippingMethodWhereUniqueInput
+  }
+
+  /**
+   * ShippingMethod findFirst
+   */
+  export type ShippingMethodFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingMethod to fetch.
+     */
+    where?: ShippingMethodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShippingMethods to fetch.
+     */
+    orderBy?: ShippingMethodOrderByWithRelationInput | ShippingMethodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ShippingMethods.
+     */
+    cursor?: ShippingMethodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShippingMethods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShippingMethods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ShippingMethods.
+     */
+    distinct?: ShippingMethodScalarFieldEnum | ShippingMethodScalarFieldEnum[]
+  }
+
+  /**
+   * ShippingMethod findFirstOrThrow
+   */
+  export type ShippingMethodFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingMethod to fetch.
+     */
+    where?: ShippingMethodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShippingMethods to fetch.
+     */
+    orderBy?: ShippingMethodOrderByWithRelationInput | ShippingMethodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ShippingMethods.
+     */
+    cursor?: ShippingMethodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShippingMethods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShippingMethods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ShippingMethods.
+     */
+    distinct?: ShippingMethodScalarFieldEnum | ShippingMethodScalarFieldEnum[]
+  }
+
+  /**
+   * ShippingMethod findMany
+   */
+  export type ShippingMethodFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingMethods to fetch.
+     */
+    where?: ShippingMethodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShippingMethods to fetch.
+     */
+    orderBy?: ShippingMethodOrderByWithRelationInput | ShippingMethodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ShippingMethods.
+     */
+    cursor?: ShippingMethodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShippingMethods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShippingMethods.
+     */
+    skip?: number
+    distinct?: ShippingMethodScalarFieldEnum | ShippingMethodScalarFieldEnum[]
+  }
+
+  /**
+   * ShippingMethod create
+   */
+  export type ShippingMethodCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ShippingMethod.
+     */
+    data: XOR<ShippingMethodCreateInput, ShippingMethodUncheckedCreateInput>
+  }
+
+  /**
+   * ShippingMethod createMany
+   */
+  export type ShippingMethodCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ShippingMethods.
+     */
+    data: ShippingMethodCreateManyInput | ShippingMethodCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ShippingMethod createManyAndReturn
+   */
+  export type ShippingMethodCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * The data used to create many ShippingMethods.
+     */
+    data: ShippingMethodCreateManyInput | ShippingMethodCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ShippingMethod update
+   */
+  export type ShippingMethodUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ShippingMethod.
+     */
+    data: XOR<ShippingMethodUpdateInput, ShippingMethodUncheckedUpdateInput>
+    /**
+     * Choose, which ShippingMethod to update.
+     */
+    where: ShippingMethodWhereUniqueInput
+  }
+
+  /**
+   * ShippingMethod updateMany
+   */
+  export type ShippingMethodUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ShippingMethods.
+     */
+    data: XOR<ShippingMethodUpdateManyMutationInput, ShippingMethodUncheckedUpdateManyInput>
+    /**
+     * Filter which ShippingMethods to update
+     */
+    where?: ShippingMethodWhereInput
+    /**
+     * Limit how many ShippingMethods to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ShippingMethod updateManyAndReturn
+   */
+  export type ShippingMethodUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * The data used to update ShippingMethods.
+     */
+    data: XOR<ShippingMethodUpdateManyMutationInput, ShippingMethodUncheckedUpdateManyInput>
+    /**
+     * Filter which ShippingMethods to update
+     */
+    where?: ShippingMethodWhereInput
+    /**
+     * Limit how many ShippingMethods to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ShippingMethod upsert
+   */
+  export type ShippingMethodUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ShippingMethod to update in case it exists.
+     */
+    where: ShippingMethodWhereUniqueInput
+    /**
+     * In case the ShippingMethod found by the `where` argument doesn't exist, create a new ShippingMethod with this data.
+     */
+    create: XOR<ShippingMethodCreateInput, ShippingMethodUncheckedCreateInput>
+    /**
+     * In case the ShippingMethod was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ShippingMethodUpdateInput, ShippingMethodUncheckedUpdateInput>
+  }
+
+  /**
+   * ShippingMethod delete
+   */
+  export type ShippingMethodDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    /**
+     * Filter which ShippingMethod to delete.
+     */
+    where: ShippingMethodWhereUniqueInput
+  }
+
+  /**
+   * ShippingMethod deleteMany
+   */
+  export type ShippingMethodDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ShippingMethods to delete
+     */
+    where?: ShippingMethodWhereInput
+    /**
+     * Limit how many ShippingMethods to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ShippingMethod.tenant
+   */
+  export type ShippingMethod$tenantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tenant
+     */
+    select?: TenantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tenant
+     */
+    omit?: TenantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TenantInclude<ExtArgs> | null
+    where?: TenantWhereInput
+  }
+
+  /**
+   * ShippingMethod.orders
+   */
+  export type ShippingMethod$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Order
+     */
+    omit?: OrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    cursor?: OrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+  /**
+   * ShippingMethod without action
+   */
+  export type ShippingMethodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
   }
 
 
@@ -43068,6 +44423,7 @@ export namespace Prisma {
     categories?: boolean | Tenant$categoriesArgs<ExtArgs>
     brands?: boolean | Tenant$brandsArgs<ExtArgs>
     orders?: boolean | Tenant$ordersArgs<ExtArgs>
+    shippingMethods?: boolean | Tenant$shippingMethodsArgs<ExtArgs>
     coupons?: boolean | Tenant$couponsArgs<ExtArgs>
     subscriptions?: boolean | Tenant$subscriptionsArgs<ExtArgs>
     settings?: boolean | Tenant$settingsArgs<ExtArgs>
@@ -43159,6 +44515,7 @@ export namespace Prisma {
     categories?: boolean | Tenant$categoriesArgs<ExtArgs>
     brands?: boolean | Tenant$brandsArgs<ExtArgs>
     orders?: boolean | Tenant$ordersArgs<ExtArgs>
+    shippingMethods?: boolean | Tenant$shippingMethodsArgs<ExtArgs>
     coupons?: boolean | Tenant$couponsArgs<ExtArgs>
     subscriptions?: boolean | Tenant$subscriptionsArgs<ExtArgs>
     settings?: boolean | Tenant$settingsArgs<ExtArgs>
@@ -43175,6 +44532,7 @@ export namespace Prisma {
       categories: Prisma.$CategoryPayload<ExtArgs>[]
       brands: Prisma.$BrandPayload<ExtArgs>[]
       orders: Prisma.$OrderPayload<ExtArgs>[]
+      shippingMethods: Prisma.$ShippingMethodPayload<ExtArgs>[]
       coupons: Prisma.$CouponPayload<ExtArgs>[]
       subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
       settings: Prisma.$SettingPayload<ExtArgs>[]
@@ -43602,6 +44960,7 @@ export namespace Prisma {
     categories<T extends Tenant$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     brands<T extends Tenant$brandsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$brandsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     orders<T extends Tenant$ordersArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    shippingMethods<T extends Tenant$shippingMethodsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$shippingMethodsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     coupons<T extends Tenant$couponsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$couponsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subscriptions<T extends Tenant$subscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     settings<T extends Tenant$settingsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$settingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -44162,6 +45521,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.shippingMethods
+   */
+  export type Tenant$shippingMethodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingMethod
+     */
+    select?: ShippingMethodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShippingMethod
+     */
+    omit?: ShippingMethodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShippingMethodInclude<ExtArgs> | null
+    where?: ShippingMethodWhereInput
+    orderBy?: ShippingMethodOrderByWithRelationInput | ShippingMethodOrderByWithRelationInput[]
+    cursor?: ShippingMethodWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ShippingMethodScalarFieldEnum | ShippingMethodScalarFieldEnum[]
   }
 
   /**
@@ -50860,7 +52243,6 @@ export namespace Prisma {
     startsAt: 'startsAt',
     expiresAt: 'expiresAt',
     applicableProductIds: 'applicableProductIds',
-    applicableCategoryIds: 'applicableCategoryIds',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -50886,7 +52268,7 @@ export namespace Prisma {
     notes: 'notes',
     internalNotes: 'internalNotes',
     couponCode: 'couponCode',
-    shippingMethod: 'shippingMethod',
+    shippingMethodId: 'shippingMethodId',
     trackingNumber: 'trackingNumber',
     estimatedDelivery: 'estimatedDelivery',
     deliveredAt: 'deliveredAt',
@@ -50895,6 +52277,22 @@ export namespace Prisma {
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+  export const ShippingMethodScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    code: 'code',
+    name: 'name',
+    description: 'description',
+    cost: 'cost',
+    estimatedDays: 'estimatedDays',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ShippingMethodScalarFieldEnum = (typeof ShippingMethodScalarFieldEnum)[keyof typeof ShippingMethodScalarFieldEnum]
 
 
   export const OrderItemScalarFieldEnum: {
@@ -52298,7 +53696,6 @@ export namespace Prisma {
     startsAt?: DateTimeNullableFilter<"Coupon"> | Date | string | null
     expiresAt?: DateTimeNullableFilter<"Coupon"> | Date | string | null
     applicableProductIds?: StringNullableListFilter<"Coupon">
-    applicableCategoryIds?: StringNullableListFilter<"Coupon">
     createdAt?: DateTimeFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeFilter<"Coupon"> | Date | string
     tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
@@ -52321,7 +53718,6 @@ export namespace Prisma {
     startsAt?: SortOrderInput | SortOrder
     expiresAt?: SortOrderInput | SortOrder
     applicableProductIds?: SortOrder
-    applicableCategoryIds?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     tenant?: TenantOrderByWithRelationInput
@@ -52348,7 +53744,6 @@ export namespace Prisma {
     startsAt?: DateTimeNullableFilter<"Coupon"> | Date | string | null
     expiresAt?: DateTimeNullableFilter<"Coupon"> | Date | string | null
     applicableProductIds?: StringNullableListFilter<"Coupon">
-    applicableCategoryIds?: StringNullableListFilter<"Coupon">
     createdAt?: DateTimeFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeFilter<"Coupon"> | Date | string
     tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
@@ -52371,7 +53766,6 @@ export namespace Prisma {
     startsAt?: SortOrderInput | SortOrder
     expiresAt?: SortOrderInput | SortOrder
     applicableProductIds?: SortOrder
-    applicableCategoryIds?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CouponCountOrderByAggregateInput
@@ -52401,7 +53795,6 @@ export namespace Prisma {
     startsAt?: DateTimeNullableWithAggregatesFilter<"Coupon"> | Date | string | null
     expiresAt?: DateTimeNullableWithAggregatesFilter<"Coupon"> | Date | string | null
     applicableProductIds?: StringNullableListFilter<"Coupon">
-    applicableCategoryIds?: StringNullableListFilter<"Coupon">
     createdAt?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Coupon"> | Date | string
   }
@@ -52427,7 +53820,7 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Order"> | string | null
     internalNotes?: StringNullableFilter<"Order"> | string | null
     couponCode?: StringNullableFilter<"Order"> | string | null
-    shippingMethod?: StringNullableFilter<"Order"> | string | null
+    shippingMethodId?: StringNullableFilter<"Order"> | string | null
     trackingNumber?: StringNullableFilter<"Order"> | string | null
     estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
     deliveredAt?: DateTimeNullableFilter<"Order"> | Date | string | null
@@ -52436,6 +53829,7 @@ export namespace Prisma {
     tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
+    shippingMethod?: XOR<ShippingMethodNullableScalarRelationFilter, ShippingMethodWhereInput> | null
     orderItems?: OrderItemListRelationFilter
     payments?: PaymentListRelationFilter
     shipments?: ShipmentListRelationFilter
@@ -52460,7 +53854,7 @@ export namespace Prisma {
     notes?: SortOrderInput | SortOrder
     internalNotes?: SortOrderInput | SortOrder
     couponCode?: SortOrderInput | SortOrder
-    shippingMethod?: SortOrderInput | SortOrder
+    shippingMethodId?: SortOrderInput | SortOrder
     trackingNumber?: SortOrderInput | SortOrder
     estimatedDelivery?: SortOrderInput | SortOrder
     deliveredAt?: SortOrderInput | SortOrder
@@ -52469,6 +53863,7 @@ export namespace Prisma {
     tenant?: TenantOrderByWithRelationInput
     customer?: CustomerOrderByWithRelationInput
     address?: AddressOrderByWithRelationInput
+    shippingMethod?: ShippingMethodOrderByWithRelationInput
     orderItems?: OrderItemOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
     shipments?: ShipmentOrderByRelationAggregateInput
@@ -52497,7 +53892,7 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Order"> | string | null
     internalNotes?: StringNullableFilter<"Order"> | string | null
     couponCode?: StringNullableFilter<"Order"> | string | null
-    shippingMethod?: StringNullableFilter<"Order"> | string | null
+    shippingMethodId?: StringNullableFilter<"Order"> | string | null
     trackingNumber?: StringNullableFilter<"Order"> | string | null
     estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
     deliveredAt?: DateTimeNullableFilter<"Order"> | Date | string | null
@@ -52506,6 +53901,7 @@ export namespace Prisma {
     tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
+    shippingMethod?: XOR<ShippingMethodNullableScalarRelationFilter, ShippingMethodWhereInput> | null
     orderItems?: OrderItemListRelationFilter
     payments?: PaymentListRelationFilter
     shipments?: ShipmentListRelationFilter
@@ -52530,7 +53926,7 @@ export namespace Prisma {
     notes?: SortOrderInput | SortOrder
     internalNotes?: SortOrderInput | SortOrder
     couponCode?: SortOrderInput | SortOrder
-    shippingMethod?: SortOrderInput | SortOrder
+    shippingMethodId?: SortOrderInput | SortOrder
     trackingNumber?: SortOrderInput | SortOrder
     estimatedDelivery?: SortOrderInput | SortOrder
     deliveredAt?: SortOrderInput | SortOrder
@@ -52564,12 +53960,98 @@ export namespace Prisma {
     notes?: StringNullableWithAggregatesFilter<"Order"> | string | null
     internalNotes?: StringNullableWithAggregatesFilter<"Order"> | string | null
     couponCode?: StringNullableWithAggregatesFilter<"Order"> | string | null
-    shippingMethod?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    shippingMethodId?: StringNullableWithAggregatesFilter<"Order"> | string | null
     trackingNumber?: StringNullableWithAggregatesFilter<"Order"> | string | null
     estimatedDelivery?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
     deliveredAt?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
     placedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+  }
+
+  export type ShippingMethodWhereInput = {
+    AND?: ShippingMethodWhereInput | ShippingMethodWhereInput[]
+    OR?: ShippingMethodWhereInput[]
+    NOT?: ShippingMethodWhereInput | ShippingMethodWhereInput[]
+    id?: StringFilter<"ShippingMethod"> | string
+    tenantId?: StringNullableFilter<"ShippingMethod"> | string | null
+    code?: StringFilter<"ShippingMethod"> | string
+    name?: StringFilter<"ShippingMethod"> | string
+    description?: StringNullableFilter<"ShippingMethod"> | string | null
+    cost?: DecimalNullableFilter<"ShippingMethod"> | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: StringNullableFilter<"ShippingMethod"> | string | null
+    isActive?: BoolFilter<"ShippingMethod"> | boolean
+    createdAt?: DateTimeFilter<"ShippingMethod"> | Date | string
+    updatedAt?: DateTimeFilter<"ShippingMethod"> | Date | string
+    tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
+    orders?: OrderListRelationFilter
+  }
+
+  export type ShippingMethodOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrderInput | SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    cost?: SortOrderInput | SortOrder
+    estimatedDays?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    orders?: OrderOrderByRelationAggregateInput
+  }
+
+  export type ShippingMethodWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_code?: ShippingMethodTenantIdCodeCompoundUniqueInput
+    AND?: ShippingMethodWhereInput | ShippingMethodWhereInput[]
+    OR?: ShippingMethodWhereInput[]
+    NOT?: ShippingMethodWhereInput | ShippingMethodWhereInput[]
+    tenantId?: StringNullableFilter<"ShippingMethod"> | string | null
+    code?: StringFilter<"ShippingMethod"> | string
+    name?: StringFilter<"ShippingMethod"> | string
+    description?: StringNullableFilter<"ShippingMethod"> | string | null
+    cost?: DecimalNullableFilter<"ShippingMethod"> | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: StringNullableFilter<"ShippingMethod"> | string | null
+    isActive?: BoolFilter<"ShippingMethod"> | boolean
+    createdAt?: DateTimeFilter<"ShippingMethod"> | Date | string
+    updatedAt?: DateTimeFilter<"ShippingMethod"> | Date | string
+    tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
+    orders?: OrderListRelationFilter
+  }, "id" | "tenantId_code">
+
+  export type ShippingMethodOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrderInput | SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    cost?: SortOrderInput | SortOrder
+    estimatedDays?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ShippingMethodCountOrderByAggregateInput
+    _avg?: ShippingMethodAvgOrderByAggregateInput
+    _max?: ShippingMethodMaxOrderByAggregateInput
+    _min?: ShippingMethodMinOrderByAggregateInput
+    _sum?: ShippingMethodSumOrderByAggregateInput
+  }
+
+  export type ShippingMethodScalarWhereWithAggregatesInput = {
+    AND?: ShippingMethodScalarWhereWithAggregatesInput | ShippingMethodScalarWhereWithAggregatesInput[]
+    OR?: ShippingMethodScalarWhereWithAggregatesInput[]
+    NOT?: ShippingMethodScalarWhereWithAggregatesInput | ShippingMethodScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ShippingMethod"> | string
+    tenantId?: StringNullableWithAggregatesFilter<"ShippingMethod"> | string | null
+    code?: StringWithAggregatesFilter<"ShippingMethod"> | string
+    name?: StringWithAggregatesFilter<"ShippingMethod"> | string
+    description?: StringNullableWithAggregatesFilter<"ShippingMethod"> | string | null
+    cost?: DecimalNullableWithAggregatesFilter<"ShippingMethod"> | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: StringNullableWithAggregatesFilter<"ShippingMethod"> | string | null
+    isActive?: BoolWithAggregatesFilter<"ShippingMethod"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ShippingMethod"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ShippingMethod"> | Date | string
   }
 
   export type OrderItemWhereInput = {
@@ -54477,6 +55959,7 @@ export namespace Prisma {
     categories?: CategoryListRelationFilter
     brands?: BrandListRelationFilter
     orders?: OrderListRelationFilter
+    shippingMethods?: ShippingMethodListRelationFilter
     coupons?: CouponListRelationFilter
     subscriptions?: SubscriptionListRelationFilter
     settings?: SettingListRelationFilter
@@ -54511,6 +55994,7 @@ export namespace Prisma {
     categories?: CategoryOrderByRelationAggregateInput
     brands?: BrandOrderByRelationAggregateInput
     orders?: OrderOrderByRelationAggregateInput
+    shippingMethods?: ShippingMethodOrderByRelationAggregateInput
     coupons?: CouponOrderByRelationAggregateInput
     subscriptions?: SubscriptionOrderByRelationAggregateInput
     settings?: SettingOrderByRelationAggregateInput
@@ -54548,6 +56032,7 @@ export namespace Prisma {
     categories?: CategoryListRelationFilter
     brands?: BrandListRelationFilter
     orders?: OrderListRelationFilter
+    shippingMethods?: ShippingMethodListRelationFilter
     coupons?: CouponListRelationFilter
     subscriptions?: SubscriptionListRelationFilter
     settings?: SettingListRelationFilter
@@ -55632,7 +57117,6 @@ export namespace Prisma {
     startsAt?: Date | string | null
     expiresAt?: Date | string | null
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponCreateapplicableCategoryIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     tenant?: TenantCreateNestedOneWithoutCouponsInput
@@ -55655,7 +57139,6 @@ export namespace Prisma {
     startsAt?: Date | string | null
     expiresAt?: Date | string | null
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponCreateapplicableCategoryIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -55676,7 +57159,6 @@ export namespace Prisma {
     startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponUpdateapplicableCategoryIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneWithoutCouponsNestedInput
@@ -55699,7 +57181,6 @@ export namespace Prisma {
     startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponUpdateapplicableCategoryIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -55721,7 +57202,6 @@ export namespace Prisma {
     startsAt?: Date | string | null
     expiresAt?: Date | string | null
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponCreateapplicableCategoryIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -55742,7 +57222,6 @@ export namespace Prisma {
     startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponUpdateapplicableCategoryIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -55764,7 +57243,6 @@ export namespace Prisma {
     startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponUpdateapplicableCategoryIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -55784,7 +57262,6 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -55793,6 +57270,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
@@ -55817,7 +57295,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -55844,7 +57322,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -55853,6 +57330,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
@@ -55877,7 +57355,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -55907,7 +57385,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -55930,7 +57408,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -55956,11 +57433,105 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     placedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ShippingMethodCreateInput = {
+    id?: string
+    code: string
+    name: string
+    description?: string | null
+    cost?: Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant?: TenantCreateNestedOneWithoutShippingMethodsInput
+    orders?: OrderCreateNestedManyWithoutShippingMethodInput
+  }
+
+  export type ShippingMethodUncheckedCreateInput = {
+    id?: string
+    tenantId?: string | null
+    code: string
+    name: string
+    description?: string | null
+    cost?: Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    orders?: OrderUncheckedCreateNestedManyWithoutShippingMethodInput
+  }
+
+  export type ShippingMethodUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneWithoutShippingMethodsNestedInput
+    orders?: OrderUpdateManyWithoutShippingMethodNestedInput
+  }
+
+  export type ShippingMethodUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUncheckedUpdateManyWithoutShippingMethodNestedInput
+  }
+
+  export type ShippingMethodCreateManyInput = {
+    id?: string
+    tenantId?: string | null
+    code: string
+    name: string
+    description?: string | null
+    cost?: Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ShippingMethodUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ShippingMethodUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -57990,6 +59561,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutTenantInput
     brands?: BrandCreateNestedManyWithoutTenantInput
     orders?: OrderCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     coupons?: CouponCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
     settings?: SettingCreateNestedManyWithoutTenantInput
@@ -58024,6 +59596,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
     brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
     orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
     settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
@@ -58058,6 +59631,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutTenantNestedInput
     brands?: BrandUpdateManyWithoutTenantNestedInput
     orders?: OrderUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     coupons?: CouponUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
     settings?: SettingUpdateManyWithoutTenantNestedInput
@@ -58092,6 +59666,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
     brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
     orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -59417,7 +60992,6 @@ export namespace Prisma {
     startsAt?: SortOrder
     expiresAt?: SortOrder
     applicableProductIds?: SortOrder
-    applicableCategoryIds?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -59567,6 +61141,11 @@ export namespace Prisma {
     isNot?: AddressWhereInput
   }
 
+  export type ShippingMethodNullableScalarRelationFilter = {
+    is?: ShippingMethodWhereInput | null
+    isNot?: ShippingMethodWhereInput | null
+  }
+
   export type OrderItemListRelationFilter = {
     every?: OrderItemWhereInput
     some?: OrderItemWhereInput
@@ -59630,7 +61209,7 @@ export namespace Prisma {
     notes?: SortOrder
     internalNotes?: SortOrder
     couponCode?: SortOrder
-    shippingMethod?: SortOrder
+    shippingMethodId?: SortOrder
     trackingNumber?: SortOrder
     estimatedDelivery?: SortOrder
     deliveredAt?: SortOrder
@@ -59664,7 +61243,7 @@ export namespace Prisma {
     notes?: SortOrder
     internalNotes?: SortOrder
     couponCode?: SortOrder
-    shippingMethod?: SortOrder
+    shippingMethodId?: SortOrder
     trackingNumber?: SortOrder
     estimatedDelivery?: SortOrder
     deliveredAt?: SortOrder
@@ -59690,7 +61269,7 @@ export namespace Prisma {
     notes?: SortOrder
     internalNotes?: SortOrder
     couponCode?: SortOrder
-    shippingMethod?: SortOrder
+    shippingMethodId?: SortOrder
     trackingNumber?: SortOrder
     estimatedDelivery?: SortOrder
     deliveredAt?: SortOrder
@@ -59734,6 +61313,58 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCurrencyFilter<$PrismaModel>
     _max?: NestedEnumCurrencyFilter<$PrismaModel>
+  }
+
+  export type ShippingMethodTenantIdCodeCompoundUniqueInput = {
+    tenantId: string
+    code: string
+  }
+
+  export type ShippingMethodCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    cost?: SortOrder
+    estimatedDays?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ShippingMethodAvgOrderByAggregateInput = {
+    cost?: SortOrder
+  }
+
+  export type ShippingMethodMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    cost?: SortOrder
+    estimatedDays?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ShippingMethodMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    cost?: SortOrder
+    estimatedDays?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ShippingMethodSumOrderByAggregateInput = {
+    cost?: SortOrder
   }
 
   export type OrderScalarRelationFilter = {
@@ -61226,6 +62857,12 @@ export namespace Prisma {
     none?: BrandWhereInput
   }
 
+  export type ShippingMethodListRelationFilter = {
+    every?: ShippingMethodWhereInput
+    some?: ShippingMethodWhereInput
+    none?: ShippingMethodWhereInput
+  }
+
   export type CouponListRelationFilter = {
     every?: CouponWhereInput
     some?: CouponWhereInput
@@ -61249,6 +62886,10 @@ export namespace Prisma {
   }
 
   export type BrandOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ShippingMethodOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -62200,10 +63841,6 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type CouponCreateapplicableCategoryIdsInput = {
-    set: string[]
-  }
-
   export type TenantCreateNestedOneWithoutCouponsInput = {
     create?: XOR<TenantCreateWithoutCouponsInput, TenantUncheckedCreateWithoutCouponsInput>
     connectOrCreate?: TenantCreateOrConnectWithoutCouponsInput
@@ -62239,11 +63876,6 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type CouponUpdateapplicableCategoryIdsInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
   export type TenantUpdateOneWithoutCouponsNestedInput = {
     create?: XOR<TenantCreateWithoutCouponsInput, TenantUncheckedCreateWithoutCouponsInput>
     connectOrCreate?: TenantCreateOrConnectWithoutCouponsInput
@@ -62270,6 +63902,12 @@ export namespace Prisma {
     create?: XOR<AddressCreateWithoutOrdersInput, AddressUncheckedCreateWithoutOrdersInput>
     connectOrCreate?: AddressCreateOrConnectWithoutOrdersInput
     connect?: AddressWhereUniqueInput
+  }
+
+  export type ShippingMethodCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<ShippingMethodCreateWithoutOrdersInput, ShippingMethodUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: ShippingMethodCreateOrConnectWithoutOrdersInput
+    connect?: ShippingMethodWhereUniqueInput
   }
 
   export type OrderItemCreateNestedManyWithoutOrderInput = {
@@ -62364,6 +64002,16 @@ export namespace Prisma {
     upsert?: AddressUpsertWithoutOrdersInput
     connect?: AddressWhereUniqueInput
     update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutOrdersInput, AddressUpdateWithoutOrdersInput>, AddressUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type ShippingMethodUpdateOneWithoutOrdersNestedInput = {
+    create?: XOR<ShippingMethodCreateWithoutOrdersInput, ShippingMethodUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: ShippingMethodCreateOrConnectWithoutOrdersInput
+    upsert?: ShippingMethodUpsertWithoutOrdersInput
+    disconnect?: ShippingMethodWhereInput | boolean
+    delete?: ShippingMethodWhereInput | boolean
+    connect?: ShippingMethodWhereUniqueInput
+    update?: XOR<XOR<ShippingMethodUpdateToOneWithWhereWithoutOrdersInput, ShippingMethodUpdateWithoutOrdersInput>, ShippingMethodUncheckedUpdateWithoutOrdersInput>
   }
 
   export type OrderItemUpdateManyWithoutOrderNestedInput = {
@@ -62476,6 +64124,64 @@ export namespace Prisma {
     update?: OrderReturnUpdateWithWhereUniqueWithoutOrderInput | OrderReturnUpdateWithWhereUniqueWithoutOrderInput[]
     updateMany?: OrderReturnUpdateManyWithWhereWithoutOrderInput | OrderReturnUpdateManyWithWhereWithoutOrderInput[]
     deleteMany?: OrderReturnScalarWhereInput | OrderReturnScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutShippingMethodsInput = {
+    create?: XOR<TenantCreateWithoutShippingMethodsInput, TenantUncheckedCreateWithoutShippingMethodsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutShippingMethodsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type OrderCreateNestedManyWithoutShippingMethodInput = {
+    create?: XOR<OrderCreateWithoutShippingMethodInput, OrderUncheckedCreateWithoutShippingMethodInput> | OrderCreateWithoutShippingMethodInput[] | OrderUncheckedCreateWithoutShippingMethodInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutShippingMethodInput | OrderCreateOrConnectWithoutShippingMethodInput[]
+    createMany?: OrderCreateManyShippingMethodInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type OrderUncheckedCreateNestedManyWithoutShippingMethodInput = {
+    create?: XOR<OrderCreateWithoutShippingMethodInput, OrderUncheckedCreateWithoutShippingMethodInput> | OrderCreateWithoutShippingMethodInput[] | OrderUncheckedCreateWithoutShippingMethodInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutShippingMethodInput | OrderCreateOrConnectWithoutShippingMethodInput[]
+    createMany?: OrderCreateManyShippingMethodInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneWithoutShippingMethodsNestedInput = {
+    create?: XOR<TenantCreateWithoutShippingMethodsInput, TenantUncheckedCreateWithoutShippingMethodsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutShippingMethodsInput
+    upsert?: TenantUpsertWithoutShippingMethodsInput
+    disconnect?: TenantWhereInput | boolean
+    delete?: TenantWhereInput | boolean
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutShippingMethodsInput, TenantUpdateWithoutShippingMethodsInput>, TenantUncheckedUpdateWithoutShippingMethodsInput>
+  }
+
+  export type OrderUpdateManyWithoutShippingMethodNestedInput = {
+    create?: XOR<OrderCreateWithoutShippingMethodInput, OrderUncheckedCreateWithoutShippingMethodInput> | OrderCreateWithoutShippingMethodInput[] | OrderUncheckedCreateWithoutShippingMethodInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutShippingMethodInput | OrderCreateOrConnectWithoutShippingMethodInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutShippingMethodInput | OrderUpsertWithWhereUniqueWithoutShippingMethodInput[]
+    createMany?: OrderCreateManyShippingMethodInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutShippingMethodInput | OrderUpdateWithWhereUniqueWithoutShippingMethodInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutShippingMethodInput | OrderUpdateManyWithWhereWithoutShippingMethodInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type OrderUncheckedUpdateManyWithoutShippingMethodNestedInput = {
+    create?: XOR<OrderCreateWithoutShippingMethodInput, OrderUncheckedCreateWithoutShippingMethodInput> | OrderCreateWithoutShippingMethodInput[] | OrderUncheckedCreateWithoutShippingMethodInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutShippingMethodInput | OrderCreateOrConnectWithoutShippingMethodInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutShippingMethodInput | OrderUpsertWithWhereUniqueWithoutShippingMethodInput[]
+    createMany?: OrderCreateManyShippingMethodInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutShippingMethodInput | OrderUpdateWithWhereUniqueWithoutShippingMethodInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutShippingMethodInput | OrderUpdateManyWithWhereWithoutShippingMethodInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
   export type OrderCreateNestedOneWithoutOrderItemsInput = {
@@ -63934,6 +65640,13 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
+  export type ShippingMethodCreateNestedManyWithoutTenantInput = {
+    create?: XOR<ShippingMethodCreateWithoutTenantInput, ShippingMethodUncheckedCreateWithoutTenantInput> | ShippingMethodCreateWithoutTenantInput[] | ShippingMethodUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ShippingMethodCreateOrConnectWithoutTenantInput | ShippingMethodCreateOrConnectWithoutTenantInput[]
+    createMany?: ShippingMethodCreateManyTenantInputEnvelope
+    connect?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+  }
+
   export type CouponCreateNestedManyWithoutTenantInput = {
     create?: XOR<CouponCreateWithoutTenantInput, CouponUncheckedCreateWithoutTenantInput> | CouponCreateWithoutTenantInput[] | CouponUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: CouponCreateOrConnectWithoutTenantInput | CouponCreateOrConnectWithoutTenantInput[]
@@ -63988,6 +65701,13 @@ export namespace Prisma {
     connectOrCreate?: OrderCreateOrConnectWithoutTenantInput | OrderCreateOrConnectWithoutTenantInput[]
     createMany?: OrderCreateManyTenantInputEnvelope
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type ShippingMethodUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<ShippingMethodCreateWithoutTenantInput, ShippingMethodUncheckedCreateWithoutTenantInput> | ShippingMethodCreateWithoutTenantInput[] | ShippingMethodUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ShippingMethodCreateOrConnectWithoutTenantInput | ShippingMethodCreateOrConnectWithoutTenantInput[]
+    createMany?: ShippingMethodCreateManyTenantInputEnvelope
+    connect?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
   }
 
   export type CouponUncheckedCreateNestedManyWithoutTenantInput = {
@@ -64087,6 +65807,20 @@ export namespace Prisma {
     update?: OrderUpdateWithWhereUniqueWithoutTenantInput | OrderUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: OrderUpdateManyWithWhereWithoutTenantInput | OrderUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type ShippingMethodUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<ShippingMethodCreateWithoutTenantInput, ShippingMethodUncheckedCreateWithoutTenantInput> | ShippingMethodCreateWithoutTenantInput[] | ShippingMethodUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ShippingMethodCreateOrConnectWithoutTenantInput | ShippingMethodCreateOrConnectWithoutTenantInput[]
+    upsert?: ShippingMethodUpsertWithWhereUniqueWithoutTenantInput | ShippingMethodUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: ShippingMethodCreateManyTenantInputEnvelope
+    set?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+    disconnect?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+    delete?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+    connect?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+    update?: ShippingMethodUpdateWithWhereUniqueWithoutTenantInput | ShippingMethodUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: ShippingMethodUpdateManyWithWhereWithoutTenantInput | ShippingMethodUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: ShippingMethodScalarWhereInput | ShippingMethodScalarWhereInput[]
   }
 
   export type CouponUpdateManyWithoutTenantNestedInput = {
@@ -64199,6 +65933,20 @@ export namespace Prisma {
     update?: OrderUpdateWithWhereUniqueWithoutTenantInput | OrderUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: OrderUpdateManyWithWhereWithoutTenantInput | OrderUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<ShippingMethodCreateWithoutTenantInput, ShippingMethodUncheckedCreateWithoutTenantInput> | ShippingMethodCreateWithoutTenantInput[] | ShippingMethodUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: ShippingMethodCreateOrConnectWithoutTenantInput | ShippingMethodCreateOrConnectWithoutTenantInput[]
+    upsert?: ShippingMethodUpsertWithWhereUniqueWithoutTenantInput | ShippingMethodUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: ShippingMethodCreateManyTenantInputEnvelope
+    set?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+    disconnect?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+    delete?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+    connect?: ShippingMethodWhereUniqueInput | ShippingMethodWhereUniqueInput[]
+    update?: ShippingMethodUpdateWithWhereUniqueWithoutTenantInput | ShippingMethodUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: ShippingMethodUpdateManyWithWhereWithoutTenantInput | ShippingMethodUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: ShippingMethodScalarWhereInput | ShippingMethodScalarWhereInput[]
   }
 
   export type CouponUncheckedUpdateManyWithoutTenantNestedInput = {
@@ -66145,7 +67893,6 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -66153,6 +67900,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
@@ -66176,7 +67924,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -66327,7 +68075,7 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Order"> | string | null
     internalNotes?: StringNullableFilter<"Order"> | string | null
     couponCode?: StringNullableFilter<"Order"> | string | null
-    shippingMethod?: StringNullableFilter<"Order"> | string | null
+    shippingMethodId?: StringNullableFilter<"Order"> | string | null
     trackingNumber?: StringNullableFilter<"Order"> | string | null
     estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
     deliveredAt?: DateTimeNullableFilter<"Order"> | Date | string | null
@@ -66364,6 +68112,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutTenantInput
     brands?: BrandCreateNestedManyWithoutTenantInput
     orders?: OrderCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
     settings?: SettingCreateNestedManyWithoutTenantInput
   }
@@ -66397,6 +68146,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
     brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
     orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
     settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
   }
@@ -66446,6 +68196,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutTenantNestedInput
     brands?: BrandUpdateManyWithoutTenantNestedInput
     orders?: OrderUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
     settings?: SettingUpdateManyWithoutTenantNestedInput
   }
@@ -66479,6 +68230,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
     brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
     orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
   }
@@ -66511,6 +68263,7 @@ export namespace Prisma {
     products?: ProductCreateNestedManyWithoutTenantInput
     categories?: CategoryCreateNestedManyWithoutTenantInput
     brands?: BrandCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     coupons?: CouponCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
     settings?: SettingCreateNestedManyWithoutTenantInput
@@ -66544,6 +68297,7 @@ export namespace Prisma {
     products?: ProductUncheckedCreateNestedManyWithoutTenantInput
     categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
     brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
     settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
@@ -66632,6 +68386,37 @@ export namespace Prisma {
   export type AddressCreateOrConnectWithoutOrdersInput = {
     where: AddressWhereUniqueInput
     create: XOR<AddressCreateWithoutOrdersInput, AddressUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type ShippingMethodCreateWithoutOrdersInput = {
+    id?: string
+    code: string
+    name: string
+    description?: string | null
+    cost?: Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant?: TenantCreateNestedOneWithoutShippingMethodsInput
+  }
+
+  export type ShippingMethodUncheckedCreateWithoutOrdersInput = {
+    id?: string
+    tenantId?: string | null
+    code: string
+    name: string
+    description?: string | null
+    cost?: Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ShippingMethodCreateOrConnectWithoutOrdersInput = {
+    where: ShippingMethodWhereUniqueInput
+    create: XOR<ShippingMethodCreateWithoutOrdersInput, ShippingMethodUncheckedCreateWithoutOrdersInput>
   }
 
   export type OrderItemCreateWithoutOrderInput = {
@@ -66821,6 +68606,7 @@ export namespace Prisma {
     products?: ProductUpdateManyWithoutTenantNestedInput
     categories?: CategoryUpdateManyWithoutTenantNestedInput
     brands?: BrandUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     coupons?: CouponUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
     settings?: SettingUpdateManyWithoutTenantNestedInput
@@ -66854,6 +68640,7 @@ export namespace Prisma {
     products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
     brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -66947,6 +68734,43 @@ export namespace Prisma {
     street?: StringFieldUpdateOperationsInput | string
     postalCode?: NullableIntFieldUpdateOperationsInput | number | null
     isDefault?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ShippingMethodUpsertWithoutOrdersInput = {
+    update: XOR<ShippingMethodUpdateWithoutOrdersInput, ShippingMethodUncheckedUpdateWithoutOrdersInput>
+    create: XOR<ShippingMethodCreateWithoutOrdersInput, ShippingMethodUncheckedCreateWithoutOrdersInput>
+    where?: ShippingMethodWhereInput
+  }
+
+  export type ShippingMethodUpdateToOneWithWhereWithoutOrdersInput = {
+    where?: ShippingMethodWhereInput
+    data: XOR<ShippingMethodUpdateWithoutOrdersInput, ShippingMethodUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type ShippingMethodUpdateWithoutOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneWithoutShippingMethodsNestedInput
+  }
+
+  export type ShippingMethodUncheckedUpdateWithoutOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -67084,6 +68908,242 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"OrderReturn"> | Date | string
   }
 
+  export type TenantCreateWithoutShippingMethodsInput = {
+    id?: string
+    name: string
+    slug: string
+    domain?: string | null
+    subdomain?: string | null
+    plan?: $Enums.TenantPlan
+    status?: $Enums.TenantStatus
+    maxUsers?: number
+    maxProducts?: number
+    maxOrders?: number
+    features?: JsonNullValueInput | InputJsonValue
+    config?: JsonNullValueInput | InputJsonValue
+    billingEmail?: string | null
+    contactEmail: string
+    phoneNumber?: string | null
+    address?: string | null
+    logoUrl?: string | null
+    brandColors?: NullableJsonNullValueInput | InputJsonValue
+    customDomain?: string | null
+    sslEnabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    expiresAt?: Date | string | null
+    users?: UserCreateNestedManyWithoutTenantInput
+    products?: ProductCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    brands?: BrandCreateNestedManyWithoutTenantInput
+    orders?: OrderCreateNestedManyWithoutTenantInput
+    coupons?: CouponCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
+    settings?: SettingCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutShippingMethodsInput = {
+    id?: string
+    name: string
+    slug: string
+    domain?: string | null
+    subdomain?: string | null
+    plan?: $Enums.TenantPlan
+    status?: $Enums.TenantStatus
+    maxUsers?: number
+    maxProducts?: number
+    maxOrders?: number
+    features?: JsonNullValueInput | InputJsonValue
+    config?: JsonNullValueInput | InputJsonValue
+    billingEmail?: string | null
+    contactEmail: string
+    phoneNumber?: string | null
+    address?: string | null
+    logoUrl?: string | null
+    brandColors?: NullableJsonNullValueInput | InputJsonValue
+    customDomain?: string | null
+    sslEnabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    expiresAt?: Date | string | null
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    products?: ProductUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
+    orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
+    settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutShippingMethodsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutShippingMethodsInput, TenantUncheckedCreateWithoutShippingMethodsInput>
+  }
+
+  export type OrderCreateWithoutShippingMethodInput = {
+    id?: string
+    orderNumber: string
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    subtotal: Decimal | DecimalJsLike | number | string
+    taxAmount?: Decimal | DecimalJsLike | number | string
+    shippingCost?: Decimal | DecimalJsLike | number | string
+    discount?: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    currency?: $Enums.Currency
+    notes?: string | null
+    internalNotes?: string | null
+    couponCode?: string | null
+    trackingNumber?: string | null
+    estimatedDelivery?: Date | string | null
+    deliveredAt?: Date | string | null
+    placedAt?: Date | string
+    updatedAt?: Date | string
+    tenant?: TenantCreateNestedOneWithoutOrdersInput
+    customer: CustomerCreateNestedOneWithoutOrdersInput
+    address: AddressCreateNestedOneWithoutOrdersInput
+    orderItems?: OrderItemCreateNestedManyWithoutOrderInput
+    payments?: PaymentCreateNestedManyWithoutOrderInput
+    shipments?: ShipmentCreateNestedManyWithoutOrderInput
+    returns?: OrderReturnCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutShippingMethodInput = {
+    id?: string
+    tenantId?: string | null
+    customerId: string
+    addressId: string
+    orderNumber: string
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    subtotal: Decimal | DecimalJsLike | number | string
+    taxAmount?: Decimal | DecimalJsLike | number | string
+    shippingCost?: Decimal | DecimalJsLike | number | string
+    discount?: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    currency?: $Enums.Currency
+    notes?: string | null
+    internalNotes?: string | null
+    couponCode?: string | null
+    trackingNumber?: string | null
+    estimatedDelivery?: Date | string | null
+    deliveredAt?: Date | string | null
+    placedAt?: Date | string
+    updatedAt?: Date | string
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutOrderInput
+    shipments?: ShipmentUncheckedCreateNestedManyWithoutOrderInput
+    returns?: OrderReturnUncheckedCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutShippingMethodInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutShippingMethodInput, OrderUncheckedCreateWithoutShippingMethodInput>
+  }
+
+  export type OrderCreateManyShippingMethodInputEnvelope = {
+    data: OrderCreateManyShippingMethodInput | OrderCreateManyShippingMethodInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutShippingMethodsInput = {
+    update: XOR<TenantUpdateWithoutShippingMethodsInput, TenantUncheckedUpdateWithoutShippingMethodsInput>
+    create: XOR<TenantCreateWithoutShippingMethodsInput, TenantUncheckedCreateWithoutShippingMethodsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutShippingMethodsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutShippingMethodsInput, TenantUncheckedUpdateWithoutShippingMethodsInput>
+  }
+
+  export type TenantUpdateWithoutShippingMethodsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    subdomain?: NullableStringFieldUpdateOperationsInput | string | null
+    plan?: EnumTenantPlanFieldUpdateOperationsInput | $Enums.TenantPlan
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    maxUsers?: IntFieldUpdateOperationsInput | number
+    maxProducts?: IntFieldUpdateOperationsInput | number
+    maxOrders?: IntFieldUpdateOperationsInput | number
+    features?: JsonNullValueInput | InputJsonValue
+    config?: JsonNullValueInput | InputJsonValue
+    billingEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactEmail?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    brandColors?: NullableJsonNullValueInput | InputJsonValue
+    customDomain?: NullableStringFieldUpdateOperationsInput | string | null
+    sslEnabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    users?: UserUpdateManyWithoutTenantNestedInput
+    products?: ProductUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    brands?: BrandUpdateManyWithoutTenantNestedInput
+    orders?: OrderUpdateManyWithoutTenantNestedInput
+    coupons?: CouponUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
+    settings?: SettingUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutShippingMethodsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    subdomain?: NullableStringFieldUpdateOperationsInput | string | null
+    plan?: EnumTenantPlanFieldUpdateOperationsInput | $Enums.TenantPlan
+    status?: EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+    maxUsers?: IntFieldUpdateOperationsInput | number
+    maxProducts?: IntFieldUpdateOperationsInput | number
+    maxOrders?: IntFieldUpdateOperationsInput | number
+    features?: JsonNullValueInput | InputJsonValue
+    config?: JsonNullValueInput | InputJsonValue
+    billingEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactEmail?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    brandColors?: NullableJsonNullValueInput | InputJsonValue
+    customDomain?: NullableStringFieldUpdateOperationsInput | string | null
+    sslEnabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
+    settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type OrderUpsertWithWhereUniqueWithoutShippingMethodInput = {
+    where: OrderWhereUniqueInput
+    update: XOR<OrderUpdateWithoutShippingMethodInput, OrderUncheckedUpdateWithoutShippingMethodInput>
+    create: XOR<OrderCreateWithoutShippingMethodInput, OrderUncheckedCreateWithoutShippingMethodInput>
+  }
+
+  export type OrderUpdateWithWhereUniqueWithoutShippingMethodInput = {
+    where: OrderWhereUniqueInput
+    data: XOR<OrderUpdateWithoutShippingMethodInput, OrderUncheckedUpdateWithoutShippingMethodInput>
+  }
+
+  export type OrderUpdateManyWithWhereWithoutShippingMethodInput = {
+    where: OrderScalarWhereInput
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutShippingMethodInput>
+  }
+
   export type OrderCreateWithoutOrderItemsInput = {
     id?: string
     orderNumber: string
@@ -67099,7 +69159,6 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -67108,6 +69167,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
     returns?: OrderReturnCreateNestedManyWithoutOrderInput
@@ -67131,7 +69191,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -67297,7 +69357,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -67306,6 +69365,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
     returns?: OrderReturnUpdateManyWithoutOrderNestedInput
@@ -67329,7 +69389,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -67491,7 +69551,6 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -67500,6 +69559,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
     returns?: OrderReturnCreateNestedManyWithoutOrderInput
@@ -67523,7 +69583,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -67565,7 +69625,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -67574,6 +69633,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
     returns?: OrderReturnUpdateManyWithoutOrderNestedInput
@@ -67597,7 +69657,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -67623,7 +69683,6 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -67632,6 +69691,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     returns?: OrderReturnCreateNestedManyWithoutOrderInput
@@ -67655,7 +69715,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -67697,7 +69757,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -67706,6 +69765,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     returns?: OrderReturnUpdateManyWithoutOrderNestedInput
@@ -67729,7 +69789,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -67755,7 +69815,6 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -67764,6 +69823,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
@@ -67787,7 +69847,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -67855,7 +69915,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -67864,6 +69923,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
@@ -67887,7 +69947,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -68313,6 +70373,7 @@ export namespace Prisma {
     products?: ProductCreateNestedManyWithoutTenantInput
     brands?: BrandCreateNestedManyWithoutTenantInput
     orders?: OrderCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     coupons?: CouponCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
     settings?: SettingCreateNestedManyWithoutTenantInput
@@ -68346,6 +70407,7 @@ export namespace Prisma {
     products?: ProductUncheckedCreateNestedManyWithoutTenantInput
     brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
     orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
     settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
@@ -68580,6 +70642,7 @@ export namespace Prisma {
     products?: ProductUpdateManyWithoutTenantNestedInput
     brands?: BrandUpdateManyWithoutTenantNestedInput
     orders?: OrderUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     coupons?: CouponUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
     settings?: SettingUpdateManyWithoutTenantNestedInput
@@ -68613,6 +70676,7 @@ export namespace Prisma {
     products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
     brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
     orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -68784,6 +70848,7 @@ export namespace Prisma {
     products?: ProductCreateNestedManyWithoutTenantInput
     categories?: CategoryCreateNestedManyWithoutTenantInput
     orders?: OrderCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     coupons?: CouponCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
     settings?: SettingCreateNestedManyWithoutTenantInput
@@ -68817,6 +70882,7 @@ export namespace Prisma {
     products?: ProductUncheckedCreateNestedManyWithoutTenantInput
     categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
     orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
     settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
@@ -68960,6 +71026,7 @@ export namespace Prisma {
     products?: ProductUpdateManyWithoutTenantNestedInput
     categories?: CategoryUpdateManyWithoutTenantNestedInput
     orders?: OrderUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     coupons?: CouponUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
     settings?: SettingUpdateManyWithoutTenantNestedInput
@@ -68993,6 +71060,7 @@ export namespace Prisma {
     products?: ProductUncheckedUpdateManyWithoutTenantNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
     orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -69042,6 +71110,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutTenantInput
     brands?: BrandCreateNestedManyWithoutTenantInput
     orders?: OrderCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     coupons?: CouponCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
     settings?: SettingCreateNestedManyWithoutTenantInput
@@ -69075,6 +71144,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
     brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
     orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
     settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
@@ -69477,6 +71547,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutTenantNestedInput
     brands?: BrandUpdateManyWithoutTenantNestedInput
     orders?: OrderUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     coupons?: CouponUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
     settings?: SettingUpdateManyWithoutTenantNestedInput
@@ -69510,6 +71581,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
     brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
     orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -72454,6 +74526,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutTenantInput
     brands?: BrandCreateNestedManyWithoutTenantInput
     orders?: OrderCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     coupons?: CouponCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
   }
@@ -72487,6 +74560,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
     brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
     orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
   }
@@ -72536,6 +74610,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutTenantNestedInput
     brands?: BrandUpdateManyWithoutTenantNestedInput
     orders?: OrderUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     coupons?: CouponUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
   }
@@ -72569,6 +74644,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
     brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
     orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
   }
@@ -72830,7 +74906,6 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -72838,6 +74913,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
@@ -72861,7 +74937,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -72883,6 +74959,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ShippingMethodCreateWithoutTenantInput = {
+    id?: string
+    code: string
+    name: string
+    description?: string | null
+    cost?: Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    orders?: OrderCreateNestedManyWithoutShippingMethodInput
+  }
+
+  export type ShippingMethodUncheckedCreateWithoutTenantInput = {
+    id?: string
+    code: string
+    name: string
+    description?: string | null
+    cost?: Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    orders?: OrderUncheckedCreateNestedManyWithoutShippingMethodInput
+  }
+
+  export type ShippingMethodCreateOrConnectWithoutTenantInput = {
+    where: ShippingMethodWhereUniqueInput
+    create: XOR<ShippingMethodCreateWithoutTenantInput, ShippingMethodUncheckedCreateWithoutTenantInput>
+  }
+
+  export type ShippingMethodCreateManyTenantInputEnvelope = {
+    data: ShippingMethodCreateManyTenantInput | ShippingMethodCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CouponCreateWithoutTenantInput = {
     id?: string
     code: string
@@ -72899,7 +75011,6 @@ export namespace Prisma {
     startsAt?: Date | string | null
     expiresAt?: Date | string | null
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponCreateapplicableCategoryIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -72920,7 +75031,6 @@ export namespace Prisma {
     startsAt?: Date | string | null
     expiresAt?: Date | string | null
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponCreateapplicableCategoryIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -73127,6 +75237,38 @@ export namespace Prisma {
     data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutTenantInput>
   }
 
+  export type ShippingMethodUpsertWithWhereUniqueWithoutTenantInput = {
+    where: ShippingMethodWhereUniqueInput
+    update: XOR<ShippingMethodUpdateWithoutTenantInput, ShippingMethodUncheckedUpdateWithoutTenantInput>
+    create: XOR<ShippingMethodCreateWithoutTenantInput, ShippingMethodUncheckedCreateWithoutTenantInput>
+  }
+
+  export type ShippingMethodUpdateWithWhereUniqueWithoutTenantInput = {
+    where: ShippingMethodWhereUniqueInput
+    data: XOR<ShippingMethodUpdateWithoutTenantInput, ShippingMethodUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type ShippingMethodUpdateManyWithWhereWithoutTenantInput = {
+    where: ShippingMethodScalarWhereInput
+    data: XOR<ShippingMethodUpdateManyMutationInput, ShippingMethodUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type ShippingMethodScalarWhereInput = {
+    AND?: ShippingMethodScalarWhereInput | ShippingMethodScalarWhereInput[]
+    OR?: ShippingMethodScalarWhereInput[]
+    NOT?: ShippingMethodScalarWhereInput | ShippingMethodScalarWhereInput[]
+    id?: StringFilter<"ShippingMethod"> | string
+    tenantId?: StringNullableFilter<"ShippingMethod"> | string | null
+    code?: StringFilter<"ShippingMethod"> | string
+    name?: StringFilter<"ShippingMethod"> | string
+    description?: StringNullableFilter<"ShippingMethod"> | string | null
+    cost?: DecimalNullableFilter<"ShippingMethod"> | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: StringNullableFilter<"ShippingMethod"> | string | null
+    isActive?: BoolFilter<"ShippingMethod"> | boolean
+    createdAt?: DateTimeFilter<"ShippingMethod"> | Date | string
+    updatedAt?: DateTimeFilter<"ShippingMethod"> | Date | string
+  }
+
   export type CouponUpsertWithWhereUniqueWithoutTenantInput = {
     where: CouponWhereUniqueInput
     update: XOR<CouponUpdateWithoutTenantInput, CouponUncheckedUpdateWithoutTenantInput>
@@ -73163,7 +75305,6 @@ export namespace Prisma {
     startsAt?: DateTimeNullableFilter<"Coupon"> | Date | string | null
     expiresAt?: DateTimeNullableFilter<"Coupon"> | Date | string | null
     applicableProductIds?: StringNullableListFilter<"Coupon">
-    applicableCategoryIds?: StringNullableListFilter<"Coupon">
     createdAt?: DateTimeFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeFilter<"Coupon"> | Date | string
   }
@@ -73263,6 +75404,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutTenantInput
     brands?: BrandCreateNestedManyWithoutTenantInput
     orders?: OrderCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     coupons?: CouponCreateNestedManyWithoutTenantInput
     settings?: SettingCreateNestedManyWithoutTenantInput
   }
@@ -73296,6 +75438,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
     brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
     orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
     settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
   }
@@ -73345,6 +75488,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutTenantNestedInput
     brands?: BrandUpdateManyWithoutTenantNestedInput
     orders?: OrderUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     coupons?: CouponUpdateManyWithoutTenantNestedInput
     settings?: SettingUpdateManyWithoutTenantNestedInput
   }
@@ -73378,6 +75522,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
     brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
     orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
   }
@@ -73410,6 +75555,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutTenantInput
     brands?: BrandCreateNestedManyWithoutTenantInput
     orders?: OrderCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodCreateNestedManyWithoutTenantInput
     coupons?: CouponCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionCreateNestedManyWithoutTenantInput
     settings?: SettingCreateNestedManyWithoutTenantInput
@@ -73443,6 +75589,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
     brands?: BrandUncheckedCreateNestedManyWithoutTenantInput
     orders?: OrderUncheckedCreateNestedManyWithoutTenantInput
+    shippingMethods?: ShippingMethodUncheckedCreateNestedManyWithoutTenantInput
     coupons?: CouponUncheckedCreateNestedManyWithoutTenantInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutTenantInput
     settings?: SettingUncheckedCreateNestedManyWithoutTenantInput
@@ -73745,6 +75892,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutTenantNestedInput
     brands?: BrandUpdateManyWithoutTenantNestedInput
     orders?: OrderUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUpdateManyWithoutTenantNestedInput
     coupons?: CouponUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutTenantNestedInput
     settings?: SettingUpdateManyWithoutTenantNestedInput
@@ -73778,6 +75926,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
     brands?: BrandUncheckedUpdateManyWithoutTenantNestedInput
     orders?: OrderUncheckedUpdateManyWithoutTenantNestedInput
+    shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     coupons?: CouponUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
@@ -74534,7 +76683,6 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -74542,6 +76690,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
@@ -74565,7 +76714,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -75106,7 +77255,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -75129,7 +77278,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -75137,6 +77285,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
@@ -75160,7 +77309,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -75189,7 +77338,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -75408,6 +77557,114 @@ export namespace Prisma {
     refundedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderCreateManyShippingMethodInput = {
+    id?: string
+    tenantId?: string | null
+    customerId: string
+    addressId: string
+    orderNumber: string
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    subtotal: Decimal | DecimalJsLike | number | string
+    taxAmount?: Decimal | DecimalJsLike | number | string
+    shippingCost?: Decimal | DecimalJsLike | number | string
+    discount?: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    currency?: $Enums.Currency
+    notes?: string | null
+    internalNotes?: string | null
+    couponCode?: string | null
+    trackingNumber?: string | null
+    estimatedDelivery?: Date | string | null
+    deliveredAt?: Date | string | null
+    placedAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrderUpdateWithoutShippingMethodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orderNumber?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    placedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneWithoutOrdersNestedInput
+    customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
+    address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
+    payments?: PaymentUpdateManyWithoutOrderNestedInput
+    shipments?: ShipmentUpdateManyWithoutOrderNestedInput
+    returns?: OrderReturnUpdateManyWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutShippingMethodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    addressId?: StringFieldUpdateOperationsInput | string
+    orderNumber?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    placedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutOrderNestedInput
+    shipments?: ShipmentUncheckedUpdateManyWithoutOrderNestedInput
+    returns?: OrderReturnUncheckedUpdateManyWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateManyWithoutShippingMethodInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    addressId?: StringFieldUpdateOperationsInput | string
+    orderNumber?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    placedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -76419,11 +78676,23 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
     placedAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ShippingMethodCreateManyTenantInput = {
+    id?: string
+    code: string
+    name: string
+    description?: string | null
+    cost?: Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -76443,7 +78712,6 @@ export namespace Prisma {
     startsAt?: Date | string | null
     expiresAt?: Date | string | null
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponCreateapplicableCategoryIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -76772,7 +79040,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -76780,6 +79047,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
@@ -76803,7 +79071,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -76832,11 +79100,49 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     placedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ShippingMethodUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUpdateManyWithoutShippingMethodNestedInput
+  }
+
+  export type ShippingMethodUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUncheckedUpdateManyWithoutShippingMethodNestedInput
+  }
+
+  export type ShippingMethodUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDays?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -76856,7 +79162,6 @@ export namespace Prisma {
     startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponUpdateapplicableCategoryIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -76877,7 +79182,6 @@ export namespace Prisma {
     startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponUpdateapplicableCategoryIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -76898,7 +79202,6 @@ export namespace Prisma {
     startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
-    applicableCategoryIds?: CouponUpdateapplicableCategoryIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -77231,7 +79534,7 @@ export namespace Prisma {
     notes?: string | null
     internalNotes?: string | null
     couponCode?: string | null
-    shippingMethod?: string | null
+    shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -77300,7 +79603,6 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77308,6 +79610,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
@@ -77331,7 +79634,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77360,7 +79663,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     couponCode?: NullableStringFieldUpdateOperationsInput | string | null
-    shippingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

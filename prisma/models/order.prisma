@@ -16,27 +16,48 @@ model Order {
   shippingCost      Decimal       @default(0)
   discount          Decimal       @default(0)
   total             Decimal
-  currency          Currency        @default(USD)
+  currency          Currency      @default(USD)
   notes             String?
   internalNotes     String?
   couponCode        String?
-  shippingMethod    String?
+  shippingMethodId  String?
   trackingNumber    String?
   estimatedDelivery DateTime?
   deliveredAt       DateTime?
   placedAt          DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
 
-  tenant     Tenant?       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  customer   Customer      @relation(fields: [customerId], references: [id])
-  address    Address       @relation(fields: [addressId], references: [id])
-  orderItems OrderItem[]
-  payments   Payment[]
-  shipments  Shipment[]
-  returns    OrderReturn[]
+  tenant         Tenant?         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  customer       Customer        @relation(fields: [customerId], references: [id])
+  address        Address         @relation(fields: [addressId], references: [id])
+  shippingMethod ShippingMethod? @relation(fields: [shippingMethodId], references: [id])
+  orderItems     OrderItem[]
+  payments       Payment[]
+  shipments      Shipment[]
+  returns        OrderReturn[]
 
   @@unique([tenantId, orderNumber])
   @@map("orders")
+}
+
+model ShippingMethod {
+  id            String   @id @default(uuid())
+  tenantId      String?
+  code          String
+  name          String
+  description   String?
+  cost          Decimal?
+  estimatedDays String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  tenant Tenant? @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  orders Order[]
+
+  @@unique([tenantId, code])
+  @@index([tenantId])
+  @@map("shipping_methods")
 }
 
 model OrderItem {
@@ -59,7 +80,7 @@ model Payment {
   provider              String // stripe, paypal, square, etc.
   providerTransactionId String?
   amount                Decimal
-  currency              Currency        @default(USD)
+  currency              Currency      @default(USD)
   status                PaymentStatus @default(PENDING)
   failureReason         String?
   metadata              Json          @default("{}")

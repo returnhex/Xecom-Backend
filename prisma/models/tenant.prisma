@@ -28,14 +28,15 @@ model Tenant {
   expiresAt    DateTime?
 
   // Relationships
-  users         User[]
-  products      Product[]
-  categories    Category[]
-  brands        Brand[]
-  orders        Order[]
-  coupons       Coupon[]
-  subscriptions Subscription[]
-  settings      Setting[]
+  users           User[]
+  products        Product[]
+  categories      Category[]
+  brands          Brand[]
+  orders          Order[]
+  shippingMethods ShippingMethod[]
+  coupons         Coupon[]
+  subscriptions   Subscription[]
+  settings        Setting[]
 
   @@map("tenants")
 }

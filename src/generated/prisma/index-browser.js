@@ -194,7 +194,6 @@ exports.Prisma.CouponScalarFieldEnum = {
   startsAt: 'startsAt',
   expiresAt: 'expiresAt',
   applicableProductIds: 'applicableProductIds',
-  applicableCategoryIds: 'applicableCategoryIds',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -217,11 +216,24 @@ exports.Prisma.OrderScalarFieldEnum = {
   notes: 'notes',
   internalNotes: 'internalNotes',
   couponCode: 'couponCode',
-  shippingMethod: 'shippingMethod',
+  shippingMethodId: 'shippingMethodId',
   trackingNumber: 'trackingNumber',
   estimatedDelivery: 'estimatedDelivery',
   deliveredAt: 'deliveredAt',
   placedAt: 'placedAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShippingMethodScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  cost: 'cost',
+  estimatedDays: 'estimatedDays',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
@@ -864,6 +876,7 @@ exports.Prisma.ModelName = {
   Address: 'Address',
   Coupon: 'Coupon',
   Order: 'Order',
+  ShippingMethod: 'ShippingMethod',
   OrderItem: 'OrderItem',
   Payment: 'Payment',
   Shipment: 'Shipment',

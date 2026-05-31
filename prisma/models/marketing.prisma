@@ -10,7 +10,7 @@ model Coupon {
   description           String?
   type                  CouponType @default(PERCENTAGE)
   value                 Decimal // percentage or fixed amount
-  minOrderAmount        Decimal?
+  minOrderAmount        Decimal? // minimum order amount to apply coupon
   maxDiscountAmount     Decimal?
   usageLimit            Int? // null = unlimited
   usageCount            Int        @default(0)
@@ -19,7 +19,6 @@ model Coupon {
   startsAt              DateTime?
   expiresAt             DateTime?
   applicableProductIds  String[] // empty = all products
-  applicableCategoryIds String[] // empty = all categories
   createdAt             DateTime   @default(now())
   updatedAt             DateTime   @updatedAt
 

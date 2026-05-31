@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
     IsArray,
     IsBoolean,
@@ -9,6 +10,7 @@ import {
     IsUUID,
     Length,
     Min,
+    ValidateNested,
 } from 'class-validator';
 import { CouponType } from 'src/generated/prisma';
 
@@ -70,11 +72,6 @@ export class CreateCouponDto {
     @IsArray()
     @IsUUID(undefined, { each: true })
     applicableProductIds?: string[];
-
-    @IsOptional()
-    @IsArray()
-    @IsUUID(undefined, { each: true })
-    applicableCategoryIds?: string[];
 }
 
 export class UpdateCouponDto {
@@ -141,36 +138,26 @@ export class UpdateCouponDto {
     @IsArray()
     @IsUUID(undefined, { each: true })
     applicableProductIds?: string[];
+}
 
-    @IsOptional()
-    @IsArray()
-    @IsUUID(undefined, { each: true })
-    applicableCategoryIds?: string[];
+export class CouponVariantDto {
+  @IsUUID()
+  variantId!: string;
+
+  @IsInt()
+  @Min(1)
+  quantity!: number;
 }
 
 export class ValidateCouponDto {
-    @IsString()
-    @Length(2, 50)
-    code!: string;
+  @IsString()
+  @Length(2, 50)
+  code!: string;
 
-    @IsNumber()
-    @Min(0)
-    orderAmount!: number;
-
-    @IsOptional()
-    @IsNumber()
-    @Min(0)
-    shippingCost?: number;
-
-    @IsOptional()
-    @IsArray()
-    @IsUUID(undefined, { each: true })
-    productIds?: string[];
-
-    @IsOptional()
-    @IsArray()
-    @IsUUID(undefined, { each: true })
-    categoryIds?: string[];
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CouponVariantDto)
+  variants!: CouponVariantDto[];
 }
 
 export class SetCouponActiveDto {

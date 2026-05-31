@@ -24,6 +24,7 @@ import { ReviewModule } from './main/review/review.module';
 import { CartModule } from './main/cart/cart.module';
 import { OrderModule } from './main/order/order.module';
 import { CouponModule } from './main/coupon/coupon.module';
+import { ShippingMethodModule } from './main/shipping-method/shipping-method.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { CouponModule } from './main/coupon/coupon.module';
     CartModule,
     OrderModule,
     CouponModule,
+    ShippingMethodModule,
   ],
   controllers: [AppController],
   providers: [AppService],

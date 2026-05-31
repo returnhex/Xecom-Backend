@@ -36,6 +36,25 @@ export class CouponService {
         return date;
     }
 
+    private async assertApplicableProductsExist(productIds?: string[]) {
+        const uniqueProductIds = Array.from(new Set(productIds ?? [])).filter(Boolean);
+        if (uniqueProductIds.length > 0) {
+            const found = await this.prisma.product.findMany({
+                where: { id: { in: uniqueProductIds } },
+                select: { id: true },
+            });
+            const foundSet = new Set(found.map((p) => p.id));
+            const missing = uniqueProductIds.filter((id) => !foundSet.has(id));
+
+            if (missing.length > 0) {
+                throw new HttpException(
+                    `Invalid applicableProductIds. Not found: ${missing.join(', ')}`,
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+        }
+    }
+
     // ------------------------------- Add Coupon -------------------------------
     public async addCoupon(dto: CreateCouponDto) {
         const code = this.normalizeCode(dto.code);
@@ -49,6 +68,8 @@ export class CouponService {
                 HttpStatus.CONFLICT,
             );
         }
+
+        await this.assertApplicableProductsExist(dto.applicableProductIds);
 
         const startsAt = this.parseOptionalDate('startsAt', dto.startsAt);
         const expiresAt = this.parseOptionalDate('expiresAt', dto.expiresAt);
@@ -74,7 +95,6 @@ export class CouponService {
             startsAt,
             expiresAt,
             applicableProductIds: dto.applicableProductIds ?? [],
-            applicableCategoryIds: dto.applicableCategoryIds ?? [],
         });
 
         return coupon;
@@ -165,6 +185,8 @@ export class CouponService {
             throw new HttpException('Coupon not found', HttpStatus.NOT_FOUND);
         }
 
+        await this.assertApplicableProductsExist(dto.applicableProductIds);
+
         const newCode = dto.code ? this.normalizeCode(dto.code) : undefined;
         if (newCode) {
             const duplicate = await this.couponRepository.findByCodeAny(newCode);
@@ -201,7 +223,6 @@ export class CouponService {
             startsAt,
             expiresAt,
             applicableProductIds: dto.applicableProductIds,
-            applicableCategoryIds: dto.applicableCategoryIds,
         });
 
         return coupon;
@@ -251,40 +272,66 @@ export class CouponService {
                 HttpStatus.BAD_REQUEST,
             );
         }
-        if (coupon.minOrderAmount !== null && dto.orderAmount < Number(coupon.minOrderAmount)) {
+
+        const variantCounts = new Map<string, number>();
+        for (const { variantId, quantity } of (dto.variants ?? [])) {
+            variantCounts.set(variantId, (variantCounts.get(variantId) ?? 0) + quantity);
+        }
+
+        const uniqueVariantIds = Array.from(variantCounts.keys());
+        const variants = uniqueVariantIds.length > 0
+            ? await this.prisma.productVariant.findMany({
+                where: { id: { in: uniqueVariantIds } },
+                select: { id: true, price: true, productId: true },
+            })
+            : [];
+
+        const foundVariantSet = new Set(variants.map((v) => v.id));
+        const missingVariantIds = uniqueVariantIds.filter((id) => !foundVariantSet.has(id));
+        if (missingVariantIds.length > 0) {
             throw new HttpException(
-                `Order at least ${coupon.minOrderAmount} items to use this coupon`,
+                `Invalid variantIds. Not found: ${missingVariantIds.join(', ')}`,
                 HttpStatus.BAD_REQUEST,
             );
         }
 
-        const productIds = dto.productIds ?? [];
-        const categoryIds = dto.categoryIds ?? [];
+        const orderAmount = variants.reduce((sum, variant) => {
+            const qty = variantCounts.get(variant.id) ?? 0;
+            return sum + Number(variant.price) * qty;
+        }, 0);
 
-        const restrictProducts = coupon.applicableProductIds.length > 0;
-        const restrictCategories = coupon.applicableCategoryIds.length > 0;
-
-        if (restrictProducts || restrictCategories) {
-            const productHit =
-                !restrictProducts ||
-                coupon.applicableProductIds.some((id) => productIds.includes(id));
-            const categoryHit =
-                !restrictCategories ||
-                coupon.applicableCategoryIds.some((id) => categoryIds.includes(id));
-
-            // If both restrictions are present, allow match with either list.
-            const ok =
-                restrictProducts && restrictCategories
-                    ? productHit || categoryHit
-                    : productHit && categoryHit;
-
-            if (!ok) {
-                throw new HttpException(
-                    'Coupon is not applicable to selected products/categories',
-                    HttpStatus.BAD_REQUEST,
-                );
-            }
+        if (coupon.minOrderAmount !== null && orderAmount < Number(coupon.minOrderAmount)) {
+            throw new HttpException(
+                `Minimum order amount of ${Number(coupon.minOrderAmount).toFixed(2)} is required for this coupon. Your current order total is ${orderAmount.toFixed(2)}`,
+                HttpStatus.BAD_REQUEST,
+            );
         }
+
+        const restrictByProducts = coupon.applicableProductIds.length > 0;
+        const eligibleVariantIds = restrictByProducts
+            ? variants
+                .filter((variant) => coupon.applicableProductIds.includes(variant.productId))
+                .map((variant) => variant.id)
+            : variants.map((variant) => variant.id);
+
+        const eligibleVariantSet = new Set(eligibleVariantIds);
+        const eligibleAmount = variants.reduce((sum, variant) => {
+            if (!eligibleVariantSet.has(variant.id)) {
+                return sum;
+            }
+            const qty = variantCounts.get(variant.id) ?? 0;
+            return sum + Number(variant.price) * qty;
+        }, 0);
+
+        if (restrictByProducts && eligibleAmount === 0) {
+            throw new HttpException(
+                'Coupon is not applicable to selected products',
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+
+        const appliesToAllRequestedVariants =
+            uniqueVariantIds.length === 0 || eligibleVariantIds.length === uniqueVariantIds.length;
 
         if (coupon.userUsageLimit !== null && userId) {
             const customer = await this.prisma.customer.findUnique({
@@ -312,11 +359,11 @@ export class CouponService {
 
         let discountAmount = 0;
         if (coupon.type === CouponType.PERCENTAGE) {
-            discountAmount = (dto.orderAmount * Number(coupon.value)) / 100;
+            discountAmount = (eligibleAmount * Number(coupon.value)) / 100;
         } else if (coupon.type === CouponType.FIXED_AMOUNT) {
-            discountAmount = Number(coupon.value);
+            discountAmount = Math.min(Number(coupon.value), eligibleAmount);
         } else if (coupon.type === CouponType.FREE_SHIPPING) {
-            discountAmount = dto.shippingCost ? Math.min(dto.shippingCost, dto.orderAmount) : 0;
+            discountAmount = 0;
         } else {
             discountAmount = 0;
         }
@@ -325,12 +372,15 @@ export class CouponService {
             discountAmount = Math.min(discountAmount, Number(coupon.maxDiscountAmount));
         }
 
-        discountAmount = Math.max(0, Math.min(discountAmount, dto.orderAmount));
+        discountAmount = Math.max(0, Math.min(discountAmount, orderAmount));
 
         return {
             coupon,
             discountAmount,
-            finalAmount: Math.max(0, dto.orderAmount - discountAmount),
+            orderAmount,
+            finalAmount: Math.max(0, orderAmount - discountAmount),
+            eligibleVariantIds,
+            appliesToAllRequestedVariants,
         };
     }
 }
