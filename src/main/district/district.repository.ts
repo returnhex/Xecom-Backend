@@ -26,6 +26,7 @@ export class DistrictRepository {
     take: number,
     sortBy?: string,
     sortOrder?: 'asc' | 'desc',
+    fields?: string[],
     searchTerm?: string,
     countryId?: string,
     divisionId?: string,
@@ -51,6 +52,20 @@ export class DistrictRepository {
     const orderBy: Prisma.DistrictOrderByWithRelationInput = sortBy
       ? ({ [sortBy]: sortOrder || 'asc' } as Prisma.DistrictOrderByWithRelationInput)
       : { name: 'asc' as Prisma.SortOrder };
+
+    const select = fields && fields.length > 0
+      ? (fields.reduce((acc, field) => ({ ...acc, [field]: true }), {}) as Prisma.DistrictSelect)
+      : undefined;
+
+    if (select) {
+      return this.prisma.district.findMany({
+        where,
+        skip,
+        take,
+        orderBy,
+        select,
+      });
+    }
 
     return this.prisma.district.findMany({
       where,

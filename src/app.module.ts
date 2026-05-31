@@ -23,6 +23,7 @@ import { WishlistModule } from './main/wishlist/wishlist.module';
 import { ReviewModule } from './main/review/review.module';
 import { CartModule } from './main/cart/cart.module';
 import { OrderModule } from './main/order/order.module';
+import { CouponModule } from './main/coupon/coupon.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { OrderModule } from './main/order/order.module';
     ReviewModule,
     CartModule,
     OrderModule,
+    CouponModule,
   ],
   controllers: [AppController],
   providers: [AppService],

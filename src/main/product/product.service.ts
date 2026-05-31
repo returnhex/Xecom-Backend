@@ -315,7 +315,6 @@ export class ProductService {
       await this.productRepository.replaceRelatedProducts(
         product.id,
         uniqueRelatedIds,
-        product.tenantId,
       );
     }
 
@@ -649,7 +648,6 @@ export class ProductService {
       await this.productRepository.replaceRelatedProducts(
         id,
         uniqueRelatedIds,
-        existingProduct.tenantId,
       );
     }
 

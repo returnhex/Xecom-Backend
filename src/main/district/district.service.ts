@@ -45,6 +45,7 @@ export class DistrictService {
     pageSize: number,
     sortBy?: string,
     sortOrder?: 'asc' | 'desc',
+    fields?: string,
     searchTerm?: string,
     countryId?: string,
     divisionId?: string,
@@ -54,12 +55,17 @@ export class DistrictService {
       take: pageSize,
     });
 
+    const selectedFields = fields
+      ? fields.split(',').map((field) => field.trim()).filter(Boolean)
+      : undefined;
+
     const [districts, total] = await Promise.all([
       this.districtRepository.findAll(
         skip,
         take,
         sortBy,
         sortOrder,
+        selectedFields,
         searchTerm,
         countryId,
         divisionId,

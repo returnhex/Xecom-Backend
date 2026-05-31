@@ -47,6 +47,7 @@ export class ThanaService {
     pageSize: number,
     sortBy?: string,
     sortOrder?: 'asc' | 'desc',
+    fields?: string,
     searchTerm?: string,
     countryId?: string,
     divisionId?: string,
@@ -57,12 +58,17 @@ export class ThanaService {
       take: pageSize,
     });
 
+    const selectedFields = fields
+      ? fields.split(',').map((field) => field.trim()).filter(Boolean)
+      : undefined;
+
     const [thanas, total] = await Promise.all([
       this.thanaRepository.findAll(
         skip,
         take,
         sortBy,
         sortOrder,
+        selectedFields,
         searchTerm,
         countryId,
         divisionId,

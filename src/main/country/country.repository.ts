@@ -25,6 +25,7 @@ export class CountryRepository {
     take: number,
     sortBy?: string,
     sortOrder?: 'asc' | 'desc',
+    fields?: string[],
     searchTerm?: string,
   ) {
     // Build where clause
@@ -41,6 +42,20 @@ export class CountryRepository {
     const orderBy: Prisma.CountryOrderByWithRelationInput = sortBy
       ? ({ [sortBy]: sortOrder || 'asc' } as Prisma.CountryOrderByWithRelationInput)
       : { name: 'asc' as Prisma.SortOrder };
+
+    const select = fields && fields.length > 0
+      ? (fields.reduce((acc, field) => ({ ...acc, [field]: true }), {}) as Prisma.CountrySelect)
+      : undefined;
+
+    if (select) {
+      return this.prisma.country.findMany({
+        where,
+        skip,
+        take,
+        orderBy,
+        select,
+      });
+    }
 
     const countries = await this.prisma.country.findMany({
       where,

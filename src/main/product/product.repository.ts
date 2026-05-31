@@ -459,7 +459,6 @@ export class ProductRepository {
   async replaceRelatedProducts(
     productId: string,
     relatedProductIds: string[],
-    tenantId?: string | null,
   ) {
     return this.prisma.$transaction(async (tx) => {
       await tx.productRelation.deleteMany({
@@ -479,7 +478,6 @@ export class ProductRepository {
           relatedToId,
           type: ProductRelationType.RELATED,
           priority: 0,
-          tenantId: tenantId ?? null,
         })),
         skipDuplicates: true,
       });

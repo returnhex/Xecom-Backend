@@ -26,6 +26,7 @@ export class ThanaRepository {
     take: number,
     sortBy?: string,
     sortOrder?: 'asc' | 'desc',
+    fields?: string[],
     searchTerm?: string,
     countryId?: string,
     divisionId?: string,
@@ -60,12 +61,22 @@ export class ThanaRepository {
       ? ({ [sortBy]: sortOrder || 'asc' } as Prisma.ThanaOrderByWithRelationInput)
       : { name: 'asc' as Prisma.SortOrder };
 
-    return this.prisma.thana.findMany({
+    const select = fields && fields.length > 0
+      ? (fields.reduce((acc, field) => ({ ...acc, [field]: true }), {}) as Prisma.ThanaSelect)
+      : undefined;
+
+    const query: any = {
       where,
       skip,
       take,
       orderBy,
-    });
+    };
+
+    if (select) {
+      query.select = select;
+    }
+
+    return this.prisma.thana.findMany(query);
   }
 
   async count(

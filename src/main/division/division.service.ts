@@ -47,6 +47,7 @@ export class DivisionService {
     pageSize: number,
     sortBy?: string,
     sortOrder?: 'asc' | 'desc',
+    fields?: string,
     searchTerm?: string,
     countryId?: string,
   ) {
@@ -55,12 +56,17 @@ export class DivisionService {
       take: pageSize,
     });
 
+    const selectedFields = fields
+      ? fields.split(',').map((field) => field.trim()).filter(Boolean)
+      : undefined;
+
     const [divisions, total] = await Promise.all([
       this.divisionRepository.findAll(
         skip,
         take,
         sortBy,
         sortOrder,
+        selectedFields,
         searchTerm,
         countryId,
       ),

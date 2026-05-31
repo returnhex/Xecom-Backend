@@ -44,6 +44,7 @@ export class DivisionController {
     @Query('pageSize') pageSize: string,
     @Query('sortBy') sortBy: string,
     @Query('sortOrder') sortOrder: string,
+    @Query('fields') fields: string,
     @Query('searchTerm') searchTerm: string,
     @Query('countryId') countryId: string,
     @Res() res: Response,
@@ -56,6 +57,7 @@ export class DivisionController {
       size,
       sortBy,
       sortOrder as 'asc' | 'desc',
+      fields,
       searchTerm,
       countryId,
     );

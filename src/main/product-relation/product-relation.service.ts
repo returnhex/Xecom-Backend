@@ -47,7 +47,6 @@ export class ProductRelationService {
       relatedTo: { connect: { id: dto.relatedToId } },
       type: dto.type,
       priority: dto.priority || 0,
-      tenantId: product.tenantId,
     });
   }
 
@@ -78,7 +77,6 @@ export class ProductRelationService {
       relatedToId: relatedId,
       type: dto.type,
       priority: dto.priority || 0,
-      tenantId: product.tenantId,
     }));
 
     const result = await this.productRelationRepository.createMany(relations);

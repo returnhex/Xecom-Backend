@@ -38,6 +38,7 @@ export class CountryService {
     pageSize: number,
     sortBy?: string,
     sortOrder?: 'asc' | 'desc',
+    fields?: string,
     searchTerm?: string,
   ) {
     const { skip, take } = calculatePagination({
@@ -45,12 +46,17 @@ export class CountryService {
       take: pageSize,
     });
 
+    const selectedFields = fields
+      ? fields.split(',').map((field) => field.trim()).filter(Boolean)
+      : undefined;
+
     const [countries, total] = await Promise.all([
       this.countryRepository.findAll(
         skip,
         take,
         sortBy,
         sortOrder,
+        selectedFields,
         searchTerm,
       ),
       this.countryRepository.count(searchTerm),

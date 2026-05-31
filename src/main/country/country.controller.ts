@@ -47,6 +47,7 @@ export class CountryController {
     @Query('pageSize') pageSize: string,
     @Query('sortBy') sortBy: string,
     @Query('sortOrder') sortOrder: string,
+    @Query('fields') fields: string,
     @Query('searchTerm') searchTerm: string,
     @Res() res: Response,
   ) {
@@ -58,6 +59,7 @@ export class CountryController {
       size,
       sortBy,
       sortOrder as 'asc' | 'desc',
+      fields,
       searchTerm,
     );
     sendResponse(res, {

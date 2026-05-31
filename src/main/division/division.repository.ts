@@ -26,6 +26,7 @@ export class DivisionRepository {
     take: number,
     sortBy?: string,
     sortOrder?: 'asc' | 'desc',
+    fields?: string[],
     searchTerm?: string,
     countryId?: string,
   ) {
@@ -44,6 +45,20 @@ export class DivisionRepository {
     const orderBy: Prisma.DivisionOrderByWithRelationInput = sortBy
       ? ({ [sortBy]: sortOrder || 'asc' } as Prisma.DivisionOrderByWithRelationInput)
       : { name: 'asc' as Prisma.SortOrder };
+
+    const select = fields && fields.length > 0
+      ? (fields.reduce((acc, field) => ({ ...acc, [field]: true }), {}) as Prisma.DivisionSelect)
+      : undefined;
+
+    if (select) {
+      return this.prisma.division.findMany({
+        where,
+        skip,
+        take,
+        orderBy,
+        select,
+      });
+    }
 
     const divisions = await this.prisma.division.findMany({
       where,
