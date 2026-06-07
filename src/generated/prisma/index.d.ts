@@ -94,6 +94,16 @@ export type Cart = $Result.DefaultSelection<Prisma.$CartPayload>
  */
 export type CartItem = $Result.DefaultSelection<Prisma.$CartItemPayload>
 /**
+ * Model GuestCart
+ * 
+ */
+export type GuestCart = $Result.DefaultSelection<Prisma.$GuestCartPayload>
+/**
+ * Model GuestCartItem
+ * 
+ */
+export type GuestCartItem = $Result.DefaultSelection<Prisma.$GuestCartItemPayload>
+/**
  * Model Category
  * 
  */
@@ -871,6 +881,26 @@ export class PrismaClient<
   get cartItem(): Prisma.CartItemDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.guestCart`: Exposes CRUD operations for the **GuestCart** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GuestCarts
+    * const guestCarts = await prisma.guestCart.findMany()
+    * ```
+    */
+  get guestCart(): Prisma.GuestCartDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.guestCartItem`: Exposes CRUD operations for the **GuestCartItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GuestCartItems
+    * const guestCartItems = await prisma.guestCartItem.findMany()
+    * ```
+    */
+  get guestCartItem(): Prisma.GuestCartItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.category`: Exposes CRUD operations for the **Category** model.
     * Example usage:
     * ```ts
@@ -1549,6 +1579,8 @@ export namespace Prisma {
     ReturnItem: 'ReturnItem',
     Cart: 'Cart',
     CartItem: 'CartItem',
+    GuestCart: 'GuestCart',
+    GuestCartItem: 'GuestCartItem',
     Category: 'Category',
     Brand: 'Brand',
     Product: 'Product',
@@ -1587,7 +1619,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "inventoryLog" | "country" | "division" | "district" | "thana" | "address" | "coupon" | "order" | "shippingMethod" | "orderItem" | "payment" | "shipment" | "orderReturn" | "returnItem" | "cart" | "cartItem" | "category" | "brand" | "product" | "bundleItem" | "productRelation" | "attribute" | "attributeValue" | "productVariantAttribute" | "productVariant" | "productImage" | "productDimension" | "productFaq" | "review" | "wishlist" | "notification" | "auditLog" | "setting" | "tenant" | "subscription" | "user" | "admin" | "staff" | "customer"
+      modelProps: "inventoryLog" | "country" | "division" | "district" | "thana" | "address" | "coupon" | "order" | "shippingMethod" | "orderItem" | "payment" | "shipment" | "orderReturn" | "returnItem" | "cart" | "cartItem" | "guestCart" | "guestCartItem" | "category" | "brand" | "product" | "bundleItem" | "productRelation" | "attribute" | "attributeValue" | "productVariantAttribute" | "productVariant" | "productImage" | "productDimension" | "productFaq" | "review" | "wishlist" | "notification" | "auditLog" | "setting" | "tenant" | "subscription" | "user" | "admin" | "staff" | "customer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2772,6 +2804,154 @@ export namespace Prisma {
           count: {
             args: Prisma.CartItemCountArgs<ExtArgs>
             result: $Utils.Optional<CartItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      GuestCart: {
+        payload: Prisma.$GuestCartPayload<ExtArgs>
+        fields: Prisma.GuestCartFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GuestCartFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GuestCartFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>
+          }
+          findFirst: {
+            args: Prisma.GuestCartFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GuestCartFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>
+          }
+          findMany: {
+            args: Prisma.GuestCartFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>[]
+          }
+          create: {
+            args: Prisma.GuestCartCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>
+          }
+          createMany: {
+            args: Prisma.GuestCartCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GuestCartCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>[]
+          }
+          delete: {
+            args: Prisma.GuestCartDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>
+          }
+          update: {
+            args: Prisma.GuestCartUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>
+          }
+          deleteMany: {
+            args: Prisma.GuestCartDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GuestCartUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GuestCartUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>[]
+          }
+          upsert: {
+            args: Prisma.GuestCartUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartPayload>
+          }
+          aggregate: {
+            args: Prisma.GuestCartAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGuestCart>
+          }
+          groupBy: {
+            args: Prisma.GuestCartGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GuestCartGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GuestCartCountArgs<ExtArgs>
+            result: $Utils.Optional<GuestCartCountAggregateOutputType> | number
+          }
+        }
+      }
+      GuestCartItem: {
+        payload: Prisma.$GuestCartItemPayload<ExtArgs>
+        fields: Prisma.GuestCartItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GuestCartItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GuestCartItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>
+          }
+          findFirst: {
+            args: Prisma.GuestCartItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GuestCartItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>
+          }
+          findMany: {
+            args: Prisma.GuestCartItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>[]
+          }
+          create: {
+            args: Prisma.GuestCartItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>
+          }
+          createMany: {
+            args: Prisma.GuestCartItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GuestCartItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>[]
+          }
+          delete: {
+            args: Prisma.GuestCartItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>
+          }
+          update: {
+            args: Prisma.GuestCartItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.GuestCartItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GuestCartItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GuestCartItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.GuestCartItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuestCartItemPayload>
+          }
+          aggregate: {
+            args: Prisma.GuestCartItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGuestCartItem>
+          }
+          groupBy: {
+            args: Prisma.GuestCartItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GuestCartItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GuestCartItemCountArgs<ExtArgs>
+            result: $Utils.Optional<GuestCartItemCountAggregateOutputType> | number
           }
         }
       }
@@ -4601,6 +4781,8 @@ export namespace Prisma {
     returnItem?: ReturnItemOmit
     cart?: CartOmit
     cartItem?: CartItemOmit
+    guestCart?: GuestCartOmit
+    guestCartItem?: GuestCartItemOmit
     category?: CategoryOmit
     brand?: BrandOmit
     product?: ProductOmit
@@ -5006,6 +5188,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type GuestCartCountOutputType
+   */
+
+  export type GuestCartCountOutputType = {
+    items: number
+  }
+
+  export type GuestCartCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    items?: boolean | GuestCartCountOutputTypeCountItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GuestCartCountOutputType without action
+   */
+  export type GuestCartCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartCountOutputType
+     */
+    select?: GuestCartCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GuestCartCountOutputType without action
+   */
+  export type GuestCartCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GuestCartItemWhereInput
+  }
+
+
+  /**
    * Count Type CategoryCountOutputType
    */
 
@@ -5247,6 +5460,7 @@ export namespace Prisma {
 
   export type ProductVariantCountOutputType = {
     cartItems: number
+    guestCartItems: number
     inventoryLogs: number
     orderItems: number
     attributes: number
@@ -5254,6 +5468,7 @@ export namespace Prisma {
 
   export type ProductVariantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     cartItems?: boolean | ProductVariantCountOutputTypeCountCartItemsArgs
+    guestCartItems?: boolean | ProductVariantCountOutputTypeCountGuestCartItemsArgs
     inventoryLogs?: boolean | ProductVariantCountOutputTypeCountInventoryLogsArgs
     orderItems?: boolean | ProductVariantCountOutputTypeCountOrderItemsArgs
     attributes?: boolean | ProductVariantCountOutputTypeCountAttributesArgs
@@ -5275,6 +5490,13 @@ export namespace Prisma {
    */
   export type ProductVariantCountOutputTypeCountCartItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CartItemWhereInput
+  }
+
+  /**
+   * ProductVariantCountOutputType without action
+   */
+  export type ProductVariantCountOutputTypeCountGuestCartItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GuestCartItemWhereInput
   }
 
   /**
@@ -24276,6 +24498,2163 @@ export namespace Prisma {
 
 
   /**
+   * Model GuestCart
+   */
+
+  export type AggregateGuestCart = {
+    _count: GuestCartCountAggregateOutputType | null
+    _min: GuestCartMinAggregateOutputType | null
+    _max: GuestCartMaxAggregateOutputType | null
+  }
+
+  export type GuestCartMinAggregateOutputType = {
+    id: string | null
+    guestToken: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GuestCartMaxAggregateOutputType = {
+    id: string | null
+    guestToken: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GuestCartCountAggregateOutputType = {
+    id: number
+    guestToken: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type GuestCartMinAggregateInputType = {
+    id?: true
+    guestToken?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GuestCartMaxAggregateInputType = {
+    id?: true
+    guestToken?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GuestCartCountAggregateInputType = {
+    id?: true
+    guestToken?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type GuestCartAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GuestCart to aggregate.
+     */
+    where?: GuestCartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuestCarts to fetch.
+     */
+    orderBy?: GuestCartOrderByWithRelationInput | GuestCartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GuestCartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuestCarts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuestCarts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GuestCarts
+    **/
+    _count?: true | GuestCartCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GuestCartMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GuestCartMaxAggregateInputType
+  }
+
+  export type GetGuestCartAggregateType<T extends GuestCartAggregateArgs> = {
+        [P in keyof T & keyof AggregateGuestCart]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGuestCart[P]>
+      : GetScalarType<T[P], AggregateGuestCart[P]>
+  }
+
+
+
+
+  export type GuestCartGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GuestCartWhereInput
+    orderBy?: GuestCartOrderByWithAggregationInput | GuestCartOrderByWithAggregationInput[]
+    by: GuestCartScalarFieldEnum[] | GuestCartScalarFieldEnum
+    having?: GuestCartScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GuestCartCountAggregateInputType | true
+    _min?: GuestCartMinAggregateInputType
+    _max?: GuestCartMaxAggregateInputType
+  }
+
+  export type GuestCartGroupByOutputType = {
+    id: string
+    guestToken: string
+    createdAt: Date
+    updatedAt: Date
+    _count: GuestCartCountAggregateOutputType | null
+    _min: GuestCartMinAggregateOutputType | null
+    _max: GuestCartMaxAggregateOutputType | null
+  }
+
+  type GetGuestCartGroupByPayload<T extends GuestCartGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GuestCartGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GuestCartGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GuestCartGroupByOutputType[P]>
+            : GetScalarType<T[P], GuestCartGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GuestCartSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    guestToken?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    items?: boolean | GuestCart$itemsArgs<ExtArgs>
+    _count?: boolean | GuestCartCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["guestCart"]>
+
+  export type GuestCartSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    guestToken?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["guestCart"]>
+
+  export type GuestCartSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    guestToken?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["guestCart"]>
+
+  export type GuestCartSelectScalar = {
+    id?: boolean
+    guestToken?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type GuestCartOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "guestToken" | "createdAt" | "updatedAt", ExtArgs["result"]["guestCart"]>
+  export type GuestCartInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    items?: boolean | GuestCart$itemsArgs<ExtArgs>
+    _count?: boolean | GuestCartCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type GuestCartIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type GuestCartIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $GuestCartPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GuestCart"
+    objects: {
+      items: Prisma.$GuestCartItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      guestToken: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["guestCart"]>
+    composites: {}
+  }
+
+  type GuestCartGetPayload<S extends boolean | null | undefined | GuestCartDefaultArgs> = $Result.GetResult<Prisma.$GuestCartPayload, S>
+
+  type GuestCartCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GuestCartFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GuestCartCountAggregateInputType | true
+    }
+
+  export interface GuestCartDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GuestCart'], meta: { name: 'GuestCart' } }
+    /**
+     * Find zero or one GuestCart that matches the filter.
+     * @param {GuestCartFindUniqueArgs} args - Arguments to find a GuestCart
+     * @example
+     * // Get one GuestCart
+     * const guestCart = await prisma.guestCart.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GuestCartFindUniqueArgs>(args: SelectSubset<T, GuestCartFindUniqueArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GuestCart that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GuestCartFindUniqueOrThrowArgs} args - Arguments to find a GuestCart
+     * @example
+     * // Get one GuestCart
+     * const guestCart = await prisma.guestCart.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GuestCartFindUniqueOrThrowArgs>(args: SelectSubset<T, GuestCartFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GuestCart that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartFindFirstArgs} args - Arguments to find a GuestCart
+     * @example
+     * // Get one GuestCart
+     * const guestCart = await prisma.guestCart.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GuestCartFindFirstArgs>(args?: SelectSubset<T, GuestCartFindFirstArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GuestCart that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartFindFirstOrThrowArgs} args - Arguments to find a GuestCart
+     * @example
+     * // Get one GuestCart
+     * const guestCart = await prisma.guestCart.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GuestCartFindFirstOrThrowArgs>(args?: SelectSubset<T, GuestCartFindFirstOrThrowArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GuestCarts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GuestCarts
+     * const guestCarts = await prisma.guestCart.findMany()
+     * 
+     * // Get first 10 GuestCarts
+     * const guestCarts = await prisma.guestCart.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const guestCartWithIdOnly = await prisma.guestCart.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GuestCartFindManyArgs>(args?: SelectSubset<T, GuestCartFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GuestCart.
+     * @param {GuestCartCreateArgs} args - Arguments to create a GuestCart.
+     * @example
+     * // Create one GuestCart
+     * const GuestCart = await prisma.guestCart.create({
+     *   data: {
+     *     // ... data to create a GuestCart
+     *   }
+     * })
+     * 
+     */
+    create<T extends GuestCartCreateArgs>(args: SelectSubset<T, GuestCartCreateArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GuestCarts.
+     * @param {GuestCartCreateManyArgs} args - Arguments to create many GuestCarts.
+     * @example
+     * // Create many GuestCarts
+     * const guestCart = await prisma.guestCart.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GuestCartCreateManyArgs>(args?: SelectSubset<T, GuestCartCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GuestCarts and returns the data saved in the database.
+     * @param {GuestCartCreateManyAndReturnArgs} args - Arguments to create many GuestCarts.
+     * @example
+     * // Create many GuestCarts
+     * const guestCart = await prisma.guestCart.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GuestCarts and only return the `id`
+     * const guestCartWithIdOnly = await prisma.guestCart.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GuestCartCreateManyAndReturnArgs>(args?: SelectSubset<T, GuestCartCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GuestCart.
+     * @param {GuestCartDeleteArgs} args - Arguments to delete one GuestCart.
+     * @example
+     * // Delete one GuestCart
+     * const GuestCart = await prisma.guestCart.delete({
+     *   where: {
+     *     // ... filter to delete one GuestCart
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GuestCartDeleteArgs>(args: SelectSubset<T, GuestCartDeleteArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GuestCart.
+     * @param {GuestCartUpdateArgs} args - Arguments to update one GuestCart.
+     * @example
+     * // Update one GuestCart
+     * const guestCart = await prisma.guestCart.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GuestCartUpdateArgs>(args: SelectSubset<T, GuestCartUpdateArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GuestCarts.
+     * @param {GuestCartDeleteManyArgs} args - Arguments to filter GuestCarts to delete.
+     * @example
+     * // Delete a few GuestCarts
+     * const { count } = await prisma.guestCart.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GuestCartDeleteManyArgs>(args?: SelectSubset<T, GuestCartDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GuestCarts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GuestCarts
+     * const guestCart = await prisma.guestCart.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GuestCartUpdateManyArgs>(args: SelectSubset<T, GuestCartUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GuestCarts and returns the data updated in the database.
+     * @param {GuestCartUpdateManyAndReturnArgs} args - Arguments to update many GuestCarts.
+     * @example
+     * // Update many GuestCarts
+     * const guestCart = await prisma.guestCart.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GuestCarts and only return the `id`
+     * const guestCartWithIdOnly = await prisma.guestCart.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GuestCartUpdateManyAndReturnArgs>(args: SelectSubset<T, GuestCartUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GuestCart.
+     * @param {GuestCartUpsertArgs} args - Arguments to update or create a GuestCart.
+     * @example
+     * // Update or create a GuestCart
+     * const guestCart = await prisma.guestCart.upsert({
+     *   create: {
+     *     // ... data to create a GuestCart
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GuestCart we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GuestCartUpsertArgs>(args: SelectSubset<T, GuestCartUpsertArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GuestCarts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartCountArgs} args - Arguments to filter GuestCarts to count.
+     * @example
+     * // Count the number of GuestCarts
+     * const count = await prisma.guestCart.count({
+     *   where: {
+     *     // ... the filter for the GuestCarts we want to count
+     *   }
+     * })
+    **/
+    count<T extends GuestCartCountArgs>(
+      args?: Subset<T, GuestCartCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GuestCartCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GuestCart.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GuestCartAggregateArgs>(args: Subset<T, GuestCartAggregateArgs>): Prisma.PrismaPromise<GetGuestCartAggregateType<T>>
+
+    /**
+     * Group by GuestCart.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GuestCartGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GuestCartGroupByArgs['orderBy'] }
+        : { orderBy?: GuestCartGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GuestCartGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGuestCartGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GuestCart model
+   */
+  readonly fields: GuestCartFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GuestCart.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GuestCartClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    items<T extends GuestCart$itemsArgs<ExtArgs> = {}>(args?: Subset<T, GuestCart$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GuestCart model
+   */
+  interface GuestCartFieldRefs {
+    readonly id: FieldRef<"GuestCart", 'String'>
+    readonly guestToken: FieldRef<"GuestCart", 'String'>
+    readonly createdAt: FieldRef<"GuestCart", 'DateTime'>
+    readonly updatedAt: FieldRef<"GuestCart", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GuestCart findUnique
+   */
+  export type GuestCartFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCart to fetch.
+     */
+    where: GuestCartWhereUniqueInput
+  }
+
+  /**
+   * GuestCart findUniqueOrThrow
+   */
+  export type GuestCartFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCart to fetch.
+     */
+    where: GuestCartWhereUniqueInput
+  }
+
+  /**
+   * GuestCart findFirst
+   */
+  export type GuestCartFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCart to fetch.
+     */
+    where?: GuestCartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuestCarts to fetch.
+     */
+    orderBy?: GuestCartOrderByWithRelationInput | GuestCartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GuestCarts.
+     */
+    cursor?: GuestCartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuestCarts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuestCarts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GuestCarts.
+     */
+    distinct?: GuestCartScalarFieldEnum | GuestCartScalarFieldEnum[]
+  }
+
+  /**
+   * GuestCart findFirstOrThrow
+   */
+  export type GuestCartFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCart to fetch.
+     */
+    where?: GuestCartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuestCarts to fetch.
+     */
+    orderBy?: GuestCartOrderByWithRelationInput | GuestCartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GuestCarts.
+     */
+    cursor?: GuestCartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuestCarts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuestCarts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GuestCarts.
+     */
+    distinct?: GuestCartScalarFieldEnum | GuestCartScalarFieldEnum[]
+  }
+
+  /**
+   * GuestCart findMany
+   */
+  export type GuestCartFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCarts to fetch.
+     */
+    where?: GuestCartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuestCarts to fetch.
+     */
+    orderBy?: GuestCartOrderByWithRelationInput | GuestCartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GuestCarts.
+     */
+    cursor?: GuestCartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuestCarts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuestCarts.
+     */
+    skip?: number
+    distinct?: GuestCartScalarFieldEnum | GuestCartScalarFieldEnum[]
+  }
+
+  /**
+   * GuestCart create
+   */
+  export type GuestCartCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GuestCart.
+     */
+    data: XOR<GuestCartCreateInput, GuestCartUncheckedCreateInput>
+  }
+
+  /**
+   * GuestCart createMany
+   */
+  export type GuestCartCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GuestCarts.
+     */
+    data: GuestCartCreateManyInput | GuestCartCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GuestCart createManyAndReturn
+   */
+  export type GuestCartCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * The data used to create many GuestCarts.
+     */
+    data: GuestCartCreateManyInput | GuestCartCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GuestCart update
+   */
+  export type GuestCartUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GuestCart.
+     */
+    data: XOR<GuestCartUpdateInput, GuestCartUncheckedUpdateInput>
+    /**
+     * Choose, which GuestCart to update.
+     */
+    where: GuestCartWhereUniqueInput
+  }
+
+  /**
+   * GuestCart updateMany
+   */
+  export type GuestCartUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GuestCarts.
+     */
+    data: XOR<GuestCartUpdateManyMutationInput, GuestCartUncheckedUpdateManyInput>
+    /**
+     * Filter which GuestCarts to update
+     */
+    where?: GuestCartWhereInput
+    /**
+     * Limit how many GuestCarts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GuestCart updateManyAndReturn
+   */
+  export type GuestCartUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * The data used to update GuestCarts.
+     */
+    data: XOR<GuestCartUpdateManyMutationInput, GuestCartUncheckedUpdateManyInput>
+    /**
+     * Filter which GuestCarts to update
+     */
+    where?: GuestCartWhereInput
+    /**
+     * Limit how many GuestCarts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GuestCart upsert
+   */
+  export type GuestCartUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GuestCart to update in case it exists.
+     */
+    where: GuestCartWhereUniqueInput
+    /**
+     * In case the GuestCart found by the `where` argument doesn't exist, create a new GuestCart with this data.
+     */
+    create: XOR<GuestCartCreateInput, GuestCartUncheckedCreateInput>
+    /**
+     * In case the GuestCart was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GuestCartUpdateInput, GuestCartUncheckedUpdateInput>
+  }
+
+  /**
+   * GuestCart delete
+   */
+  export type GuestCartDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+    /**
+     * Filter which GuestCart to delete.
+     */
+    where: GuestCartWhereUniqueInput
+  }
+
+  /**
+   * GuestCart deleteMany
+   */
+  export type GuestCartDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GuestCarts to delete
+     */
+    where?: GuestCartWhereInput
+    /**
+     * Limit how many GuestCarts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GuestCart.items
+   */
+  export type GuestCart$itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    where?: GuestCartItemWhereInput
+    orderBy?: GuestCartItemOrderByWithRelationInput | GuestCartItemOrderByWithRelationInput[]
+    cursor?: GuestCartItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GuestCartItemScalarFieldEnum | GuestCartItemScalarFieldEnum[]
+  }
+
+  /**
+   * GuestCart without action
+   */
+  export type GuestCartDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCart
+     */
+    select?: GuestCartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCart
+     */
+    omit?: GuestCartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GuestCartItem
+   */
+
+  export type AggregateGuestCartItem = {
+    _count: GuestCartItemCountAggregateOutputType | null
+    _avg: GuestCartItemAvgAggregateOutputType | null
+    _sum: GuestCartItemSumAggregateOutputType | null
+    _min: GuestCartItemMinAggregateOutputType | null
+    _max: GuestCartItemMaxAggregateOutputType | null
+  }
+
+  export type GuestCartItemAvgAggregateOutputType = {
+    quantity: number | null
+  }
+
+  export type GuestCartItemSumAggregateOutputType = {
+    quantity: number | null
+  }
+
+  export type GuestCartItemMinAggregateOutputType = {
+    id: string | null
+    guestCartId: string | null
+    variantId: string | null
+    quantity: number | null
+    createdAt: Date | null
+  }
+
+  export type GuestCartItemMaxAggregateOutputType = {
+    id: string | null
+    guestCartId: string | null
+    variantId: string | null
+    quantity: number | null
+    createdAt: Date | null
+  }
+
+  export type GuestCartItemCountAggregateOutputType = {
+    id: number
+    guestCartId: number
+    variantId: number
+    quantity: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type GuestCartItemAvgAggregateInputType = {
+    quantity?: true
+  }
+
+  export type GuestCartItemSumAggregateInputType = {
+    quantity?: true
+  }
+
+  export type GuestCartItemMinAggregateInputType = {
+    id?: true
+    guestCartId?: true
+    variantId?: true
+    quantity?: true
+    createdAt?: true
+  }
+
+  export type GuestCartItemMaxAggregateInputType = {
+    id?: true
+    guestCartId?: true
+    variantId?: true
+    quantity?: true
+    createdAt?: true
+  }
+
+  export type GuestCartItemCountAggregateInputType = {
+    id?: true
+    guestCartId?: true
+    variantId?: true
+    quantity?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type GuestCartItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GuestCartItem to aggregate.
+     */
+    where?: GuestCartItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuestCartItems to fetch.
+     */
+    orderBy?: GuestCartItemOrderByWithRelationInput | GuestCartItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GuestCartItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuestCartItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuestCartItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GuestCartItems
+    **/
+    _count?: true | GuestCartItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GuestCartItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GuestCartItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GuestCartItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GuestCartItemMaxAggregateInputType
+  }
+
+  export type GetGuestCartItemAggregateType<T extends GuestCartItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateGuestCartItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGuestCartItem[P]>
+      : GetScalarType<T[P], AggregateGuestCartItem[P]>
+  }
+
+
+
+
+  export type GuestCartItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GuestCartItemWhereInput
+    orderBy?: GuestCartItemOrderByWithAggregationInput | GuestCartItemOrderByWithAggregationInput[]
+    by: GuestCartItemScalarFieldEnum[] | GuestCartItemScalarFieldEnum
+    having?: GuestCartItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GuestCartItemCountAggregateInputType | true
+    _avg?: GuestCartItemAvgAggregateInputType
+    _sum?: GuestCartItemSumAggregateInputType
+    _min?: GuestCartItemMinAggregateInputType
+    _max?: GuestCartItemMaxAggregateInputType
+  }
+
+  export type GuestCartItemGroupByOutputType = {
+    id: string
+    guestCartId: string
+    variantId: string
+    quantity: number
+    createdAt: Date
+    _count: GuestCartItemCountAggregateOutputType | null
+    _avg: GuestCartItemAvgAggregateOutputType | null
+    _sum: GuestCartItemSumAggregateOutputType | null
+    _min: GuestCartItemMinAggregateOutputType | null
+    _max: GuestCartItemMaxAggregateOutputType | null
+  }
+
+  type GetGuestCartItemGroupByPayload<T extends GuestCartItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GuestCartItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GuestCartItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GuestCartItemGroupByOutputType[P]>
+            : GetScalarType<T[P], GuestCartItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GuestCartItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    guestCartId?: boolean
+    variantId?: boolean
+    quantity?: boolean
+    createdAt?: boolean
+    guestCart?: boolean | GuestCartDefaultArgs<ExtArgs>
+    variant?: boolean | ProductVariantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["guestCartItem"]>
+
+  export type GuestCartItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    guestCartId?: boolean
+    variantId?: boolean
+    quantity?: boolean
+    createdAt?: boolean
+    guestCart?: boolean | GuestCartDefaultArgs<ExtArgs>
+    variant?: boolean | ProductVariantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["guestCartItem"]>
+
+  export type GuestCartItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    guestCartId?: boolean
+    variantId?: boolean
+    quantity?: boolean
+    createdAt?: boolean
+    guestCart?: boolean | GuestCartDefaultArgs<ExtArgs>
+    variant?: boolean | ProductVariantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["guestCartItem"]>
+
+  export type GuestCartItemSelectScalar = {
+    id?: boolean
+    guestCartId?: boolean
+    variantId?: boolean
+    quantity?: boolean
+    createdAt?: boolean
+  }
+
+  export type GuestCartItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "guestCartId" | "variantId" | "quantity" | "createdAt", ExtArgs["result"]["guestCartItem"]>
+  export type GuestCartItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    guestCart?: boolean | GuestCartDefaultArgs<ExtArgs>
+    variant?: boolean | ProductVariantDefaultArgs<ExtArgs>
+  }
+  export type GuestCartItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    guestCart?: boolean | GuestCartDefaultArgs<ExtArgs>
+    variant?: boolean | ProductVariantDefaultArgs<ExtArgs>
+  }
+  export type GuestCartItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    guestCart?: boolean | GuestCartDefaultArgs<ExtArgs>
+    variant?: boolean | ProductVariantDefaultArgs<ExtArgs>
+  }
+
+  export type $GuestCartItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GuestCartItem"
+    objects: {
+      guestCart: Prisma.$GuestCartPayload<ExtArgs>
+      variant: Prisma.$ProductVariantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      guestCartId: string
+      variantId: string
+      quantity: number
+      createdAt: Date
+    }, ExtArgs["result"]["guestCartItem"]>
+    composites: {}
+  }
+
+  type GuestCartItemGetPayload<S extends boolean | null | undefined | GuestCartItemDefaultArgs> = $Result.GetResult<Prisma.$GuestCartItemPayload, S>
+
+  type GuestCartItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GuestCartItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GuestCartItemCountAggregateInputType | true
+    }
+
+  export interface GuestCartItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GuestCartItem'], meta: { name: 'GuestCartItem' } }
+    /**
+     * Find zero or one GuestCartItem that matches the filter.
+     * @param {GuestCartItemFindUniqueArgs} args - Arguments to find a GuestCartItem
+     * @example
+     * // Get one GuestCartItem
+     * const guestCartItem = await prisma.guestCartItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GuestCartItemFindUniqueArgs>(args: SelectSubset<T, GuestCartItemFindUniqueArgs<ExtArgs>>): Prisma__GuestCartItemClient<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GuestCartItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GuestCartItemFindUniqueOrThrowArgs} args - Arguments to find a GuestCartItem
+     * @example
+     * // Get one GuestCartItem
+     * const guestCartItem = await prisma.guestCartItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GuestCartItemFindUniqueOrThrowArgs>(args: SelectSubset<T, GuestCartItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GuestCartItemClient<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GuestCartItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartItemFindFirstArgs} args - Arguments to find a GuestCartItem
+     * @example
+     * // Get one GuestCartItem
+     * const guestCartItem = await prisma.guestCartItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GuestCartItemFindFirstArgs>(args?: SelectSubset<T, GuestCartItemFindFirstArgs<ExtArgs>>): Prisma__GuestCartItemClient<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GuestCartItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartItemFindFirstOrThrowArgs} args - Arguments to find a GuestCartItem
+     * @example
+     * // Get one GuestCartItem
+     * const guestCartItem = await prisma.guestCartItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GuestCartItemFindFirstOrThrowArgs>(args?: SelectSubset<T, GuestCartItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__GuestCartItemClient<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GuestCartItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GuestCartItems
+     * const guestCartItems = await prisma.guestCartItem.findMany()
+     * 
+     * // Get first 10 GuestCartItems
+     * const guestCartItems = await prisma.guestCartItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const guestCartItemWithIdOnly = await prisma.guestCartItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GuestCartItemFindManyArgs>(args?: SelectSubset<T, GuestCartItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GuestCartItem.
+     * @param {GuestCartItemCreateArgs} args - Arguments to create a GuestCartItem.
+     * @example
+     * // Create one GuestCartItem
+     * const GuestCartItem = await prisma.guestCartItem.create({
+     *   data: {
+     *     // ... data to create a GuestCartItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends GuestCartItemCreateArgs>(args: SelectSubset<T, GuestCartItemCreateArgs<ExtArgs>>): Prisma__GuestCartItemClient<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GuestCartItems.
+     * @param {GuestCartItemCreateManyArgs} args - Arguments to create many GuestCartItems.
+     * @example
+     * // Create many GuestCartItems
+     * const guestCartItem = await prisma.guestCartItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GuestCartItemCreateManyArgs>(args?: SelectSubset<T, GuestCartItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GuestCartItems and returns the data saved in the database.
+     * @param {GuestCartItemCreateManyAndReturnArgs} args - Arguments to create many GuestCartItems.
+     * @example
+     * // Create many GuestCartItems
+     * const guestCartItem = await prisma.guestCartItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GuestCartItems and only return the `id`
+     * const guestCartItemWithIdOnly = await prisma.guestCartItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GuestCartItemCreateManyAndReturnArgs>(args?: SelectSubset<T, GuestCartItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GuestCartItem.
+     * @param {GuestCartItemDeleteArgs} args - Arguments to delete one GuestCartItem.
+     * @example
+     * // Delete one GuestCartItem
+     * const GuestCartItem = await prisma.guestCartItem.delete({
+     *   where: {
+     *     // ... filter to delete one GuestCartItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GuestCartItemDeleteArgs>(args: SelectSubset<T, GuestCartItemDeleteArgs<ExtArgs>>): Prisma__GuestCartItemClient<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GuestCartItem.
+     * @param {GuestCartItemUpdateArgs} args - Arguments to update one GuestCartItem.
+     * @example
+     * // Update one GuestCartItem
+     * const guestCartItem = await prisma.guestCartItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GuestCartItemUpdateArgs>(args: SelectSubset<T, GuestCartItemUpdateArgs<ExtArgs>>): Prisma__GuestCartItemClient<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GuestCartItems.
+     * @param {GuestCartItemDeleteManyArgs} args - Arguments to filter GuestCartItems to delete.
+     * @example
+     * // Delete a few GuestCartItems
+     * const { count } = await prisma.guestCartItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GuestCartItemDeleteManyArgs>(args?: SelectSubset<T, GuestCartItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GuestCartItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GuestCartItems
+     * const guestCartItem = await prisma.guestCartItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GuestCartItemUpdateManyArgs>(args: SelectSubset<T, GuestCartItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GuestCartItems and returns the data updated in the database.
+     * @param {GuestCartItemUpdateManyAndReturnArgs} args - Arguments to update many GuestCartItems.
+     * @example
+     * // Update many GuestCartItems
+     * const guestCartItem = await prisma.guestCartItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GuestCartItems and only return the `id`
+     * const guestCartItemWithIdOnly = await prisma.guestCartItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GuestCartItemUpdateManyAndReturnArgs>(args: SelectSubset<T, GuestCartItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GuestCartItem.
+     * @param {GuestCartItemUpsertArgs} args - Arguments to update or create a GuestCartItem.
+     * @example
+     * // Update or create a GuestCartItem
+     * const guestCartItem = await prisma.guestCartItem.upsert({
+     *   create: {
+     *     // ... data to create a GuestCartItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GuestCartItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GuestCartItemUpsertArgs>(args: SelectSubset<T, GuestCartItemUpsertArgs<ExtArgs>>): Prisma__GuestCartItemClient<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GuestCartItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartItemCountArgs} args - Arguments to filter GuestCartItems to count.
+     * @example
+     * // Count the number of GuestCartItems
+     * const count = await prisma.guestCartItem.count({
+     *   where: {
+     *     // ... the filter for the GuestCartItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends GuestCartItemCountArgs>(
+      args?: Subset<T, GuestCartItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GuestCartItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GuestCartItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GuestCartItemAggregateArgs>(args: Subset<T, GuestCartItemAggregateArgs>): Prisma.PrismaPromise<GetGuestCartItemAggregateType<T>>
+
+    /**
+     * Group by GuestCartItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuestCartItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GuestCartItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GuestCartItemGroupByArgs['orderBy'] }
+        : { orderBy?: GuestCartItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GuestCartItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGuestCartItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GuestCartItem model
+   */
+  readonly fields: GuestCartItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GuestCartItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GuestCartItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    guestCart<T extends GuestCartDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuestCartDefaultArgs<ExtArgs>>): Prisma__GuestCartClient<$Result.GetResult<Prisma.$GuestCartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    variant<T extends ProductVariantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductVariantDefaultArgs<ExtArgs>>): Prisma__ProductVariantClient<$Result.GetResult<Prisma.$ProductVariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GuestCartItem model
+   */
+  interface GuestCartItemFieldRefs {
+    readonly id: FieldRef<"GuestCartItem", 'String'>
+    readonly guestCartId: FieldRef<"GuestCartItem", 'String'>
+    readonly variantId: FieldRef<"GuestCartItem", 'String'>
+    readonly quantity: FieldRef<"GuestCartItem", 'Int'>
+    readonly createdAt: FieldRef<"GuestCartItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GuestCartItem findUnique
+   */
+  export type GuestCartItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCartItem to fetch.
+     */
+    where: GuestCartItemWhereUniqueInput
+  }
+
+  /**
+   * GuestCartItem findUniqueOrThrow
+   */
+  export type GuestCartItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCartItem to fetch.
+     */
+    where: GuestCartItemWhereUniqueInput
+  }
+
+  /**
+   * GuestCartItem findFirst
+   */
+  export type GuestCartItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCartItem to fetch.
+     */
+    where?: GuestCartItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuestCartItems to fetch.
+     */
+    orderBy?: GuestCartItemOrderByWithRelationInput | GuestCartItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GuestCartItems.
+     */
+    cursor?: GuestCartItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuestCartItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuestCartItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GuestCartItems.
+     */
+    distinct?: GuestCartItemScalarFieldEnum | GuestCartItemScalarFieldEnum[]
+  }
+
+  /**
+   * GuestCartItem findFirstOrThrow
+   */
+  export type GuestCartItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCartItem to fetch.
+     */
+    where?: GuestCartItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuestCartItems to fetch.
+     */
+    orderBy?: GuestCartItemOrderByWithRelationInput | GuestCartItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GuestCartItems.
+     */
+    cursor?: GuestCartItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuestCartItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuestCartItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GuestCartItems.
+     */
+    distinct?: GuestCartItemScalarFieldEnum | GuestCartItemScalarFieldEnum[]
+  }
+
+  /**
+   * GuestCartItem findMany
+   */
+  export type GuestCartItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * Filter, which GuestCartItems to fetch.
+     */
+    where?: GuestCartItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuestCartItems to fetch.
+     */
+    orderBy?: GuestCartItemOrderByWithRelationInput | GuestCartItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GuestCartItems.
+     */
+    cursor?: GuestCartItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuestCartItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuestCartItems.
+     */
+    skip?: number
+    distinct?: GuestCartItemScalarFieldEnum | GuestCartItemScalarFieldEnum[]
+  }
+
+  /**
+   * GuestCartItem create
+   */
+  export type GuestCartItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GuestCartItem.
+     */
+    data: XOR<GuestCartItemCreateInput, GuestCartItemUncheckedCreateInput>
+  }
+
+  /**
+   * GuestCartItem createMany
+   */
+  export type GuestCartItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GuestCartItems.
+     */
+    data: GuestCartItemCreateManyInput | GuestCartItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GuestCartItem createManyAndReturn
+   */
+  export type GuestCartItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many GuestCartItems.
+     */
+    data: GuestCartItemCreateManyInput | GuestCartItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GuestCartItem update
+   */
+  export type GuestCartItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GuestCartItem.
+     */
+    data: XOR<GuestCartItemUpdateInput, GuestCartItemUncheckedUpdateInput>
+    /**
+     * Choose, which GuestCartItem to update.
+     */
+    where: GuestCartItemWhereUniqueInput
+  }
+
+  /**
+   * GuestCartItem updateMany
+   */
+  export type GuestCartItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GuestCartItems.
+     */
+    data: XOR<GuestCartItemUpdateManyMutationInput, GuestCartItemUncheckedUpdateManyInput>
+    /**
+     * Filter which GuestCartItems to update
+     */
+    where?: GuestCartItemWhereInput
+    /**
+     * Limit how many GuestCartItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GuestCartItem updateManyAndReturn
+   */
+  export type GuestCartItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * The data used to update GuestCartItems.
+     */
+    data: XOR<GuestCartItemUpdateManyMutationInput, GuestCartItemUncheckedUpdateManyInput>
+    /**
+     * Filter which GuestCartItems to update
+     */
+    where?: GuestCartItemWhereInput
+    /**
+     * Limit how many GuestCartItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GuestCartItem upsert
+   */
+  export type GuestCartItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GuestCartItem to update in case it exists.
+     */
+    where: GuestCartItemWhereUniqueInput
+    /**
+     * In case the GuestCartItem found by the `where` argument doesn't exist, create a new GuestCartItem with this data.
+     */
+    create: XOR<GuestCartItemCreateInput, GuestCartItemUncheckedCreateInput>
+    /**
+     * In case the GuestCartItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GuestCartItemUpdateInput, GuestCartItemUncheckedUpdateInput>
+  }
+
+  /**
+   * GuestCartItem delete
+   */
+  export type GuestCartItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    /**
+     * Filter which GuestCartItem to delete.
+     */
+    where: GuestCartItemWhereUniqueInput
+  }
+
+  /**
+   * GuestCartItem deleteMany
+   */
+  export type GuestCartItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GuestCartItems to delete
+     */
+    where?: GuestCartItemWhereInput
+    /**
+     * Limit how many GuestCartItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GuestCartItem without action
+   */
+  export type GuestCartItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Category
    */
 
@@ -34190,6 +36569,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: boolean
     cartItems?: boolean | ProductVariant$cartItemsArgs<ExtArgs>
+    guestCartItems?: boolean | ProductVariant$guestCartItemsArgs<ExtArgs>
     inventoryLogs?: boolean | ProductVariant$inventoryLogsArgs<ExtArgs>
     orderItems?: boolean | ProductVariant$orderItemsArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
@@ -34238,6 +36618,7 @@ export namespace Prisma {
   export type ProductVariantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "sku" | "price" | "cost" | "stockQuantity" | "stockAlertThreshold" | "isDefault" | "createdAt", ExtArgs["result"]["productVariant"]>
   export type ProductVariantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     cartItems?: boolean | ProductVariant$cartItemsArgs<ExtArgs>
+    guestCartItems?: boolean | ProductVariant$guestCartItemsArgs<ExtArgs>
     inventoryLogs?: boolean | ProductVariant$inventoryLogsArgs<ExtArgs>
     orderItems?: boolean | ProductVariant$orderItemsArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
@@ -34255,6 +36636,7 @@ export namespace Prisma {
     name: "ProductVariant"
     objects: {
       cartItems: Prisma.$CartItemPayload<ExtArgs>[]
+      guestCartItems: Prisma.$GuestCartItemPayload<ExtArgs>[]
       inventoryLogs: Prisma.$InventoryLogPayload<ExtArgs>[]
       orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
       product: Prisma.$ProductPayload<ExtArgs>
@@ -34665,6 +37047,7 @@ export namespace Prisma {
   export interface Prisma__ProductVariantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     cartItems<T extends ProductVariant$cartItemsArgs<ExtArgs> = {}>(args?: Subset<T, ProductVariant$cartItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    guestCartItems<T extends ProductVariant$guestCartItemsArgs<ExtArgs> = {}>(args?: Subset<T, ProductVariant$guestCartItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuestCartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     inventoryLogs<T extends ProductVariant$inventoryLogsArgs<ExtArgs> = {}>(args?: Subset<T, ProductVariant$inventoryLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InventoryLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     orderItems<T extends ProductVariant$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, ProductVariant$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -35124,6 +37507,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CartItemScalarFieldEnum | CartItemScalarFieldEnum[]
+  }
+
+  /**
+   * ProductVariant.guestCartItems
+   */
+  export type ProductVariant$guestCartItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuestCartItem
+     */
+    select?: GuestCartItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuestCartItem
+     */
+    omit?: GuestCartItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuestCartItemInclude<ExtArgs> | null
+    where?: GuestCartItemWhereInput
+    orderBy?: GuestCartItemOrderByWithRelationInput | GuestCartItemOrderByWithRelationInput[]
+    cursor?: GuestCartItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GuestCartItemScalarFieldEnum | GuestCartItemScalarFieldEnum[]
   }
 
   /**
@@ -52396,6 +54803,27 @@ export namespace Prisma {
   export type CartItemScalarFieldEnum = (typeof CartItemScalarFieldEnum)[keyof typeof CartItemScalarFieldEnum]
 
 
+  export const GuestCartScalarFieldEnum: {
+    id: 'id',
+    guestToken: 'guestToken',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type GuestCartScalarFieldEnum = (typeof GuestCartScalarFieldEnum)[keyof typeof GuestCartScalarFieldEnum]
+
+
+  export const GuestCartItemScalarFieldEnum: {
+    id: 'id',
+    guestCartId: 'guestCartId',
+    variantId: 'variantId',
+    quantity: 'quantity',
+    createdAt: 'createdAt'
+  };
+
+  export type GuestCartItemScalarFieldEnum = (typeof GuestCartItemScalarFieldEnum)[keyof typeof GuestCartItemScalarFieldEnum]
+
+
   export const CategoryScalarFieldEnum: {
     id: 'id',
     tenantId: 'tenantId',
@@ -54499,14 +56927,14 @@ export namespace Prisma {
 
   export type CartWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    customerId?: string
     AND?: CartWhereInput | CartWhereInput[]
     OR?: CartWhereInput[]
     NOT?: CartWhereInput | CartWhereInput[]
-    customerId?: StringFilter<"Cart"> | string
     createdAt?: DateTimeFilter<"Cart"> | Date | string
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     items?: CartItemListRelationFilter
-  }, "id">
+  }, "id" | "customerId">
 
   export type CartOrderByWithAggregationInput = {
     id?: SortOrder
@@ -54551,6 +56979,7 @@ export namespace Prisma {
 
   export type CartItemWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    cartId_variantId?: CartItemCartIdVariantIdCompoundUniqueInput
     AND?: CartItemWhereInput | CartItemWhereInput[]
     OR?: CartItemWhereInput[]
     NOT?: CartItemWhereInput | CartItemWhereInput[]
@@ -54560,7 +56989,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"CartItem"> | Date | string
     cart?: XOR<CartScalarRelationFilter, CartWhereInput>
     variant?: XOR<ProductVariantScalarRelationFilter, ProductVariantWhereInput>
-  }, "id">
+  }, "id" | "cartId_variantId">
 
   export type CartItemOrderByWithAggregationInput = {
     id?: SortOrder
@@ -54584,6 +57013,117 @@ export namespace Prisma {
     variantId?: StringWithAggregatesFilter<"CartItem"> | string
     quantity?: IntWithAggregatesFilter<"CartItem"> | number
     createdAt?: DateTimeWithAggregatesFilter<"CartItem"> | Date | string
+  }
+
+  export type GuestCartWhereInput = {
+    AND?: GuestCartWhereInput | GuestCartWhereInput[]
+    OR?: GuestCartWhereInput[]
+    NOT?: GuestCartWhereInput | GuestCartWhereInput[]
+    id?: StringFilter<"GuestCart"> | string
+    guestToken?: StringFilter<"GuestCart"> | string
+    createdAt?: DateTimeFilter<"GuestCart"> | Date | string
+    updatedAt?: DateTimeFilter<"GuestCart"> | Date | string
+    items?: GuestCartItemListRelationFilter
+  }
+
+  export type GuestCartOrderByWithRelationInput = {
+    id?: SortOrder
+    guestToken?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    items?: GuestCartItemOrderByRelationAggregateInput
+  }
+
+  export type GuestCartWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    guestToken?: string
+    AND?: GuestCartWhereInput | GuestCartWhereInput[]
+    OR?: GuestCartWhereInput[]
+    NOT?: GuestCartWhereInput | GuestCartWhereInput[]
+    createdAt?: DateTimeFilter<"GuestCart"> | Date | string
+    updatedAt?: DateTimeFilter<"GuestCart"> | Date | string
+    items?: GuestCartItemListRelationFilter
+  }, "id" | "guestToken">
+
+  export type GuestCartOrderByWithAggregationInput = {
+    id?: SortOrder
+    guestToken?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: GuestCartCountOrderByAggregateInput
+    _max?: GuestCartMaxOrderByAggregateInput
+    _min?: GuestCartMinOrderByAggregateInput
+  }
+
+  export type GuestCartScalarWhereWithAggregatesInput = {
+    AND?: GuestCartScalarWhereWithAggregatesInput | GuestCartScalarWhereWithAggregatesInput[]
+    OR?: GuestCartScalarWhereWithAggregatesInput[]
+    NOT?: GuestCartScalarWhereWithAggregatesInput | GuestCartScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"GuestCart"> | string
+    guestToken?: StringWithAggregatesFilter<"GuestCart"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"GuestCart"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GuestCart"> | Date | string
+  }
+
+  export type GuestCartItemWhereInput = {
+    AND?: GuestCartItemWhereInput | GuestCartItemWhereInput[]
+    OR?: GuestCartItemWhereInput[]
+    NOT?: GuestCartItemWhereInput | GuestCartItemWhereInput[]
+    id?: StringFilter<"GuestCartItem"> | string
+    guestCartId?: StringFilter<"GuestCartItem"> | string
+    variantId?: StringFilter<"GuestCartItem"> | string
+    quantity?: IntFilter<"GuestCartItem"> | number
+    createdAt?: DateTimeFilter<"GuestCartItem"> | Date | string
+    guestCart?: XOR<GuestCartScalarRelationFilter, GuestCartWhereInput>
+    variant?: XOR<ProductVariantScalarRelationFilter, ProductVariantWhereInput>
+  }
+
+  export type GuestCartItemOrderByWithRelationInput = {
+    id?: SortOrder
+    guestCartId?: SortOrder
+    variantId?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+    guestCart?: GuestCartOrderByWithRelationInput
+    variant?: ProductVariantOrderByWithRelationInput
+  }
+
+  export type GuestCartItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    guestCartId_variantId?: GuestCartItemGuestCartIdVariantIdCompoundUniqueInput
+    AND?: GuestCartItemWhereInput | GuestCartItemWhereInput[]
+    OR?: GuestCartItemWhereInput[]
+    NOT?: GuestCartItemWhereInput | GuestCartItemWhereInput[]
+    guestCartId?: StringFilter<"GuestCartItem"> | string
+    variantId?: StringFilter<"GuestCartItem"> | string
+    quantity?: IntFilter<"GuestCartItem"> | number
+    createdAt?: DateTimeFilter<"GuestCartItem"> | Date | string
+    guestCart?: XOR<GuestCartScalarRelationFilter, GuestCartWhereInput>
+    variant?: XOR<ProductVariantScalarRelationFilter, ProductVariantWhereInput>
+  }, "id" | "guestCartId_variantId">
+
+  export type GuestCartItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    guestCartId?: SortOrder
+    variantId?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+    _count?: GuestCartItemCountOrderByAggregateInput
+    _avg?: GuestCartItemAvgOrderByAggregateInput
+    _max?: GuestCartItemMaxOrderByAggregateInput
+    _min?: GuestCartItemMinOrderByAggregateInput
+    _sum?: GuestCartItemSumOrderByAggregateInput
+  }
+
+  export type GuestCartItemScalarWhereWithAggregatesInput = {
+    AND?: GuestCartItemScalarWhereWithAggregatesInput | GuestCartItemScalarWhereWithAggregatesInput[]
+    OR?: GuestCartItemScalarWhereWithAggregatesInput[]
+    NOT?: GuestCartItemScalarWhereWithAggregatesInput | GuestCartItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"GuestCartItem"> | string
+    guestCartId?: StringWithAggregatesFilter<"GuestCartItem"> | string
+    variantId?: StringWithAggregatesFilter<"GuestCartItem"> | string
+    quantity?: IntWithAggregatesFilter<"GuestCartItem"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"GuestCartItem"> | Date | string
   }
 
   export type CategoryWhereInput = {
@@ -55304,6 +57844,7 @@ export namespace Prisma {
     isDefault?: BoolFilter<"ProductVariant"> | boolean
     createdAt?: DateTimeFilter<"ProductVariant"> | Date | string
     cartItems?: CartItemListRelationFilter
+    guestCartItems?: GuestCartItemListRelationFilter
     inventoryLogs?: InventoryLogListRelationFilter
     orderItems?: OrderItemListRelationFilter
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
@@ -55321,6 +57862,7 @@ export namespace Prisma {
     isDefault?: SortOrder
     createdAt?: SortOrder
     cartItems?: CartItemOrderByRelationAggregateInput
+    guestCartItems?: GuestCartItemOrderByRelationAggregateInput
     inventoryLogs?: InventoryLogOrderByRelationAggregateInput
     orderItems?: OrderItemOrderByRelationAggregateInput
     product?: ProductOrderByWithRelationInput
@@ -55341,6 +57883,7 @@ export namespace Prisma {
     isDefault?: BoolFilter<"ProductVariant"> | boolean
     createdAt?: DateTimeFilter<"ProductVariant"> | Date | string
     cartItems?: CartItemListRelationFilter
+    guestCartItems?: GuestCartItemListRelationFilter
     inventoryLogs?: InventoryLogListRelationFilter
     orderItems?: OrderItemListRelationFilter
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
@@ -58093,6 +60636,113 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GuestCartCreateInput = {
+    id?: string
+    guestToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    items?: GuestCartItemCreateNestedManyWithoutGuestCartInput
+  }
+
+  export type GuestCartUncheckedCreateInput = {
+    id?: string
+    guestToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    items?: GuestCartItemUncheckedCreateNestedManyWithoutGuestCartInput
+  }
+
+  export type GuestCartUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: GuestCartItemUpdateManyWithoutGuestCartNestedInput
+  }
+
+  export type GuestCartUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: GuestCartItemUncheckedUpdateManyWithoutGuestCartNestedInput
+  }
+
+  export type GuestCartCreateManyInput = {
+    id?: string
+    guestToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GuestCartUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GuestCartUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GuestCartItemCreateInput = {
+    id?: string
+    quantity: number
+    createdAt?: Date | string
+    guestCart: GuestCartCreateNestedOneWithoutItemsInput
+    variant: ProductVariantCreateNestedOneWithoutGuestCartItemsInput
+  }
+
+  export type GuestCartItemUncheckedCreateInput = {
+    id?: string
+    guestCartId: string
+    variantId: string
+    quantity: number
+    createdAt?: Date | string
+  }
+
+  export type GuestCartItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    guestCart?: GuestCartUpdateOneRequiredWithoutItemsNestedInput
+    variant?: ProductVariantUpdateOneRequiredWithoutGuestCartItemsNestedInput
+  }
+
+  export type GuestCartItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestCartId?: StringFieldUpdateOperationsInput | string
+    variantId?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GuestCartItemCreateManyInput = {
+    id?: string
+    guestCartId: string
+    variantId: string
+    quantity: number
+    createdAt?: Date | string
+  }
+
+  export type GuestCartItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GuestCartItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestCartId?: StringFieldUpdateOperationsInput | string
+    variantId?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CategoryCreateInput = {
     id?: string
     name: string
@@ -58872,6 +61522,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemCreateNestedManyWithoutVariantInput
     product: ProductCreateNestedOneWithoutVariantsInput
@@ -58889,6 +61540,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemUncheckedCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemUncheckedCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogUncheckedCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutVariantInput
     attributes?: ProductVariantAttributeUncheckedCreateNestedManyWithoutVariantInput
@@ -58904,6 +61556,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUpdateManyWithoutVariantNestedInput
     product?: ProductUpdateOneRequiredWithoutVariantsNestedInput
@@ -58921,6 +61574,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUncheckedUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUncheckedUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUncheckedUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutVariantNestedInput
     attributes?: ProductVariantAttributeUncheckedUpdateManyWithoutVariantNestedInput
@@ -61782,6 +64436,11 @@ export namespace Prisma {
     isNot?: CartWhereInput
   }
 
+  export type CartItemCartIdVariantIdCompoundUniqueInput = {
+    cartId: string
+    variantId: string
+  }
+
   export type CartItemCountOrderByAggregateInput = {
     id?: SortOrder
     cartId?: SortOrder
@@ -61811,6 +64470,79 @@ export namespace Prisma {
   }
 
   export type CartItemSumOrderByAggregateInput = {
+    quantity?: SortOrder
+  }
+
+  export type GuestCartItemListRelationFilter = {
+    every?: GuestCartItemWhereInput
+    some?: GuestCartItemWhereInput
+    none?: GuestCartItemWhereInput
+  }
+
+  export type GuestCartItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GuestCartCountOrderByAggregateInput = {
+    id?: SortOrder
+    guestToken?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GuestCartMaxOrderByAggregateInput = {
+    id?: SortOrder
+    guestToken?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GuestCartMinOrderByAggregateInput = {
+    id?: SortOrder
+    guestToken?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GuestCartScalarRelationFilter = {
+    is?: GuestCartWhereInput
+    isNot?: GuestCartWhereInput
+  }
+
+  export type GuestCartItemGuestCartIdVariantIdCompoundUniqueInput = {
+    guestCartId: string
+    variantId: string
+  }
+
+  export type GuestCartItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    guestCartId?: SortOrder
+    variantId?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type GuestCartItemAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+  }
+
+  export type GuestCartItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    guestCartId?: SortOrder
+    variantId?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type GuestCartItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    guestCartId?: SortOrder
+    variantId?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type GuestCartItemSumOrderByAggregateInput = {
     quantity?: SortOrder
   }
 
@@ -64424,6 +67156,76 @@ export namespace Prisma {
     update?: XOR<XOR<ProductVariantUpdateToOneWithWhereWithoutCartItemsInput, ProductVariantUpdateWithoutCartItemsInput>, ProductVariantUncheckedUpdateWithoutCartItemsInput>
   }
 
+  export type GuestCartItemCreateNestedManyWithoutGuestCartInput = {
+    create?: XOR<GuestCartItemCreateWithoutGuestCartInput, GuestCartItemUncheckedCreateWithoutGuestCartInput> | GuestCartItemCreateWithoutGuestCartInput[] | GuestCartItemUncheckedCreateWithoutGuestCartInput[]
+    connectOrCreate?: GuestCartItemCreateOrConnectWithoutGuestCartInput | GuestCartItemCreateOrConnectWithoutGuestCartInput[]
+    createMany?: GuestCartItemCreateManyGuestCartInputEnvelope
+    connect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+  }
+
+  export type GuestCartItemUncheckedCreateNestedManyWithoutGuestCartInput = {
+    create?: XOR<GuestCartItemCreateWithoutGuestCartInput, GuestCartItemUncheckedCreateWithoutGuestCartInput> | GuestCartItemCreateWithoutGuestCartInput[] | GuestCartItemUncheckedCreateWithoutGuestCartInput[]
+    connectOrCreate?: GuestCartItemCreateOrConnectWithoutGuestCartInput | GuestCartItemCreateOrConnectWithoutGuestCartInput[]
+    createMany?: GuestCartItemCreateManyGuestCartInputEnvelope
+    connect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+  }
+
+  export type GuestCartItemUpdateManyWithoutGuestCartNestedInput = {
+    create?: XOR<GuestCartItemCreateWithoutGuestCartInput, GuestCartItemUncheckedCreateWithoutGuestCartInput> | GuestCartItemCreateWithoutGuestCartInput[] | GuestCartItemUncheckedCreateWithoutGuestCartInput[]
+    connectOrCreate?: GuestCartItemCreateOrConnectWithoutGuestCartInput | GuestCartItemCreateOrConnectWithoutGuestCartInput[]
+    upsert?: GuestCartItemUpsertWithWhereUniqueWithoutGuestCartInput | GuestCartItemUpsertWithWhereUniqueWithoutGuestCartInput[]
+    createMany?: GuestCartItemCreateManyGuestCartInputEnvelope
+    set?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    disconnect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    delete?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    connect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    update?: GuestCartItemUpdateWithWhereUniqueWithoutGuestCartInput | GuestCartItemUpdateWithWhereUniqueWithoutGuestCartInput[]
+    updateMany?: GuestCartItemUpdateManyWithWhereWithoutGuestCartInput | GuestCartItemUpdateManyWithWhereWithoutGuestCartInput[]
+    deleteMany?: GuestCartItemScalarWhereInput | GuestCartItemScalarWhereInput[]
+  }
+
+  export type GuestCartItemUncheckedUpdateManyWithoutGuestCartNestedInput = {
+    create?: XOR<GuestCartItemCreateWithoutGuestCartInput, GuestCartItemUncheckedCreateWithoutGuestCartInput> | GuestCartItemCreateWithoutGuestCartInput[] | GuestCartItemUncheckedCreateWithoutGuestCartInput[]
+    connectOrCreate?: GuestCartItemCreateOrConnectWithoutGuestCartInput | GuestCartItemCreateOrConnectWithoutGuestCartInput[]
+    upsert?: GuestCartItemUpsertWithWhereUniqueWithoutGuestCartInput | GuestCartItemUpsertWithWhereUniqueWithoutGuestCartInput[]
+    createMany?: GuestCartItemCreateManyGuestCartInputEnvelope
+    set?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    disconnect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    delete?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    connect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    update?: GuestCartItemUpdateWithWhereUniqueWithoutGuestCartInput | GuestCartItemUpdateWithWhereUniqueWithoutGuestCartInput[]
+    updateMany?: GuestCartItemUpdateManyWithWhereWithoutGuestCartInput | GuestCartItemUpdateManyWithWhereWithoutGuestCartInput[]
+    deleteMany?: GuestCartItemScalarWhereInput | GuestCartItemScalarWhereInput[]
+  }
+
+  export type GuestCartCreateNestedOneWithoutItemsInput = {
+    create?: XOR<GuestCartCreateWithoutItemsInput, GuestCartUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: GuestCartCreateOrConnectWithoutItemsInput
+    connect?: GuestCartWhereUniqueInput
+  }
+
+  export type ProductVariantCreateNestedOneWithoutGuestCartItemsInput = {
+    create?: XOR<ProductVariantCreateWithoutGuestCartItemsInput, ProductVariantUncheckedCreateWithoutGuestCartItemsInput>
+    connectOrCreate?: ProductVariantCreateOrConnectWithoutGuestCartItemsInput
+    connect?: ProductVariantWhereUniqueInput
+  }
+
+  export type GuestCartUpdateOneRequiredWithoutItemsNestedInput = {
+    create?: XOR<GuestCartCreateWithoutItemsInput, GuestCartUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: GuestCartCreateOrConnectWithoutItemsInput
+    upsert?: GuestCartUpsertWithoutItemsInput
+    connect?: GuestCartWhereUniqueInput
+    update?: XOR<XOR<GuestCartUpdateToOneWithWhereWithoutItemsInput, GuestCartUpdateWithoutItemsInput>, GuestCartUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type ProductVariantUpdateOneRequiredWithoutGuestCartItemsNestedInput = {
+    create?: XOR<ProductVariantCreateWithoutGuestCartItemsInput, ProductVariantUncheckedCreateWithoutGuestCartItemsInput>
+    connectOrCreate?: ProductVariantCreateOrConnectWithoutGuestCartItemsInput
+    upsert?: ProductVariantUpsertWithoutGuestCartItemsInput
+    connect?: ProductVariantWhereUniqueInput
+    update?: XOR<XOR<ProductVariantUpdateToOneWithWhereWithoutGuestCartItemsInput, ProductVariantUpdateWithoutGuestCartItemsInput>, ProductVariantUncheckedUpdateWithoutGuestCartItemsInput>
+  }
+
   export type CategoryCreatetargetAudienceInput = {
     set: $Enums.TargetAudience[]
   }
@@ -65270,6 +68072,13 @@ export namespace Prisma {
     connect?: CartItemWhereUniqueInput | CartItemWhereUniqueInput[]
   }
 
+  export type GuestCartItemCreateNestedManyWithoutVariantInput = {
+    create?: XOR<GuestCartItemCreateWithoutVariantInput, GuestCartItemUncheckedCreateWithoutVariantInput> | GuestCartItemCreateWithoutVariantInput[] | GuestCartItemUncheckedCreateWithoutVariantInput[]
+    connectOrCreate?: GuestCartItemCreateOrConnectWithoutVariantInput | GuestCartItemCreateOrConnectWithoutVariantInput[]
+    createMany?: GuestCartItemCreateManyVariantInputEnvelope
+    connect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+  }
+
   export type InventoryLogCreateNestedManyWithoutVariantInput = {
     create?: XOR<InventoryLogCreateWithoutVariantInput, InventoryLogUncheckedCreateWithoutVariantInput> | InventoryLogCreateWithoutVariantInput[] | InventoryLogUncheckedCreateWithoutVariantInput[]
     connectOrCreate?: InventoryLogCreateOrConnectWithoutVariantInput | InventoryLogCreateOrConnectWithoutVariantInput[]
@@ -65302,6 +68111,13 @@ export namespace Prisma {
     connectOrCreate?: CartItemCreateOrConnectWithoutVariantInput | CartItemCreateOrConnectWithoutVariantInput[]
     createMany?: CartItemCreateManyVariantInputEnvelope
     connect?: CartItemWhereUniqueInput | CartItemWhereUniqueInput[]
+  }
+
+  export type GuestCartItemUncheckedCreateNestedManyWithoutVariantInput = {
+    create?: XOR<GuestCartItemCreateWithoutVariantInput, GuestCartItemUncheckedCreateWithoutVariantInput> | GuestCartItemCreateWithoutVariantInput[] | GuestCartItemUncheckedCreateWithoutVariantInput[]
+    connectOrCreate?: GuestCartItemCreateOrConnectWithoutVariantInput | GuestCartItemCreateOrConnectWithoutVariantInput[]
+    createMany?: GuestCartItemCreateManyVariantInputEnvelope
+    connect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
   }
 
   export type InventoryLogUncheckedCreateNestedManyWithoutVariantInput = {
@@ -65337,6 +68153,20 @@ export namespace Prisma {
     update?: CartItemUpdateWithWhereUniqueWithoutVariantInput | CartItemUpdateWithWhereUniqueWithoutVariantInput[]
     updateMany?: CartItemUpdateManyWithWhereWithoutVariantInput | CartItemUpdateManyWithWhereWithoutVariantInput[]
     deleteMany?: CartItemScalarWhereInput | CartItemScalarWhereInput[]
+  }
+
+  export type GuestCartItemUpdateManyWithoutVariantNestedInput = {
+    create?: XOR<GuestCartItemCreateWithoutVariantInput, GuestCartItemUncheckedCreateWithoutVariantInput> | GuestCartItemCreateWithoutVariantInput[] | GuestCartItemUncheckedCreateWithoutVariantInput[]
+    connectOrCreate?: GuestCartItemCreateOrConnectWithoutVariantInput | GuestCartItemCreateOrConnectWithoutVariantInput[]
+    upsert?: GuestCartItemUpsertWithWhereUniqueWithoutVariantInput | GuestCartItemUpsertWithWhereUniqueWithoutVariantInput[]
+    createMany?: GuestCartItemCreateManyVariantInputEnvelope
+    set?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    disconnect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    delete?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    connect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    update?: GuestCartItemUpdateWithWhereUniqueWithoutVariantInput | GuestCartItemUpdateWithWhereUniqueWithoutVariantInput[]
+    updateMany?: GuestCartItemUpdateManyWithWhereWithoutVariantInput | GuestCartItemUpdateManyWithWhereWithoutVariantInput[]
+    deleteMany?: GuestCartItemScalarWhereInput | GuestCartItemScalarWhereInput[]
   }
 
   export type InventoryLogUpdateManyWithoutVariantNestedInput = {
@@ -65401,6 +68231,20 @@ export namespace Prisma {
     update?: CartItemUpdateWithWhereUniqueWithoutVariantInput | CartItemUpdateWithWhereUniqueWithoutVariantInput[]
     updateMany?: CartItemUpdateManyWithWhereWithoutVariantInput | CartItemUpdateManyWithWhereWithoutVariantInput[]
     deleteMany?: CartItemScalarWhereInput | CartItemScalarWhereInput[]
+  }
+
+  export type GuestCartItemUncheckedUpdateManyWithoutVariantNestedInput = {
+    create?: XOR<GuestCartItemCreateWithoutVariantInput, GuestCartItemUncheckedCreateWithoutVariantInput> | GuestCartItemCreateWithoutVariantInput[] | GuestCartItemUncheckedCreateWithoutVariantInput[]
+    connectOrCreate?: GuestCartItemCreateOrConnectWithoutVariantInput | GuestCartItemCreateOrConnectWithoutVariantInput[]
+    upsert?: GuestCartItemUpsertWithWhereUniqueWithoutVariantInput | GuestCartItemUpsertWithWhereUniqueWithoutVariantInput[]
+    createMany?: GuestCartItemCreateManyVariantInputEnvelope
+    set?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    disconnect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    delete?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    connect?: GuestCartItemWhereUniqueInput | GuestCartItemWhereUniqueInput[]
+    update?: GuestCartItemUpdateWithWhereUniqueWithoutVariantInput | GuestCartItemUpdateWithWhereUniqueWithoutVariantInput[]
+    updateMany?: GuestCartItemUpdateManyWithWhereWithoutVariantInput | GuestCartItemUpdateManyWithWhereWithoutVariantInput[]
+    deleteMany?: GuestCartItemScalarWhereInput | GuestCartItemScalarWhereInput[]
   }
 
   export type InventoryLogUncheckedUpdateManyWithoutVariantNestedInput = {
@@ -67346,6 +70190,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemCreateNestedManyWithoutVariantInput
     product: ProductCreateNestedOneWithoutVariantsInput
     attributes?: ProductVariantAttributeCreateNestedManyWithoutVariantInput
@@ -67362,6 +70207,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemUncheckedCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemUncheckedCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutVariantInput
     attributes?: ProductVariantAttributeUncheckedCreateNestedManyWithoutVariantInput
   }
@@ -67392,6 +70238,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUpdateManyWithoutVariantNestedInput
     product?: ProductUpdateOneRequiredWithoutVariantsNestedInput
     attributes?: ProductVariantAttributeUpdateManyWithoutVariantNestedInput
@@ -67408,6 +70255,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUncheckedUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUncheckedUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutVariantNestedInput
     attributes?: ProductVariantAttributeUncheckedUpdateManyWithoutVariantNestedInput
   }
@@ -69306,6 +72154,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogCreateNestedManyWithoutVariantInput
     product: ProductCreateNestedOneWithoutVariantsInput
     attributes?: ProductVariantAttributeCreateNestedManyWithoutVariantInput
@@ -69322,6 +72171,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemUncheckedCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemUncheckedCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogUncheckedCreateNestedManyWithoutVariantInput
     attributes?: ProductVariantAttributeUncheckedCreateNestedManyWithoutVariantInput
   }
@@ -69516,6 +72366,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUpdateManyWithoutVariantNestedInput
     product?: ProductUpdateOneRequiredWithoutVariantsNestedInput
     attributes?: ProductVariantAttributeUpdateManyWithoutVariantNestedInput
@@ -69532,6 +72383,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUncheckedUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUncheckedUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUncheckedUpdateManyWithoutVariantNestedInput
     attributes?: ProductVariantAttributeUncheckedUpdateManyWithoutVariantNestedInput
   }
@@ -70255,6 +73107,7 @@ export namespace Prisma {
     stockAlertThreshold?: number
     isDefault?: boolean
     createdAt?: Date | string
+    guestCartItems?: GuestCartItemCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemCreateNestedManyWithoutVariantInput
     product: ProductCreateNestedOneWithoutVariantsInput
@@ -70271,6 +73124,7 @@ export namespace Prisma {
     stockAlertThreshold?: number
     isDefault?: boolean
     createdAt?: Date | string
+    guestCartItems?: GuestCartItemUncheckedCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogUncheckedCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutVariantInput
     attributes?: ProductVariantAttributeUncheckedCreateNestedManyWithoutVariantInput
@@ -70324,6 +73178,7 @@ export namespace Prisma {
     stockAlertThreshold?: IntFieldUpdateOperationsInput | number
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    guestCartItems?: GuestCartItemUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUpdateManyWithoutVariantNestedInput
     product?: ProductUpdateOneRequiredWithoutVariantsNestedInput
@@ -70340,6 +73195,182 @@ export namespace Prisma {
     stockAlertThreshold?: IntFieldUpdateOperationsInput | number
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    guestCartItems?: GuestCartItemUncheckedUpdateManyWithoutVariantNestedInput
+    inventoryLogs?: InventoryLogUncheckedUpdateManyWithoutVariantNestedInput
+    orderItems?: OrderItemUncheckedUpdateManyWithoutVariantNestedInput
+    attributes?: ProductVariantAttributeUncheckedUpdateManyWithoutVariantNestedInput
+  }
+
+  export type GuestCartItemCreateWithoutGuestCartInput = {
+    id?: string
+    quantity: number
+    createdAt?: Date | string
+    variant: ProductVariantCreateNestedOneWithoutGuestCartItemsInput
+  }
+
+  export type GuestCartItemUncheckedCreateWithoutGuestCartInput = {
+    id?: string
+    variantId: string
+    quantity: number
+    createdAt?: Date | string
+  }
+
+  export type GuestCartItemCreateOrConnectWithoutGuestCartInput = {
+    where: GuestCartItemWhereUniqueInput
+    create: XOR<GuestCartItemCreateWithoutGuestCartInput, GuestCartItemUncheckedCreateWithoutGuestCartInput>
+  }
+
+  export type GuestCartItemCreateManyGuestCartInputEnvelope = {
+    data: GuestCartItemCreateManyGuestCartInput | GuestCartItemCreateManyGuestCartInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GuestCartItemUpsertWithWhereUniqueWithoutGuestCartInput = {
+    where: GuestCartItemWhereUniqueInput
+    update: XOR<GuestCartItemUpdateWithoutGuestCartInput, GuestCartItemUncheckedUpdateWithoutGuestCartInput>
+    create: XOR<GuestCartItemCreateWithoutGuestCartInput, GuestCartItemUncheckedCreateWithoutGuestCartInput>
+  }
+
+  export type GuestCartItemUpdateWithWhereUniqueWithoutGuestCartInput = {
+    where: GuestCartItemWhereUniqueInput
+    data: XOR<GuestCartItemUpdateWithoutGuestCartInput, GuestCartItemUncheckedUpdateWithoutGuestCartInput>
+  }
+
+  export type GuestCartItemUpdateManyWithWhereWithoutGuestCartInput = {
+    where: GuestCartItemScalarWhereInput
+    data: XOR<GuestCartItemUpdateManyMutationInput, GuestCartItemUncheckedUpdateManyWithoutGuestCartInput>
+  }
+
+  export type GuestCartItemScalarWhereInput = {
+    AND?: GuestCartItemScalarWhereInput | GuestCartItemScalarWhereInput[]
+    OR?: GuestCartItemScalarWhereInput[]
+    NOT?: GuestCartItemScalarWhereInput | GuestCartItemScalarWhereInput[]
+    id?: StringFilter<"GuestCartItem"> | string
+    guestCartId?: StringFilter<"GuestCartItem"> | string
+    variantId?: StringFilter<"GuestCartItem"> | string
+    quantity?: IntFilter<"GuestCartItem"> | number
+    createdAt?: DateTimeFilter<"GuestCartItem"> | Date | string
+  }
+
+  export type GuestCartCreateWithoutItemsInput = {
+    id?: string
+    guestToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GuestCartUncheckedCreateWithoutItemsInput = {
+    id?: string
+    guestToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GuestCartCreateOrConnectWithoutItemsInput = {
+    where: GuestCartWhereUniqueInput
+    create: XOR<GuestCartCreateWithoutItemsInput, GuestCartUncheckedCreateWithoutItemsInput>
+  }
+
+  export type ProductVariantCreateWithoutGuestCartItemsInput = {
+    id?: string
+    sku: string
+    price: Decimal | DecimalJsLike | number | string
+    cost?: Decimal | DecimalJsLike | number | string | null
+    stockQuantity: number
+    stockAlertThreshold?: number
+    isDefault?: boolean
+    createdAt?: Date | string
+    cartItems?: CartItemCreateNestedManyWithoutVariantInput
+    inventoryLogs?: InventoryLogCreateNestedManyWithoutVariantInput
+    orderItems?: OrderItemCreateNestedManyWithoutVariantInput
+    product: ProductCreateNestedOneWithoutVariantsInput
+    attributes?: ProductVariantAttributeCreateNestedManyWithoutVariantInput
+  }
+
+  export type ProductVariantUncheckedCreateWithoutGuestCartItemsInput = {
+    id?: string
+    productId: string
+    sku: string
+    price: Decimal | DecimalJsLike | number | string
+    cost?: Decimal | DecimalJsLike | number | string | null
+    stockQuantity: number
+    stockAlertThreshold?: number
+    isDefault?: boolean
+    createdAt?: Date | string
+    cartItems?: CartItemUncheckedCreateNestedManyWithoutVariantInput
+    inventoryLogs?: InventoryLogUncheckedCreateNestedManyWithoutVariantInput
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutVariantInput
+    attributes?: ProductVariantAttributeUncheckedCreateNestedManyWithoutVariantInput
+  }
+
+  export type ProductVariantCreateOrConnectWithoutGuestCartItemsInput = {
+    where: ProductVariantWhereUniqueInput
+    create: XOR<ProductVariantCreateWithoutGuestCartItemsInput, ProductVariantUncheckedCreateWithoutGuestCartItemsInput>
+  }
+
+  export type GuestCartUpsertWithoutItemsInput = {
+    update: XOR<GuestCartUpdateWithoutItemsInput, GuestCartUncheckedUpdateWithoutItemsInput>
+    create: XOR<GuestCartCreateWithoutItemsInput, GuestCartUncheckedCreateWithoutItemsInput>
+    where?: GuestCartWhereInput
+  }
+
+  export type GuestCartUpdateToOneWithWhereWithoutItemsInput = {
+    where?: GuestCartWhereInput
+    data: XOR<GuestCartUpdateWithoutItemsInput, GuestCartUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type GuestCartUpdateWithoutItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GuestCartUncheckedUpdateWithoutItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductVariantUpsertWithoutGuestCartItemsInput = {
+    update: XOR<ProductVariantUpdateWithoutGuestCartItemsInput, ProductVariantUncheckedUpdateWithoutGuestCartItemsInput>
+    create: XOR<ProductVariantCreateWithoutGuestCartItemsInput, ProductVariantUncheckedCreateWithoutGuestCartItemsInput>
+    where?: ProductVariantWhereInput
+  }
+
+  export type ProductVariantUpdateToOneWithWhereWithoutGuestCartItemsInput = {
+    where?: ProductVariantWhereInput
+    data: XOR<ProductVariantUpdateWithoutGuestCartItemsInput, ProductVariantUncheckedUpdateWithoutGuestCartItemsInput>
+  }
+
+  export type ProductVariantUpdateWithoutGuestCartItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    stockQuantity?: IntFieldUpdateOperationsInput | number
+    stockAlertThreshold?: IntFieldUpdateOperationsInput | number
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cartItems?: CartItemUpdateManyWithoutVariantNestedInput
+    inventoryLogs?: InventoryLogUpdateManyWithoutVariantNestedInput
+    orderItems?: OrderItemUpdateManyWithoutVariantNestedInput
+    product?: ProductUpdateOneRequiredWithoutVariantsNestedInput
+    attributes?: ProductVariantAttributeUpdateManyWithoutVariantNestedInput
+  }
+
+  export type ProductVariantUncheckedUpdateWithoutGuestCartItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    stockQuantity?: IntFieldUpdateOperationsInput | number
+    stockAlertThreshold?: IntFieldUpdateOperationsInput | number
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cartItems?: CartItemUncheckedUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUncheckedUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutVariantNestedInput
     attributes?: ProductVariantAttributeUncheckedUpdateManyWithoutVariantNestedInput
@@ -71265,6 +74296,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemCreateNestedManyWithoutVariantInput
     attributes?: ProductVariantAttributeCreateNestedManyWithoutVariantInput
@@ -71280,6 +74312,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemUncheckedCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemUncheckedCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogUncheckedCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutVariantInput
     attributes?: ProductVariantAttributeUncheckedCreateNestedManyWithoutVariantInput
@@ -72634,6 +75667,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemCreateNestedManyWithoutVariantInput
     product: ProductCreateNestedOneWithoutVariantsInput
@@ -72650,6 +75684,7 @@ export namespace Prisma {
     isDefault?: boolean
     createdAt?: Date | string
     cartItems?: CartItemUncheckedCreateNestedManyWithoutVariantInput
+    guestCartItems?: GuestCartItemUncheckedCreateNestedManyWithoutVariantInput
     inventoryLogs?: InventoryLogUncheckedCreateNestedManyWithoutVariantInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutVariantInput
   }
@@ -72699,6 +75734,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUpdateManyWithoutVariantNestedInput
     product?: ProductUpdateOneRequiredWithoutVariantsNestedInput
@@ -72715,6 +75751,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUncheckedUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUncheckedUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUncheckedUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutVariantNestedInput
   }
@@ -72765,6 +75802,30 @@ export namespace Prisma {
 
   export type CartItemCreateManyVariantInputEnvelope = {
     data: CartItemCreateManyVariantInput | CartItemCreateManyVariantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GuestCartItemCreateWithoutVariantInput = {
+    id?: string
+    quantity: number
+    createdAt?: Date | string
+    guestCart: GuestCartCreateNestedOneWithoutItemsInput
+  }
+
+  export type GuestCartItemUncheckedCreateWithoutVariantInput = {
+    id?: string
+    guestCartId: string
+    quantity: number
+    createdAt?: Date | string
+  }
+
+  export type GuestCartItemCreateOrConnectWithoutVariantInput = {
+    where: GuestCartItemWhereUniqueInput
+    create: XOR<GuestCartItemCreateWithoutVariantInput, GuestCartItemUncheckedCreateWithoutVariantInput>
+  }
+
+  export type GuestCartItemCreateManyVariantInputEnvelope = {
+    data: GuestCartItemCreateManyVariantInput | GuestCartItemCreateManyVariantInput[]
     skipDuplicates?: boolean
   }
 
@@ -72947,6 +76008,22 @@ export namespace Prisma {
   export type CartItemUpdateManyWithWhereWithoutVariantInput = {
     where: CartItemScalarWhereInput
     data: XOR<CartItemUpdateManyMutationInput, CartItemUncheckedUpdateManyWithoutVariantInput>
+  }
+
+  export type GuestCartItemUpsertWithWhereUniqueWithoutVariantInput = {
+    where: GuestCartItemWhereUniqueInput
+    update: XOR<GuestCartItemUpdateWithoutVariantInput, GuestCartItemUncheckedUpdateWithoutVariantInput>
+    create: XOR<GuestCartItemCreateWithoutVariantInput, GuestCartItemUncheckedCreateWithoutVariantInput>
+  }
+
+  export type GuestCartItemUpdateWithWhereUniqueWithoutVariantInput = {
+    where: GuestCartItemWhereUniqueInput
+    data: XOR<GuestCartItemUpdateWithoutVariantInput, GuestCartItemUncheckedUpdateWithoutVariantInput>
+  }
+
+  export type GuestCartItemUpdateManyWithWhereWithoutVariantInput = {
+    where: GuestCartItemScalarWhereInput
+    data: XOR<GuestCartItemUpdateManyMutationInput, GuestCartItemUncheckedUpdateManyWithoutVariantInput>
   }
 
   export type InventoryLogUpsertWithWhereUniqueWithoutVariantInput = {
@@ -77728,6 +80805,34 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GuestCartItemCreateManyGuestCartInput = {
+    id?: string
+    variantId: string
+    quantity: number
+    createdAt?: Date | string
+  }
+
+  export type GuestCartItemUpdateWithoutGuestCartInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    variant?: ProductVariantUpdateOneRequiredWithoutGuestCartItemsNestedInput
+  }
+
+  export type GuestCartItemUncheckedUpdateWithoutGuestCartInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    variantId?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GuestCartItemUncheckedUpdateManyWithoutGuestCartInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    variantId?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CategoryCreateManyParentInput = {
     id?: string
     tenantId?: string | null
@@ -78204,6 +81309,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUpdateManyWithoutVariantNestedInput
     attributes?: ProductVariantAttributeUpdateManyWithoutVariantNestedInput
@@ -78219,6 +81325,7 @@ export namespace Prisma {
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cartItems?: CartItemUncheckedUpdateManyWithoutVariantNestedInput
+    guestCartItems?: GuestCartItemUncheckedUpdateManyWithoutVariantNestedInput
     inventoryLogs?: InventoryLogUncheckedUpdateManyWithoutVariantNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutVariantNestedInput
     attributes?: ProductVariantAttributeUncheckedUpdateManyWithoutVariantNestedInput
@@ -78465,6 +81572,13 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type GuestCartItemCreateManyVariantInput = {
+    id?: string
+    guestCartId: string
+    quantity: number
+    createdAt?: Date | string
+  }
+
   export type InventoryLogCreateManyVariantInput = {
     id?: string
     change: number
@@ -78505,6 +81619,27 @@ export namespace Prisma {
   export type CartItemUncheckedUpdateManyWithoutVariantInput = {
     id?: StringFieldUpdateOperationsInput | string
     cartId?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GuestCartItemUpdateWithoutVariantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    guestCart?: GuestCartUpdateOneRequiredWithoutItemsNestedInput
+  }
+
+  export type GuestCartItemUncheckedUpdateWithoutVariantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestCartId?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GuestCartItemUncheckedUpdateManyWithoutVariantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    guestCartId?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

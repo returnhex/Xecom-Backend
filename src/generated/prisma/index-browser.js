@@ -317,6 +317,21 @@ exports.Prisma.CartItemScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.GuestCartScalarFieldEnum = {
+  id: 'id',
+  guestToken: 'guestToken',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.GuestCartItemScalarFieldEnum = {
+  id: 'id',
+  guestCartId: 'guestCartId',
+  variantId: 'variantId',
+  quantity: 'quantity',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
@@ -884,6 +899,8 @@ exports.Prisma.ModelName = {
   ReturnItem: 'ReturnItem',
   Cart: 'Cart',
   CartItem: 'CartItem',
+  GuestCart: 'GuestCart',
+  GuestCartItem: 'GuestCartItem',
   Category: 'Category',
   Brand: 'Brand',
   Product: 'Product',

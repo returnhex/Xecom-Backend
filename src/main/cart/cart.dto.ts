@@ -1,36 +1,48 @@
 import { IsUUID, IsInt, Min } from 'class-validator';
 
 export class AddToCartDto {
-    @IsUUID()
-    variantId!: string;
+  @IsUUID()
+  variantId!: string;
 
-    @IsInt()
-    @Min(1)
-    quantity!: number;
+  @IsInt()
+  @Min(1)
+  quantity!: number;
 }
 
 export class UpdateCartItemDto {
-    @IsInt()
-    @Min(1)
-    quantity!: number;
+  @IsInt()
+  @Min(1)
+  quantity!: number;
 }
+
+// DTOs for guest cart operations
 
 export class GuestTokenDto {
-    @IsUUID()
-    guestToken!: string;
+  @IsUUID()
+  guestToken!: string;
 }
 
-export class AddToGuestCartDto extends AddToCartDto {
-    @IsUUID()
-    guestToken!: string;
+export class AddToGuestCartDto {
+  @IsUUID()
+  variantId!: string;
+
+  @IsInt()
+  @Min(1)
+  quantity!: number;
+
+  @IsUUID()
+  guestToken!: string;
 }
 
 export class MergeGuestCartDto {
-    @IsUUID()
-    guestToken!: string;
+  @IsUUID()
+  guestToken!: string;
 }
 
-export class GuestCartItemParamsDto extends GuestTokenDto {
-    @IsUUID()
-    id!: string;
+export class GuestCartItemParamsDto {
+  @IsUUID()
+  guestToken!: string;
+
+  @IsUUID()
+  id!: string;
 }
