@@ -28,6 +28,10 @@ export class PlaceOrderDto {
     notes?: string;
 
     @IsOptional()
+    @IsUUID()
+    shippingMethodId?: string;
+
+    @IsOptional()
     @IsString()
     couponCode?: string;
 }

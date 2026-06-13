@@ -339,6 +339,7 @@ model Coupon {
   updatedAt            DateTime   @updatedAt
 
   tenant Tenant? @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  orders Order[]
 
   @@unique([tenantId, code])
   @@map("coupons")
@@ -365,7 +366,7 @@ model Order {
   currency          Currency      @default(USD)
   notes             String?
   internalNotes     String?
-  couponCode        String?
+  couponId          String?
   shippingMethodId  String?
   trackingNumber    String?
   estimatedDelivery DateTime?
@@ -376,6 +377,7 @@ model Order {
   tenant         Tenant?         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   customer       Customer        @relation(fields: [customerId], references: [id])
   address        Address         @relation(fields: [addressId], references: [id])
+  coupon         Coupon?         @relation(fields: [couponId], references: [id])
   shippingMethod ShippingMethod? @relation(fields: [shippingMethodId], references: [id])
   orderItems     OrderItem[]
   payments       Payment[]

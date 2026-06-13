@@ -215,7 +215,7 @@ exports.Prisma.OrderScalarFieldEnum = {
   currency: 'currency',
   notes: 'notes',
   internalNotes: 'internalNotes',
-  couponCode: 'couponCode',
+  couponId: 'couponId',
   shippingMethodId: 'shippingMethodId',
   trackingNumber: 'trackingNumber',
   estimatedDelivery: 'estimatedDelivery',

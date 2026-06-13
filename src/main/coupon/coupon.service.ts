@@ -343,7 +343,7 @@ export class CouponService {
                 const usedCount = await this.prisma.order.count({
                     where: {
                         customerId: customer.id,
-                        couponCode: coupon.code,
+                        couponId: coupon.id,
                         status: { not: OrderStatus.CANCELLED },
                     },
                 });

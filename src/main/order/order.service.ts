@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { OrderRepository } from './order.repository';
 import { PlaceOrderDto, UpdateOrderStatusDto } from './order.dto';
 import calculatePagination from 'src/utils/calculatePagination';
-import { OrderStatus } from 'src/generated/prisma';
+import { CouponType, OrderStatus } from 'src/generated/prisma';
 
 @Injectable()
 export class OrderService {
@@ -21,6 +21,7 @@ export class OrderService {
       isDefault,
       notes,
       couponCode,
+      shippingMethodId,
     } = placeOrderDto;
 
     // Validate: Either addressId OR (street + thanaId) must be provided
@@ -85,15 +86,88 @@ export class OrderService {
       }
     }
 
-    // Calculate totals
+    // Calculate subtotal
     const subtotal = cart.items.reduce((sum, item) => {
       return sum + Number(item.variant.price) * item.quantity;
     }, 0);
 
-    // Simple shipping calculation (you can make this more complex)
-    const shippingCost = subtotal > 100 ? 0 : 10; // Free shipping over $100
+    // Resolve shipping cost from shippingMethodId
+    let shippingCost = 0;
+    if (shippingMethodId) {
+      const shippingMethod = await this.orderRepository.findShippingMethodById(shippingMethodId);
+      if (!shippingMethod) {
+        throw new HttpException('Shipping method not found', HttpStatus.NOT_FOUND);
+      }
+      if (!shippingMethod.isActive) {
+        throw new HttpException('Shipping method is not active', HttpStatus.BAD_REQUEST);
+      }
+      shippingCost = Number(shippingMethod.cost ?? 0);
+    }
 
-    const total = subtotal + shippingCost;
+    // Validate coupon and compute discount
+    let couponId: string | undefined;
+    let discount = 0;
+    if (couponCode) {
+      const coupon = await this.orderRepository.findCouponByCode(couponCode);
+      if (!coupon) {
+        throw new HttpException('Invalid coupon code', HttpStatus.BAD_REQUEST);
+      }
+
+      const now = new Date();
+      if (coupon.startsAt && coupon.startsAt > now) {
+        throw new HttpException('Coupon is not started yet', HttpStatus.BAD_REQUEST);
+      }
+      if (coupon.expiresAt && coupon.expiresAt < now) {
+        throw new HttpException('Coupon has expired', HttpStatus.BAD_REQUEST);
+      }
+      if (coupon.usageLimit !== null && coupon.usageCount >= coupon.usageLimit) {
+        throw new HttpException('Coupon usage limit has been reached', HttpStatus.BAD_REQUEST);
+      }
+
+      if (coupon.minOrderAmount !== null && subtotal < Number(coupon.minOrderAmount)) {
+        throw new HttpException(
+          `Minimum order amount of ${Number(coupon.minOrderAmount).toFixed(2)} is required for this coupon`,
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
+      if (coupon.userUsageLimit !== null) {
+        const usedCount = await this.orderRepository.countCouponUsageByCustomer(customerId, coupon.id);
+        if (usedCount >= coupon.userUsageLimit) {
+          throw new HttpException('Coupon usage limit reached for this user', HttpStatus.BAD_REQUEST);
+        }
+      }
+
+      // Determine eligible items based on applicableProductIds
+      const restrictByProducts = coupon.applicableProductIds.length > 0;
+      const eligibleItems = restrictByProducts
+        ? cart.items.filter((item) => coupon.applicableProductIds.includes(item.variant.productId))
+        : cart.items;
+
+      const eligibleAmount = eligibleItems.reduce((sum, item) => {
+        return sum + Number(item.variant.price) * item.quantity;
+      }, 0);
+
+      if (restrictByProducts && eligibleAmount === 0) {
+        throw new HttpException('Coupon is not applicable to selected products', HttpStatus.BAD_REQUEST);
+      }
+
+      let discountAmount = 0;
+      if (coupon.type === CouponType.PERCENTAGE) {
+        discountAmount = (eligibleAmount * Number(coupon.value)) / 100;
+      } else if (coupon.type === CouponType.FIXED_AMOUNT) {
+        discountAmount = Math.min(Number(coupon.value), eligibleAmount);
+      }
+
+      if (coupon.maxDiscountAmount !== null) {
+        discountAmount = Math.min(discountAmount, Number(coupon.maxDiscountAmount));
+      }
+
+      discount = Math.max(0, Math.min(discountAmount, subtotal));
+      couponId = coupon.id;
+    }
+
+    const total = subtotal - discount + shippingCost;
 
     // Generate order number
     const orderNumber = await this.orderRepository.generateOrderNumber();
@@ -115,9 +189,11 @@ export class OrderService {
         cart.items,
         subtotal,
         shippingCost,
+        discount,
         total,
         notes,
-        couponCode,
+        couponId,
+        shippingMethodId,
       );
 
       return order;

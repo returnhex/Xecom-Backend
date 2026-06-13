@@ -5037,6 +5037,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type CouponCountOutputType
+   */
+
+  export type CouponCountOutputType = {
+    orders: number
+  }
+
+  export type CouponCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orders?: boolean | CouponCountOutputTypeCountOrdersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CouponCountOutputType without action
+   */
+  export type CouponCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouponCountOutputType
+     */
+    select?: CouponCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CouponCountOutputType without action
+   */
+  export type CouponCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderWhereInput
+  }
+
+
+  /**
    * Count Type OrderCountOutputType
    */
 
@@ -12786,6 +12817,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     tenant?: boolean | Coupon$tenantArgs<ExtArgs>
+    orders?: boolean | Coupon$ordersArgs<ExtArgs>
+    _count?: boolean | CouponCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["coupon"]>
 
   export type CouponSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -12856,6 +12889,8 @@ export namespace Prisma {
   export type CouponOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "code" | "name" | "description" | "type" | "value" | "minOrderAmount" | "maxDiscountAmount" | "usageLimit" | "usageCount" | "userUsageLimit" | "isActive" | "startsAt" | "expiresAt" | "applicableProductIds" | "createdAt" | "updatedAt", ExtArgs["result"]["coupon"]>
   export type CouponInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | Coupon$tenantArgs<ExtArgs>
+    orders?: boolean | Coupon$ordersArgs<ExtArgs>
+    _count?: boolean | CouponCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CouponIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | Coupon$tenantArgs<ExtArgs>
@@ -12868,6 +12903,7 @@ export namespace Prisma {
     name: "Coupon"
     objects: {
       tenant: Prisma.$TenantPayload<ExtArgs> | null
+      orders: Prisma.$OrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13283,6 +13319,7 @@ export namespace Prisma {
   export interface Prisma__CouponClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tenant<T extends Coupon$tenantArgs<ExtArgs> = {}>(args?: Subset<T, Coupon$tenantArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    orders<T extends Coupon$ordersArgs<ExtArgs> = {}>(args?: Subset<T, Coupon$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13745,6 +13782,30 @@ export namespace Prisma {
   }
 
   /**
+   * Coupon.orders
+   */
+  export type Coupon$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Order
+     */
+    omit?: OrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    cursor?: OrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+  /**
    * Coupon without action
    */
   export type CouponDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13808,7 +13869,7 @@ export namespace Prisma {
     currency: $Enums.Currency | null
     notes: string | null
     internalNotes: string | null
-    couponCode: string | null
+    couponId: string | null
     shippingMethodId: string | null
     trackingNumber: string | null
     estimatedDelivery: Date | null
@@ -13834,7 +13895,7 @@ export namespace Prisma {
     currency: $Enums.Currency | null
     notes: string | null
     internalNotes: string | null
-    couponCode: string | null
+    couponId: string | null
     shippingMethodId: string | null
     trackingNumber: string | null
     estimatedDelivery: Date | null
@@ -13860,7 +13921,7 @@ export namespace Prisma {
     currency: number
     notes: number
     internalNotes: number
-    couponCode: number
+    couponId: number
     shippingMethodId: number
     trackingNumber: number
     estimatedDelivery: number
@@ -13904,7 +13965,7 @@ export namespace Prisma {
     currency?: true
     notes?: true
     internalNotes?: true
-    couponCode?: true
+    couponId?: true
     shippingMethodId?: true
     trackingNumber?: true
     estimatedDelivery?: true
@@ -13930,7 +13991,7 @@ export namespace Prisma {
     currency?: true
     notes?: true
     internalNotes?: true
-    couponCode?: true
+    couponId?: true
     shippingMethodId?: true
     trackingNumber?: true
     estimatedDelivery?: true
@@ -13956,7 +14017,7 @@ export namespace Prisma {
     currency?: true
     notes?: true
     internalNotes?: true
-    couponCode?: true
+    couponId?: true
     shippingMethodId?: true
     trackingNumber?: true
     estimatedDelivery?: true
@@ -14069,7 +14130,7 @@ export namespace Prisma {
     currency: $Enums.Currency
     notes: string | null
     internalNotes: string | null
-    couponCode: string | null
+    couponId: string | null
     shippingMethodId: string | null
     trackingNumber: string | null
     estimatedDelivery: Date | null
@@ -14114,7 +14175,7 @@ export namespace Prisma {
     currency?: boolean
     notes?: boolean
     internalNotes?: boolean
-    couponCode?: boolean
+    couponId?: boolean
     shippingMethodId?: boolean
     trackingNumber?: boolean
     estimatedDelivery?: boolean
@@ -14124,6 +14185,7 @@ export namespace Prisma {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    coupon?: boolean | Order$couponArgs<ExtArgs>
     shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
     orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
     payments?: boolean | Order$paymentsArgs<ExtArgs>
@@ -14149,7 +14211,7 @@ export namespace Prisma {
     currency?: boolean
     notes?: boolean
     internalNotes?: boolean
-    couponCode?: boolean
+    couponId?: boolean
     shippingMethodId?: boolean
     trackingNumber?: boolean
     estimatedDelivery?: boolean
@@ -14159,6 +14221,7 @@ export namespace Prisma {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    coupon?: boolean | Order$couponArgs<ExtArgs>
     shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
@@ -14179,7 +14242,7 @@ export namespace Prisma {
     currency?: boolean
     notes?: boolean
     internalNotes?: boolean
-    couponCode?: boolean
+    couponId?: boolean
     shippingMethodId?: boolean
     trackingNumber?: boolean
     estimatedDelivery?: boolean
@@ -14189,6 +14252,7 @@ export namespace Prisma {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    coupon?: boolean | Order$couponArgs<ExtArgs>
     shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
@@ -14209,7 +14273,7 @@ export namespace Prisma {
     currency?: boolean
     notes?: boolean
     internalNotes?: boolean
-    couponCode?: boolean
+    couponId?: boolean
     shippingMethodId?: boolean
     trackingNumber?: boolean
     estimatedDelivery?: boolean
@@ -14218,11 +14282,12 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "customerId" | "addressId" | "orderNumber" | "status" | "paymentStatus" | "paymentMethod" | "subtotal" | "taxAmount" | "shippingCost" | "discount" | "total" | "currency" | "notes" | "internalNotes" | "couponCode" | "shippingMethodId" | "trackingNumber" | "estimatedDelivery" | "deliveredAt" | "placedAt" | "updatedAt", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "customerId" | "addressId" | "orderNumber" | "status" | "paymentStatus" | "paymentMethod" | "subtotal" | "taxAmount" | "shippingCost" | "discount" | "total" | "currency" | "notes" | "internalNotes" | "couponId" | "shippingMethodId" | "trackingNumber" | "estimatedDelivery" | "deliveredAt" | "placedAt" | "updatedAt", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    coupon?: boolean | Order$couponArgs<ExtArgs>
     shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
     orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
     payments?: boolean | Order$paymentsArgs<ExtArgs>
@@ -14234,12 +14299,14 @@ export namespace Prisma {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    coupon?: boolean | Order$couponArgs<ExtArgs>
     shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
   }
   export type OrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | Order$tenantArgs<ExtArgs>
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
+    coupon?: boolean | Order$couponArgs<ExtArgs>
     shippingMethod?: boolean | Order$shippingMethodArgs<ExtArgs>
   }
 
@@ -14249,6 +14316,7 @@ export namespace Prisma {
       tenant: Prisma.$TenantPayload<ExtArgs> | null
       customer: Prisma.$CustomerPayload<ExtArgs>
       address: Prisma.$AddressPayload<ExtArgs>
+      coupon: Prisma.$CouponPayload<ExtArgs> | null
       shippingMethod: Prisma.$ShippingMethodPayload<ExtArgs> | null
       orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
@@ -14272,7 +14340,7 @@ export namespace Prisma {
       currency: $Enums.Currency
       notes: string | null
       internalNotes: string | null
-      couponCode: string | null
+      couponId: string | null
       shippingMethodId: string | null
       trackingNumber: string | null
       estimatedDelivery: Date | null
@@ -14676,6 +14744,7 @@ export namespace Prisma {
     tenant<T extends Order$tenantArgs<ExtArgs> = {}>(args?: Subset<T, Order$tenantArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     address<T extends AddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddressDefaultArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    coupon<T extends Order$couponArgs<ExtArgs> = {}>(args?: Subset<T, Order$couponArgs<ExtArgs>>): Prisma__CouponClient<$Result.GetResult<Prisma.$CouponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     shippingMethod<T extends Order$shippingMethodArgs<ExtArgs> = {}>(args?: Subset<T, Order$shippingMethodArgs<ExtArgs>>): Prisma__ShippingMethodClient<$Result.GetResult<Prisma.$ShippingMethodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     orderItems<T extends Order$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, Order$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends Order$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Order$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -14726,7 +14795,7 @@ export namespace Prisma {
     readonly currency: FieldRef<"Order", 'Currency'>
     readonly notes: FieldRef<"Order", 'String'>
     readonly internalNotes: FieldRef<"Order", 'String'>
-    readonly couponCode: FieldRef<"Order", 'String'>
+    readonly couponId: FieldRef<"Order", 'String'>
     readonly shippingMethodId: FieldRef<"Order", 'String'>
     readonly trackingNumber: FieldRef<"Order", 'String'>
     readonly estimatedDelivery: FieldRef<"Order", 'DateTime'>
@@ -15145,6 +15214,25 @@ export namespace Prisma {
      */
     include?: TenantInclude<ExtArgs> | null
     where?: TenantWhereInput
+  }
+
+  /**
+   * Order.coupon
+   */
+  export type Order$couponArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coupon
+     */
+    select?: CouponSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coupon
+     */
+    omit?: CouponOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouponInclude<ExtArgs> | null
+    where?: CouponWhereInput
   }
 
   /**
@@ -54674,7 +54762,7 @@ export namespace Prisma {
     currency: 'currency',
     notes: 'notes',
     internalNotes: 'internalNotes',
-    couponCode: 'couponCode',
+    couponId: 'couponId',
     shippingMethodId: 'shippingMethodId',
     trackingNumber: 'trackingNumber',
     estimatedDelivery: 'estimatedDelivery',
@@ -56127,6 +56215,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeFilter<"Coupon"> | Date | string
     tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
+    orders?: OrderListRelationFilter
   }
 
   export type CouponOrderByWithRelationInput = {
@@ -56149,6 +56238,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     tenant?: TenantOrderByWithRelationInput
+    orders?: OrderOrderByRelationAggregateInput
   }
 
   export type CouponWhereUniqueInput = Prisma.AtLeast<{
@@ -56175,6 +56265,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Coupon"> | Date | string
     updatedAt?: DateTimeFilter<"Coupon"> | Date | string
     tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
+    orders?: OrderListRelationFilter
   }, "id" | "tenantId_code">
 
   export type CouponOrderByWithAggregationInput = {
@@ -56247,7 +56338,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFilter<"Order"> | $Enums.Currency
     notes?: StringNullableFilter<"Order"> | string | null
     internalNotes?: StringNullableFilter<"Order"> | string | null
-    couponCode?: StringNullableFilter<"Order"> | string | null
+    couponId?: StringNullableFilter<"Order"> | string | null
     shippingMethodId?: StringNullableFilter<"Order"> | string | null
     trackingNumber?: StringNullableFilter<"Order"> | string | null
     estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
@@ -56257,6 +56348,7 @@ export namespace Prisma {
     tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
+    coupon?: XOR<CouponNullableScalarRelationFilter, CouponWhereInput> | null
     shippingMethod?: XOR<ShippingMethodNullableScalarRelationFilter, ShippingMethodWhereInput> | null
     orderItems?: OrderItemListRelationFilter
     payments?: PaymentListRelationFilter
@@ -56281,7 +56373,7 @@ export namespace Prisma {
     currency?: SortOrder
     notes?: SortOrderInput | SortOrder
     internalNotes?: SortOrderInput | SortOrder
-    couponCode?: SortOrderInput | SortOrder
+    couponId?: SortOrderInput | SortOrder
     shippingMethodId?: SortOrderInput | SortOrder
     trackingNumber?: SortOrderInput | SortOrder
     estimatedDelivery?: SortOrderInput | SortOrder
@@ -56291,6 +56383,7 @@ export namespace Prisma {
     tenant?: TenantOrderByWithRelationInput
     customer?: CustomerOrderByWithRelationInput
     address?: AddressOrderByWithRelationInput
+    coupon?: CouponOrderByWithRelationInput
     shippingMethod?: ShippingMethodOrderByWithRelationInput
     orderItems?: OrderItemOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
@@ -56319,7 +56412,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFilter<"Order"> | $Enums.Currency
     notes?: StringNullableFilter<"Order"> | string | null
     internalNotes?: StringNullableFilter<"Order"> | string | null
-    couponCode?: StringNullableFilter<"Order"> | string | null
+    couponId?: StringNullableFilter<"Order"> | string | null
     shippingMethodId?: StringNullableFilter<"Order"> | string | null
     trackingNumber?: StringNullableFilter<"Order"> | string | null
     estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
@@ -56329,6 +56422,7 @@ export namespace Prisma {
     tenant?: XOR<TenantNullableScalarRelationFilter, TenantWhereInput> | null
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
+    coupon?: XOR<CouponNullableScalarRelationFilter, CouponWhereInput> | null
     shippingMethod?: XOR<ShippingMethodNullableScalarRelationFilter, ShippingMethodWhereInput> | null
     orderItems?: OrderItemListRelationFilter
     payments?: PaymentListRelationFilter
@@ -56353,7 +56447,7 @@ export namespace Prisma {
     currency?: SortOrder
     notes?: SortOrderInput | SortOrder
     internalNotes?: SortOrderInput | SortOrder
-    couponCode?: SortOrderInput | SortOrder
+    couponId?: SortOrderInput | SortOrder
     shippingMethodId?: SortOrderInput | SortOrder
     trackingNumber?: SortOrderInput | SortOrder
     estimatedDelivery?: SortOrderInput | SortOrder
@@ -56387,7 +56481,7 @@ export namespace Prisma {
     currency?: EnumCurrencyWithAggregatesFilter<"Order"> | $Enums.Currency
     notes?: StringNullableWithAggregatesFilter<"Order"> | string | null
     internalNotes?: StringNullableWithAggregatesFilter<"Order"> | string | null
-    couponCode?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    couponId?: StringNullableWithAggregatesFilter<"Order"> | string | null
     shippingMethodId?: StringNullableWithAggregatesFilter<"Order"> | string | null
     trackingNumber?: StringNullableWithAggregatesFilter<"Order"> | string | null
     estimatedDelivery?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
@@ -59663,6 +59757,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tenant?: TenantCreateNestedOneWithoutCouponsInput
+    orders?: OrderCreateNestedManyWithoutCouponInput
   }
 
   export type CouponUncheckedCreateInput = {
@@ -59684,6 +59779,7 @@ export namespace Prisma {
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    orders?: OrderUncheckedCreateNestedManyWithoutCouponInput
   }
 
   export type CouponUpdateInput = {
@@ -59705,6 +59801,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneWithoutCouponsNestedInput
+    orders?: OrderUpdateManyWithoutCouponNestedInput
   }
 
   export type CouponUncheckedUpdateInput = {
@@ -59726,6 +59823,7 @@ export namespace Prisma {
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUncheckedUpdateManyWithoutCouponNestedInput
   }
 
   export type CouponCreateManyInput = {
@@ -59804,7 +59902,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -59813,6 +59910,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
@@ -59837,7 +59935,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -59864,7 +59962,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -59873,6 +59970,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
@@ -59897,7 +59995,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -59927,7 +60025,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -59950,7 +60048,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -59975,7 +60072,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -63795,6 +63892,11 @@ export namespace Prisma {
     isNot?: AddressWhereInput
   }
 
+  export type CouponNullableScalarRelationFilter = {
+    is?: CouponWhereInput | null
+    isNot?: CouponWhereInput | null
+  }
+
   export type ShippingMethodNullableScalarRelationFilter = {
     is?: ShippingMethodWhereInput | null
     isNot?: ShippingMethodWhereInput | null
@@ -63862,7 +63964,7 @@ export namespace Prisma {
     currency?: SortOrder
     notes?: SortOrder
     internalNotes?: SortOrder
-    couponCode?: SortOrder
+    couponId?: SortOrder
     shippingMethodId?: SortOrder
     trackingNumber?: SortOrder
     estimatedDelivery?: SortOrder
@@ -63896,7 +63998,7 @@ export namespace Prisma {
     currency?: SortOrder
     notes?: SortOrder
     internalNotes?: SortOrder
-    couponCode?: SortOrder
+    couponId?: SortOrder
     shippingMethodId?: SortOrder
     trackingNumber?: SortOrder
     estimatedDelivery?: SortOrder
@@ -63922,7 +64024,7 @@ export namespace Prisma {
     currency?: SortOrder
     notes?: SortOrder
     internalNotes?: SortOrder
-    couponCode?: SortOrder
+    couponId?: SortOrder
     shippingMethodId?: SortOrder
     trackingNumber?: SortOrder
     estimatedDelivery?: SortOrder
@@ -66579,6 +66681,20 @@ export namespace Prisma {
     connect?: TenantWhereUniqueInput
   }
 
+  export type OrderCreateNestedManyWithoutCouponInput = {
+    create?: XOR<OrderCreateWithoutCouponInput, OrderUncheckedCreateWithoutCouponInput> | OrderCreateWithoutCouponInput[] | OrderUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutCouponInput | OrderCreateOrConnectWithoutCouponInput[]
+    createMany?: OrderCreateManyCouponInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type OrderUncheckedCreateNestedManyWithoutCouponInput = {
+    create?: XOR<OrderCreateWithoutCouponInput, OrderUncheckedCreateWithoutCouponInput> | OrderCreateWithoutCouponInput[] | OrderUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutCouponInput | OrderCreateOrConnectWithoutCouponInput[]
+    createMany?: OrderCreateManyCouponInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
   export type EnumCouponTypeFieldUpdateOperationsInput = {
     set?: $Enums.CouponType
   }
@@ -66618,6 +66734,34 @@ export namespace Prisma {
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutCouponsInput, TenantUpdateWithoutCouponsInput>, TenantUncheckedUpdateWithoutCouponsInput>
   }
 
+  export type OrderUpdateManyWithoutCouponNestedInput = {
+    create?: XOR<OrderCreateWithoutCouponInput, OrderUncheckedCreateWithoutCouponInput> | OrderCreateWithoutCouponInput[] | OrderUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutCouponInput | OrderCreateOrConnectWithoutCouponInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutCouponInput | OrderUpsertWithWhereUniqueWithoutCouponInput[]
+    createMany?: OrderCreateManyCouponInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutCouponInput | OrderUpdateWithWhereUniqueWithoutCouponInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutCouponInput | OrderUpdateManyWithWhereWithoutCouponInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type OrderUncheckedUpdateManyWithoutCouponNestedInput = {
+    create?: XOR<OrderCreateWithoutCouponInput, OrderUncheckedCreateWithoutCouponInput> | OrderCreateWithoutCouponInput[] | OrderUncheckedCreateWithoutCouponInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutCouponInput | OrderCreateOrConnectWithoutCouponInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutCouponInput | OrderUpsertWithWhereUniqueWithoutCouponInput[]
+    createMany?: OrderCreateManyCouponInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutCouponInput | OrderUpdateWithWhereUniqueWithoutCouponInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutCouponInput | OrderUpdateManyWithWhereWithoutCouponInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
   export type TenantCreateNestedOneWithoutOrdersInput = {
     create?: XOR<TenantCreateWithoutOrdersInput, TenantUncheckedCreateWithoutOrdersInput>
     connectOrCreate?: TenantCreateOrConnectWithoutOrdersInput
@@ -66634,6 +66778,12 @@ export namespace Prisma {
     create?: XOR<AddressCreateWithoutOrdersInput, AddressUncheckedCreateWithoutOrdersInput>
     connectOrCreate?: AddressCreateOrConnectWithoutOrdersInput
     connect?: AddressWhereUniqueInput
+  }
+
+  export type CouponCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<CouponCreateWithoutOrdersInput, CouponUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: CouponCreateOrConnectWithoutOrdersInput
+    connect?: CouponWhereUniqueInput
   }
 
   export type ShippingMethodCreateNestedOneWithoutOrdersInput = {
@@ -66734,6 +66884,16 @@ export namespace Prisma {
     upsert?: AddressUpsertWithoutOrdersInput
     connect?: AddressWhereUniqueInput
     update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutOrdersInput, AddressUpdateWithoutOrdersInput>, AddressUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type CouponUpdateOneWithoutOrdersNestedInput = {
+    create?: XOR<CouponCreateWithoutOrdersInput, CouponUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: CouponCreateOrConnectWithoutOrdersInput
+    upsert?: CouponUpsertWithoutOrdersInput
+    disconnect?: CouponWhereInput | boolean
+    delete?: CouponWhereInput | boolean
+    connect?: CouponWhereUniqueInput
+    update?: XOR<XOR<CouponUpdateToOneWithWhereWithoutOrdersInput, CouponUpdateWithoutOrdersInput>, CouponUncheckedUpdateWithoutOrdersInput>
   }
 
   export type ShippingMethodUpdateOneWithoutOrdersNestedInput = {
@@ -70740,7 +70900,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -70748,6 +70907,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
@@ -70771,7 +70931,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -70922,7 +71082,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFilter<"Order"> | $Enums.Currency
     notes?: StringNullableFilter<"Order"> | string | null
     internalNotes?: StringNullableFilter<"Order"> | string | null
-    couponCode?: StringNullableFilter<"Order"> | string | null
+    couponId?: StringNullableFilter<"Order"> | string | null
     shippingMethodId?: StringNullableFilter<"Order"> | string | null
     trackingNumber?: StringNullableFilter<"Order"> | string | null
     estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
@@ -71004,6 +71164,74 @@ export namespace Prisma {
     create: XOR<TenantCreateWithoutCouponsInput, TenantUncheckedCreateWithoutCouponsInput>
   }
 
+  export type OrderCreateWithoutCouponInput = {
+    id?: string
+    orderNumber: string
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    subtotal: Decimal | DecimalJsLike | number | string
+    taxAmount?: Decimal | DecimalJsLike | number | string
+    shippingCost?: Decimal | DecimalJsLike | number | string
+    discount?: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    currency?: $Enums.Currency
+    notes?: string | null
+    internalNotes?: string | null
+    trackingNumber?: string | null
+    estimatedDelivery?: Date | string | null
+    deliveredAt?: Date | string | null
+    placedAt?: Date | string
+    updatedAt?: Date | string
+    tenant?: TenantCreateNestedOneWithoutOrdersInput
+    customer: CustomerCreateNestedOneWithoutOrdersInput
+    address: AddressCreateNestedOneWithoutOrdersInput
+    shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
+    orderItems?: OrderItemCreateNestedManyWithoutOrderInput
+    payments?: PaymentCreateNestedManyWithoutOrderInput
+    shipments?: ShipmentCreateNestedManyWithoutOrderInput
+    returns?: OrderReturnCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutCouponInput = {
+    id?: string
+    tenantId?: string | null
+    customerId: string
+    addressId: string
+    orderNumber: string
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    subtotal: Decimal | DecimalJsLike | number | string
+    taxAmount?: Decimal | DecimalJsLike | number | string
+    shippingCost?: Decimal | DecimalJsLike | number | string
+    discount?: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    currency?: $Enums.Currency
+    notes?: string | null
+    internalNotes?: string | null
+    shippingMethodId?: string | null
+    trackingNumber?: string | null
+    estimatedDelivery?: Date | string | null
+    deliveredAt?: Date | string | null
+    placedAt?: Date | string
+    updatedAt?: Date | string
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutOrderInput
+    shipments?: ShipmentUncheckedCreateNestedManyWithoutOrderInput
+    returns?: OrderReturnUncheckedCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutCouponInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutCouponInput, OrderUncheckedCreateWithoutCouponInput>
+  }
+
+  export type OrderCreateManyCouponInputEnvelope = {
+    data: OrderCreateManyCouponInput | OrderCreateManyCouponInput[]
+    skipDuplicates?: boolean
+  }
+
   export type TenantUpsertWithoutCouponsInput = {
     update: XOR<TenantUpdateWithoutCouponsInput, TenantUncheckedUpdateWithoutCouponsInput>
     create: XOR<TenantCreateWithoutCouponsInput, TenantUncheckedCreateWithoutCouponsInput>
@@ -71081,6 +71309,22 @@ export namespace Prisma {
     shippingMethods?: ShippingMethodUncheckedUpdateManyWithoutTenantNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutTenantNestedInput
     settings?: SettingUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type OrderUpsertWithWhereUniqueWithoutCouponInput = {
+    where: OrderWhereUniqueInput
+    update: XOR<OrderUpdateWithoutCouponInput, OrderUncheckedUpdateWithoutCouponInput>
+    create: XOR<OrderCreateWithoutCouponInput, OrderUncheckedCreateWithoutCouponInput>
+  }
+
+  export type OrderUpdateWithWhereUniqueWithoutCouponInput = {
+    where: OrderWhereUniqueInput
+    data: XOR<OrderUpdateWithoutCouponInput, OrderUncheckedUpdateWithoutCouponInput>
+  }
+
+  export type OrderUpdateManyWithWhereWithoutCouponInput = {
+    where: OrderScalarWhereInput
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutCouponInput>
   }
 
   export type TenantCreateWithoutOrdersInput = {
@@ -71234,6 +71478,53 @@ export namespace Prisma {
   export type AddressCreateOrConnectWithoutOrdersInput = {
     where: AddressWhereUniqueInput
     create: XOR<AddressCreateWithoutOrdersInput, AddressUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type CouponCreateWithoutOrdersInput = {
+    id?: string
+    code: string
+    name: string
+    description?: string | null
+    type?: $Enums.CouponType
+    value: Decimal | DecimalJsLike | number | string
+    minOrderAmount?: Decimal | DecimalJsLike | number | string | null
+    maxDiscountAmount?: Decimal | DecimalJsLike | number | string | null
+    usageLimit?: number | null
+    usageCount?: number
+    userUsageLimit?: number | null
+    isActive?: boolean
+    startsAt?: Date | string | null
+    expiresAt?: Date | string | null
+    applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant?: TenantCreateNestedOneWithoutCouponsInput
+  }
+
+  export type CouponUncheckedCreateWithoutOrdersInput = {
+    id?: string
+    tenantId?: string | null
+    code: string
+    name: string
+    description?: string | null
+    type?: $Enums.CouponType
+    value: Decimal | DecimalJsLike | number | string
+    minOrderAmount?: Decimal | DecimalJsLike | number | string | null
+    maxDiscountAmount?: Decimal | DecimalJsLike | number | string | null
+    usageLimit?: number | null
+    usageCount?: number
+    userUsageLimit?: number | null
+    isActive?: boolean
+    startsAt?: Date | string | null
+    expiresAt?: Date | string | null
+    applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CouponCreateOrConnectWithoutOrdersInput = {
+    where: CouponWhereUniqueInput
+    create: XOR<CouponCreateWithoutOrdersInput, CouponUncheckedCreateWithoutOrdersInput>
   }
 
   export type ShippingMethodCreateWithoutOrdersInput = {
@@ -71586,6 +71877,59 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CouponUpsertWithoutOrdersInput = {
+    update: XOR<CouponUpdateWithoutOrdersInput, CouponUncheckedUpdateWithoutOrdersInput>
+    create: XOR<CouponCreateWithoutOrdersInput, CouponUncheckedCreateWithoutOrdersInput>
+    where?: CouponWhereInput
+  }
+
+  export type CouponUpdateToOneWithWhereWithoutOrdersInput = {
+    where?: CouponWhereInput
+    data: XOR<CouponUpdateWithoutOrdersInput, CouponUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type CouponUpdateWithoutOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minOrderAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    maxDiscountAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    usageLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    userUsageLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneWithoutCouponsNestedInput
+  }
+
+  export type CouponUncheckedUpdateWithoutOrdersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumCouponTypeFieldUpdateOperationsInput | $Enums.CouponType
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minOrderAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    maxDiscountAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    usageLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    userUsageLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ShippingMethodUpsertWithoutOrdersInput = {
     update: XOR<ShippingMethodUpdateWithoutOrdersInput, ShippingMethodUncheckedUpdateWithoutOrdersInput>
     create: XOR<ShippingMethodCreateWithoutOrdersInput, ShippingMethodUncheckedCreateWithoutOrdersInput>
@@ -71843,7 +72187,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -71852,6 +72195,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
@@ -71875,7 +72219,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -72006,7 +72350,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -72015,6 +72358,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
@@ -72038,7 +72382,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -72206,7 +72550,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -72215,6 +72558,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
@@ -72238,7 +72582,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -72402,7 +72746,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -72411,6 +72754,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     shipments?: ShipmentCreateNestedManyWithoutOrderInput
@@ -72434,7 +72778,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -72476,7 +72820,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -72485,6 +72828,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
@@ -72508,7 +72852,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -72534,7 +72878,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -72543,6 +72886,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
@@ -72566,7 +72910,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -72608,7 +72952,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -72617,6 +72960,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
@@ -72640,7 +72984,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -72666,7 +73010,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -72675,6 +73018,7 @@ export namespace Prisma {
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
@@ -72698,7 +73042,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -72766,7 +73110,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -72775,6 +73118,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
@@ -72798,7 +73142,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77982,7 +78326,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -77990,6 +78333,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     customer: CustomerCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
@@ -78013,7 +78357,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -78090,6 +78434,7 @@ export namespace Prisma {
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    orders?: OrderCreateNestedManyWithoutCouponInput
   }
 
   export type CouponUncheckedCreateWithoutTenantInput = {
@@ -78110,6 +78455,7 @@ export namespace Prisma {
     applicableProductIds?: CouponCreateapplicableProductIdsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    orders?: OrderUncheckedCreateNestedManyWithoutCouponInput
   }
 
   export type CouponCreateOrConnectWithoutTenantInput = {
@@ -79759,7 +80105,6 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -79767,6 +80112,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     tenant?: TenantCreateNestedOneWithoutOrdersInput
     address: AddressCreateNestedOneWithoutOrdersInput
+    coupon?: CouponCreateNestedOneWithoutOrdersInput
     shippingMethod?: ShippingMethodCreateNestedOneWithoutOrdersInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payments?: PaymentCreateNestedManyWithoutOrderInput
@@ -79790,7 +80136,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -80331,7 +80677,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -80354,7 +80700,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -80362,6 +80707,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
@@ -80385,7 +80731,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -80414,7 +80760,115 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    placedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderCreateManyCouponInput = {
+    id?: string
+    tenantId?: string | null
+    customerId: string
+    addressId: string
+    orderNumber: string
+    status?: $Enums.OrderStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    subtotal: Decimal | DecimalJsLike | number | string
+    taxAmount?: Decimal | DecimalJsLike | number | string
+    shippingCost?: Decimal | DecimalJsLike | number | string
+    discount?: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    currency?: $Enums.Currency
+    notes?: string | null
+    internalNotes?: string | null
+    shippingMethodId?: string | null
+    trackingNumber?: string | null
+    estimatedDelivery?: Date | string | null
+    deliveredAt?: Date | string | null
+    placedAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrderUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orderNumber?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    placedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneWithoutOrdersNestedInput
+    customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
+    address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
+    orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
+    payments?: PaymentUpdateManyWithoutOrderNestedInput
+    shipments?: ShipmentUpdateManyWithoutOrderNestedInput
+    returns?: OrderReturnUpdateManyWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    addressId?: StringFieldUpdateOperationsInput | string
+    orderNumber?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    placedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutOrderNestedInput
+    shipments?: ShipmentUncheckedUpdateManyWithoutOrderNestedInput
+    returns?: OrderReturnUncheckedUpdateManyWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateManyWithoutCouponInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    addressId?: StringFieldUpdateOperationsInput | string
+    orderNumber?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -80654,7 +81108,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
     deliveredAt?: Date | string | null
@@ -80676,7 +81130,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -80685,6 +81138,7 @@ export namespace Prisma {
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
     shipments?: ShipmentUpdateManyWithoutOrderNestedInput
@@ -80708,7 +81162,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -80737,7 +81191,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -81810,7 +82264,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -82174,7 +82628,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -82182,6 +82635,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
@@ -82205,7 +82659,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -82234,7 +82688,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -82299,6 +82753,7 @@ export namespace Prisma {
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUpdateManyWithoutCouponNestedInput
   }
 
   export type CouponUncheckedUpdateWithoutTenantInput = {
@@ -82319,6 +82774,7 @@ export namespace Prisma {
     applicableProductIds?: CouponUpdateapplicableProductIdsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orders?: OrderUncheckedUpdateManyWithoutCouponNestedInput
   }
 
   export type CouponUncheckedUpdateManyWithoutTenantInput = {
@@ -82668,7 +83124,7 @@ export namespace Prisma {
     currency?: $Enums.Currency
     notes?: string | null
     internalNotes?: string | null
-    couponCode?: string | null
+    couponId?: string | null
     shippingMethodId?: string | null
     trackingNumber?: string | null
     estimatedDelivery?: Date | string | null
@@ -82737,7 +83193,6 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deliveredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -82745,6 +83200,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: TenantUpdateOneWithoutOrdersNestedInput
     address?: AddressUpdateOneRequiredWithoutOrdersNestedInput
+    coupon?: CouponUpdateOneWithoutOrdersNestedInput
     shippingMethod?: ShippingMethodUpdateOneWithoutOrdersNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payments?: PaymentUpdateManyWithoutOrderNestedInput
@@ -82768,7 +83224,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -82797,7 +83253,7 @@ export namespace Prisma {
     currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     internalNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    couponCode?: NullableStringFieldUpdateOperationsInput | string | null
+    couponId?: NullableStringFieldUpdateOperationsInput | string | null
     shippingMethodId?: NullableStringFieldUpdateOperationsInput | string | null
     trackingNumber?: NullableStringFieldUpdateOperationsInput | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

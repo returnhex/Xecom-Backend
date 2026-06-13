@@ -23,6 +23,7 @@ model Coupon {
   updatedAt             DateTime   @updatedAt
 
   tenant Tenant? @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  orders Order[]
 
   @@unique([tenantId, code])
   @@map("coupons")

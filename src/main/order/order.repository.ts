@@ -57,6 +57,26 @@ export class OrderRepository {
     return `ORD-${timestamp}-${random}`;
   }
 
+  async findShippingMethodById(id: string) {
+    return this.prisma.shippingMethod.findUnique({ where: { id, isActive: true } });
+  }
+
+  async findCouponByCode(code: string) {
+    return this.prisma.coupon.findFirst({
+      where: { isActive: true, code: { equals: code, mode: 'insensitive' } },
+    });
+  }
+
+  async countCouponUsageByCustomer(customerId: string, couponId: string) {
+    return this.prisma.order.count({
+      where: {
+        customerId,
+        couponId,
+        status: { not: OrderStatus.CANCELLED },
+      },
+    });
+  }
+
   async createOrderWithTransaction(
     customerId: string,
     addressId: string,
@@ -64,9 +84,11 @@ export class OrderRepository {
     cartItems: any[],
     subtotal: number,
     shippingCost: number,
+    discount: number,
     total: number,
     notes?: string,
-    couponCode?: string,
+    couponId?: string,
+    shippingMethodId?: string,
   ) {
     return this.prisma.$transaction(async (tx) => {
       // Create order
@@ -77,9 +99,11 @@ export class OrderRepository {
           orderNumber,
           subtotal,
           shippingCost,
+          discount,
           total,
           notes,
-          couponCode,
+          couponId,
+          shippingMethodId,
           status: OrderStatus.PENDING,
         },
         include: {
@@ -102,6 +126,14 @@ export class OrderRepository {
           },
         },
       });
+
+      // Increment coupon usage count
+      if (couponId) {
+        await tx.coupon.update({
+          where: { id: couponId },
+          data: { usageCount: { increment: 1 } },
+        });
+      }
 
       // Create order items and update inventory
       for (const item of cartItems) {
