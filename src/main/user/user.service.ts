@@ -21,9 +21,13 @@ export class UserService {
       postalCode: address.postalCode,
       isDefault: address.isDefault,
       thanaId: address.thanaId,
+      thanaName: address.thana.name,
       districtId: address.thana.districtId,
+      districtName: address.thana.district.name,
       divisionId: address.thana.district.divisionId,
+      divisionName: address.thana.district.division.name,
       countryId: address.thana.district.division.countryId,
+      countryName: address.thana.district.division.country.name,
     };
   }
 

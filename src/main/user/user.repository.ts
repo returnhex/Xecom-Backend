@@ -9,13 +9,21 @@ export class UserRepository {
   private addressIncludeForLocationChain = {
     thana: {
       select: {
+        name: true,
         districtId: true,
         district: {
           select: {
+            name: true,
             divisionId: true,
             division: {
               select: {
+                name: true,
                 countryId: true,
+                country: {
+                  select: {
+                    name: true,
+                  },
+                },
               },
             },
           },
