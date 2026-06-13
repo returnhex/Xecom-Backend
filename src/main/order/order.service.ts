@@ -18,7 +18,7 @@ export class OrderService {
       street,
       postalCode,
       thanaId,
-      saveAddress,
+      isDefault,
       notes,
       couponCode,
     } = placeOrderDto;
@@ -48,12 +48,13 @@ export class OrderService {
         throw new HttpException('Thana not found', HttpStatus.NOT_FOUND);
       }
 
-      // Create address
-      const newAddress = await this.orderRepository.createAddress({
+      // Create or update address, handling isDefault flag
+      const newAddress = await this.orderRepository.createOrUpdateAddressByUserAndThana({
+        userId,
+        thanaId,
         street,
         postalCode,
-        thanaId,
-        userId: saveAddress ? userId : null, // Link to user if saveAddress is true
+        isDefault,
       });
       finalAddressId = newAddress.id;
     } else if (addressId) {

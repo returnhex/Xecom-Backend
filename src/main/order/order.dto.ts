@@ -21,7 +21,7 @@ export class PlaceOrderDto {
 
     @IsOptional()
     @IsBoolean()
-    saveAddress?: boolean; // Save address to user's address book
+    isDefault?: boolean; 
 
     @IsOptional()
     @IsString()

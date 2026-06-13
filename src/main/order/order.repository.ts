@@ -535,19 +535,47 @@ export class OrderRepository {
     });
   }
 
-  async createAddress(data: {
-    street: string;
-    postalCode?: number;
+  async createOrUpdateAddressByUserAndThana(data: {
+    userId: string;
     thanaId: string;
-    userId: string | null;
+    postalCode?: number;
+    street: string;
+    isDefault?: boolean;
   }) {
-    return this.prisma.address.create({
-      data: {
-        street: data.street,
-        postalCode: data.postalCode,
-        thanaId: data.thanaId,
-        userId: data.userId,
-      },
+    return this.prisma.$transaction(async (tx) => {
+      if (data.isDefault === true) {
+        await tx.address.updateMany({
+          where: { userId: data.userId, isDefault: true },
+          data: { isDefault: false },
+        });
+      }
+
+      const existing = await tx.address.findFirst({
+        where: { userId: data.userId, thanaId: data.thanaId },
+        orderBy: { createdAt: 'desc' },
+        select: { id: true },
+      });
+
+      if (existing) {
+        return tx.address.update({
+          where: { id: existing.id },
+          data: {
+            street: data.street,
+            ...(data.postalCode !== undefined ? { postalCode: data.postalCode } : {}),
+            ...(data.isDefault !== undefined ? { isDefault: data.isDefault } : {}),
+          },
+        });
+      }
+
+      return tx.address.create({
+        data: {
+          userId: data.userId,
+          thanaId: data.thanaId,
+          postalCode: data.postalCode,
+          street: data.street,
+          isDefault: data.isDefault ?? false,
+        },
+      });
     });
   }
 }
