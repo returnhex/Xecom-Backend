@@ -17,6 +17,7 @@ export class UserService {
 
   private mapAddressToResponse(address: any) {
     return {
+      addressId: address.id,
       street: address.street,
       postalCode: address.postalCode,
       isDefault: address.isDefault,
